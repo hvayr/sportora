@@ -7,11 +7,6 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include" />
       <e p="DatabaseContext.cs" t="Include" />
-      <e p="Migrations" t="Include">
-        <e p="20201020103840_InitialMigration.cs" t="Include" />
-        <e p="20201020103840_InitialMigration.Designer.cs" t="Include" />
-        <e p="DatabaseContextModelSnapshot.cs" t="Include" />
-      </e>
       <e p="Models" t="Include">
         <e p="Business.cs" t="Include" />
         <e p="Club.cs" t="Include" />
