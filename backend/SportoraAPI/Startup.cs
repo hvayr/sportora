@@ -23,6 +23,7 @@ namespace SportoraAPI
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(@"Server=PostgreSQL 12;Host=localhost;Port=5432;
             Username=postgres;Password=dbpass;Database=sportora_db"));
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
             services.AddControllers();
         }
 

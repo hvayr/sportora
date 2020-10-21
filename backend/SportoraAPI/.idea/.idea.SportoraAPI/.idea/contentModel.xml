@@ -6,9 +6,15 @@
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
+        <e p="BusinessController.cs" t="Include" />
         <e p="UsersController.cs" t="Include" />
       </e>
       <e p="DatabaseContext.cs" t="Include" />
+      <e p="Migrations" t="Include">
+        <e p="20201021101029_MockDataForBusinessTable.cs" t="Include" />
+        <e p="20201021101029_MockDataForBusinessTable.Designer.cs" t="Include" />
+        <e p="DatabaseContextModelSnapshot.cs" t="Include" />
+      </e>
       <e p="Models" t="Include">
         <e p="Business.cs" t="Include" />
         <e p="Club.cs" t="Include" />
@@ -30,6 +36,8 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="Repositories" t="Include">
+        <e p="BusinessRepository.cs" t="Include" />
+        <e p="IBusinessRepository.cs" t="Include" />
         <e p="IUserRepository.cs" t="Include" />
         <e p="UserRepository.cs" t="Include" />
       </e>
