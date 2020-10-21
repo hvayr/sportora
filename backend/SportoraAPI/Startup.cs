@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SportoraAPI.Repositories;
 
 namespace SportoraAPI
 {
@@ -21,6 +22,7 @@ namespace SportoraAPI
         {
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(@"Server=PostgreSQL 12;Host=localhost;Port=5432;
             Username=postgres;Password=1234;Database=sportora_db"));
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
             services.AddControllers();
         }
 

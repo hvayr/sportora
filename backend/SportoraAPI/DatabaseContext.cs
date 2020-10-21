@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SportoraAPI.Models;
+using System.Collections.Generic;
 
 namespace SportoraAPI
 {
@@ -26,6 +28,15 @@ namespace SportoraAPI
                                                     Nickname = "Harma",
                                                     GroupIds = new []{0, 1},
                                                     ImageUrl = $"www"
+                                                });
+            modelBuilder.Entity<Business>().HasData(new Business
+                                                {
+                                                    Id          = 1,
+                                                    Name        = "Tero Testaajan Kuntosali",
+                                                    GroupIds    = new []{1, 2},
+                                                    Location    = "Testaajakatu 3",
+                                                    PhoneNumber = "040 123 4567",
+                                                    Premises    = new []{"Kuntosali", "Uimahalli"}
                                                 });
         }
     }
