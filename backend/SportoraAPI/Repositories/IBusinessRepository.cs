@@ -1,5 +1,5 @@
-﻿using SportoraAPI.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
 {
@@ -8,5 +8,8 @@ namespace SportoraAPI.Repositories
         void AddBusiness(Business business);
         List<Business> GetAllBusinesses();
         Business GetSingleBusiness(int id);
+
+        void RemoveBusiness(int id);
+        void UpdateBusiness(Business newBusiness);
     }
 }

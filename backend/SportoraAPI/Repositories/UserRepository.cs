@@ -25,20 +25,20 @@ namespace SportoraAPI.Repositories
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
         public User GetUser(int userId) =>
-            _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        public void UpdateUser(User updatedUser)
+        public void UpdateUser(User newUser)
         {
             User userToUpdate =
-                _context.Users.FirstOrDefault(u => u.Id == updatedUser.Id);
+                _context.Users.FirstOrDefault(u => u.Id == newUser.Id);
 
-            userToUpdate.Id = updatedUser.Id;
-            userToUpdate.Name = updatedUser.Name;
-            userToUpdate.Nickname = updatedUser.Nickname;
-            userToUpdate.Email = updatedUser.Email;
-            userToUpdate.Gender = updatedUser.Gender;
-            userToUpdate.GroupIds = updatedUser.GroupIds;
-            userToUpdate.ImageUrl = updatedUser.ImageUrl;
+            userToUpdate.Id = newUser.Id;
+            userToUpdate.Name = newUser.Name;
+            userToUpdate.Nickname = newUser.Nickname;
+            userToUpdate.Email = newUser.Email;
+            userToUpdate.Gender = newUser.Gender;
+            userToUpdate.GroupIds = newUser.GroupIds;
+            userToUpdate.ImageUrl = newUser.ImageUrl;
 
             _context.SaveChanges();
         }
@@ -47,11 +47,11 @@ namespace SportoraAPI.Repositories
         {
             Random r = new Random();
             int id;
-            User foundUser;
+            User foundUser = new User();
 
             do
             {
-                id = r.Next(1, 10);
+                id = r.Next(1, 999);
                 foundUser = _context.Users.FirstOrDefault(u => u.Id == id);
             } while (foundUser != null);
 

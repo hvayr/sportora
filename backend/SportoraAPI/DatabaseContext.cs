@@ -39,7 +39,7 @@ namespace SportoraAPI
 
             modelBuilder.Entity<Business>().HasData(new Business
             {
-                Id = 1,
+                Id = 2,
                 Name = "Tero Testaajan Kuntosali",
                 GroupIds = new[] {1, 2},
                 Location = "Testaajakatu 3",

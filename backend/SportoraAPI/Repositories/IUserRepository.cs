@@ -8,7 +8,7 @@ namespace SportoraAPI.Repositories
         void AddUser(User user);
         IEnumerable<User> GetUsers();
         User GetUser(int userId);
-        void UpdateUser(User updatedUser);
+        void UpdateUser(User newUser);
         int GenerateUniqueId();
         void RemoveUser(int userId);
     }

@@ -1,8 +1,6 @@
-﻿using SportoraAPI.Models;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
 {
@@ -22,17 +20,28 @@ namespace SportoraAPI.Repositories
 
         public void AddBusiness(Business business)
         {
-            Business newBusiness = new Business
-            {
-                Id = business.Id,
-                Name = business.Name,
-                GroupIds = business.GroupIds,
-                Location = business.Location,
-                PhoneNumber = business.PhoneNumber,
-                Premises = business.Premises,
-            };
+            _context.Businesses.Add(business);
+            _context.SaveChanges();
+        }
 
-            _context.Businesses.Add(newBusiness);
+        public void UpdateBusiness(Business newBusiness)
+        {
+            Business businessToUpdate =
+                _context.Businesses.FirstOrDefault(b => b.Id == newBusiness.Id);
+
+            businessToUpdate.Id = newBusiness.Id;
+            businessToUpdate.Location = newBusiness.Location;
+            businessToUpdate.Name = newBusiness.Name;
+            businessToUpdate.GroupIds = newBusiness.GroupIds;
+            businessToUpdate.PhoneNumber = newBusiness.PhoneNumber;
+            businessToUpdate.Premises = newBusiness.Premises;
+        }
+
+        public void RemoveBusiness(int id)
+        {
+            Business businessToRemove =
+                _context.Businesses.FirstOrDefault(b => b.Id == id);
+            _context.Remove(businessToRemove);
             _context.SaveChanges();
         }
     }

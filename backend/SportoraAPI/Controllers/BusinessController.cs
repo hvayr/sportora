@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -25,8 +20,10 @@ namespace SportoraAPI.Controllers
         {
             Business business = _businessRepository.GetSingleBusiness(id);
             if (business == null)
+            {
                 return NotFound();
-            
+            }
+
             return Ok(business);
         }
 
@@ -38,10 +35,25 @@ namespace SportoraAPI.Controllers
         public IActionResult AddNewBusiness([FromBody] Business newBusiness)
         {
             if (!TryValidateModel(newBusiness))
+            {
                 return BadRequest(ModelState);
+            }
 
             _businessRepository.AddBusiness(newBusiness);
             return Created(Request.Path, newBusiness);
         }
+        
+        public IActionResult DeleteBusiness(int id)
+        {
+            Business businessToDelete = _businessRepository.GetSingleBusiness(id);
+            if (businessToDelete == null)
+            {
+                return NotFound();
+            }
+
+            _businessRepository.RemoveBusiness(id);
+            return Ok(businessToDelete);
+        }
+
     }
 }
