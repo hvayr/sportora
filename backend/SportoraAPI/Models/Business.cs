@@ -10,7 +10,6 @@ namespace SportoraAPI.Models
         public  String        PhoneNumber { get; set; }
         public  int[]         GroupIds    { get; set; }
         public  String        Location    { get; set; }
-        public  List<decimal> Prices      { get; set; }
         public  String[]      Premises    { get; set; }
         private String        Password    { get; set; }
     }

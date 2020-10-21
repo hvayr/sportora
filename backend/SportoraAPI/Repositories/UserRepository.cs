@@ -5,7 +5,7 @@ using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly DatabaseContext _context;
 

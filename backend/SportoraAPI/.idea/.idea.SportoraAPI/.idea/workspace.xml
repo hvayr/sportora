@@ -23,9 +23,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/IUserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20201020110406_InitialMigration.Designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/20201020110406_InitialMigration.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Migrations/DatabaseContextModelSnapshot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Business.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Business.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SportoraAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SportoraAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,14 +48,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Models/Group.cs" />
-        <option value="$PROJECT_DIR$/Models/Business.cs" />
-        <option value="$PROJECT_DIR$/Models/User.cs" />
         <option value="$PROJECT_DIR$/Models/SkillLevel.cs" />
         <option value="$PROJECT_DIR$/Models/Club.cs" />
         <option value="$PROJECT_DIR$/Models/Event.cs" />
+        <option value="$PROJECT_DIR$/Models/Business.cs" />
         <option value="$PROJECT_DIR$/DatabaseContext.cs" />
-        <option value="$PROJECT_DIR$/Startup.cs" />
         <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+        <option value="$PROJECT_DIR$/Startup.cs" />
+        <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
+        <option value="$PROJECT_DIR$/Models/User.cs" />
       </list>
     </option>
   </component>
@@ -107,7 +117,7 @@
       <workItem from="1603138416035" duration="606000" />
       <workItem from="1603183046557" duration="7493000" />
       <workItem from="1603191099075" duration="6000" />
-      <workItem from="1603191127918" duration="8814000" />
+      <workItem from="1603191127918" duration="11630000" />
     </task>
     <servers />
   </component>
@@ -128,10 +138,10 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="533" y="207" key="RiderGenerateDialog" timestamp="1603270540183">
+    <state x="533" y="207" key="RiderGenerateDialog" timestamp="1603275382820">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603270540183" />
+    <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603275382820" />
     <state x="125" y="215" key="SettingsEditor" timestamp="1603273173552">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
