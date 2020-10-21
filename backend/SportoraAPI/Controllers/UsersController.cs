@@ -5,7 +5,7 @@ using SportoraAPI.Repositories;
 
 namespace SportoraAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {

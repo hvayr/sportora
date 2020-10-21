@@ -16,27 +16,30 @@ namespace SportoraAPI.Repositories
 
         public void AddUser(User user)
         {
+            user.Id = GenerateUniqueId();
+
             _context.Add(user);
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetUsers()
-        {
-            return _context.Users.ToList();
-        }
+        public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
-        public User GetUser(int userId)
-        {
-            return _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
-        }
+        public User GetUser(int userId) =>
+            _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
 
         public void UpdateUser(User updatedUser)
         {
             User userToUpdate =
                 _context.Users.FirstOrDefault(u => u.Id == updatedUser.Id);
-            _context.Users.Remove(userToUpdate);
 
-            _context.Users.Add(updatedUser);
+            userToUpdate.Id = updatedUser.Id;
+            userToUpdate.Name = updatedUser.Name;
+            userToUpdate.Nickname = updatedUser.Nickname;
+            userToUpdate.Email = updatedUser.Email;
+            userToUpdate.Gender = updatedUser.Gender;
+            userToUpdate.GroupIds = updatedUser.GroupIds;
+            userToUpdate.ImageUrl = updatedUser.ImageUrl;
+
             _context.SaveChanges();
         }
 
@@ -45,10 +48,10 @@ namespace SportoraAPI.Repositories
             Random r = new Random();
             int id;
             User foundUser;
-            
+
             do
             {
-                id = r.Next(1, 9999);
+                id = r.Next(1, 10);
                 foundUser = _context.Users.FirstOrDefault(u => u.Id == id);
             } while (foundUser != null);
 

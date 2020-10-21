@@ -23,18 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/IUserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201020110406_InitialMigration.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201020110406_InitialMigration.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/DatabaseContextModelSnapshot.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Business.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Business.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SportoraAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SportoraAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,10 +46,10 @@
         <option value="$PROJECT_DIR$/Models/Event.cs" />
         <option value="$PROJECT_DIR$/Models/Business.cs" />
         <option value="$PROJECT_DIR$/DatabaseContext.cs" />
-        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
         <option value="$PROJECT_DIR$/Startup.cs" />
-        <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
         <option value="$PROJECT_DIR$/Models/User.cs" />
+        <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
+        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
       </list>
     </option>
   </component>
@@ -118,6 +111,7 @@
       <workItem from="1603183046557" duration="7493000" />
       <workItem from="1603191099075" duration="6000" />
       <workItem from="1603191127918" duration="11630000" />
+      <workItem from="1603280357959" duration="1437000" />
     </task>
     <servers />
   </component>
@@ -138,18 +132,34 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1243" height="264" key="GridCell.Tab.0.bottom" timestamp="1603280471227">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1243" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603280471227" />
+    <state width="1243" height="264" key="GridCell.Tab.0.center" timestamp="1603280471227">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1243" height="264" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603280471227" />
+    <state width="1243" height="264" key="GridCell.Tab.0.left" timestamp="1603280471227">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1243" height="264" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603280471227" />
+    <state width="1243" height="264" key="GridCell.Tab.0.right" timestamp="1603280471227">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="1243" height="264" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603280471227" />
     <state x="533" y="207" key="RiderGenerateDialog" timestamp="1603275382820">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603275382820" />
-    <state x="125" y="215" key="SettingsEditor" timestamp="1603273173552">
+    <state x="761" y="205" key="SettingsEditor" timestamp="1603281808800">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="125" y="215" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1603273173552" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1603185809172">
+    <state x="761" y="205" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1603281808800" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1603280831488">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1603185809172" />
+    <state width="498" height="446" key="SwitcherDM/0.0.1920.1050@0.0.1920.1050" timestamp="1603280831488" />
     <state x="818" y="146" width="1002" height="787" key="VCS.FileHistoryDialog" timestamp="1603189000256">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
