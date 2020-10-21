@@ -7,6 +7,11 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include" />
       <e p="DatabaseContext.cs" t="Include" />
+      <e p="Migrations" t="Include">
+        <e p="20201020110406_InitialMigration.cs" t="Include" />
+        <e p="20201020110406_InitialMigration.Designer.cs" t="Include" />
+        <e p="DatabaseContextModelSnapshot.cs" t="Include" />
+      </e>
       <e p="Models" t="Include">
         <e p="Business.cs" t="Include" />
         <e p="Club.cs" t="Include" />
@@ -26,6 +31,9 @@
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Repositories" t="Include">
+        <e p="UserRepository.cs" t="Include" />
       </e>
       <e p="SportoraAPI.csproj" t="IncludeRecursive" />
       <e p="SportoraAPI.sln" t="IncludeFlat" />
