@@ -4,7 +4,7 @@ using SportoraAPI.Repositories;
 
 namespace SportoraAPI.Controllers
 {
-    [Route("business")]
+    [Route("[controller]")]
     [ApiController]
     public class BusinessController : ControllerBase
     {
@@ -18,7 +18,7 @@ namespace SportoraAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetSingleBusiness(int id)
         {
-            Business business = _businessRepository.GetSingleBusiness(id);
+            Business business = _businessRepository.GetBusinessById(id);
             if (business == null)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace SportoraAPI.Controllers
         
         public IActionResult DeleteBusiness(int id)
         {
-            Business businessToDelete = _businessRepository.GetSingleBusiness(id);
+            Business businessToDelete = _businessRepository.GetBusinessById(id);
             if (businessToDelete == null)
             {
                 return NotFound();
@@ -54,6 +54,26 @@ namespace SportoraAPI.Controllers
             _businessRepository.RemoveBusiness(id);
             return Ok(businessToDelete);
         }
+        
+        [HttpPut("{id}")]
+        public IActionResult UpdateBusiness(int id, [FromBody] Business business)
+        {
+            Business businessToUpdate = _businessRepository.GetBusinessById(id);
+
+            if (businessToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (!TryValidateModel(business))
+            {
+                return BadRequest(ModelState);
+            }
+            
+            _businessRepository.UpdateBusiness(businessToUpdate);
+            return NoContent();
+        }
+
 
     }
 }

@@ -26,29 +26,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Controllers/ClubsController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/20201021143324_newInitial.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/20201021143324_newInitial.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/ClubRepository.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Repositories/IClubRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/GroupsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Migrations/20201022181348_UserKey.Designer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Migrations/20201022181348_UserKey.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/GroupRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/IGroupRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/BusinessController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/BusinessController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/ClubsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/ClubsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201021101029_MockDataForBusinessTable.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201021101029_MockDataForBusinessTable.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Migrations/DatabaseContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Migrations/DatabaseContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Business.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Business.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Club.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Club.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Event.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Group.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Group.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SportEvent.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/BusinessRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/BusinessRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ClubRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ClubRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/IBusinessRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/IBusinessRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/IUserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SportoraAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SportoraAPI.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,19 +64,33 @@
       <list>
         <option value="$PROJECT_DIR$/Models/SkillLevel.cs" />
         <option value="$PROJECT_DIR$/DatabaseContext.cs" />
-        <option value="$PROJECT_DIR$/Startup.cs" />
         <option value="$PROJECT_DIR$/Models/Club.cs" />
         <option value="$PROJECT_DIR$/Models/Group.cs" />
-        <option value="$PROJECT_DIR$/Models/Event.cs" />
         <option value="$PROJECT_DIR$/Models/Business.cs" />
-        <option value="$PROJECT_DIR$/Models/User.cs" />
-        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
-        <option value="$PROJECT_DIR$/Repositories/ClubRepository.cs" />
-        <option value="$PROJECT_DIR$/Repositories/BusinessRepository.cs" />
-        <option value="$PROJECT_DIR$/Controllers/BusinessController.cs" />
         <option value="$PROJECT_DIR$/Repositories/IBusinessRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/GroupRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/BusinessRepository.cs" />
         <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
+        <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
+        <option value="$PROJECT_DIR$/Controllers/BusinessController.cs" />
         <option value="$PROJECT_DIR$/Controllers/ClubsController.cs" />
+        <option value="$PROJECT_DIR$/Controllers/GroupsController.cs" />
+        <option value="$PROJECT_DIR$/Models/User.cs" />
+        <option value="$PROJECT_DIR$/Models/Event.cs" />
+        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/EventRepositoryTest.cs" />
+        <option value="$PROJECT_DIR$/Repositories/EventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/CreatedEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/IEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/ICreatedEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/CreatedCreatedEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Controllers/EventsController.cs" />
+        <option value="$PROJECT_DIR$/Controllers/CreatedEventsController.cs" />
+        <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
+        <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/ClubRepository.cs" />
+        <option value="$PROJECT_DIR$/Startup.cs" />
       </list>
     </option>
   </component>
@@ -96,7 +111,7 @@
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.SportoraAPI">
+  <component name="RunManager" selected=".NET Launch Settings Profile.SportoraAPI: IIS Express">
     <configuration name="SportoraAPI" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SportoraAPI.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.1" />
@@ -141,7 +156,9 @@
       <workItem from="1603191099075" duration="6000" />
       <workItem from="1603191127918" duration="11630000" />
       <workItem from="1603280357959" duration="7889000" />
-      <workItem from="1603291518422" duration="4033000" />
+      <workItem from="1603291518422" duration="10737000" />
+      <workItem from="1603388367935" duration="7061000" />
+      <workItem from="1603397165582" duration="2145000" />
     </task>
     <servers />
   </component>
@@ -162,21 +179,25 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1497" height="261" key="GridCell.Tab.0.bottom" timestamp="1603292208043">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="2081" height="362" key="GridCell.Tab.0.bottom" timestamp="1603399343649">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
+    <state width="2081" height="362" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603399343649" />
     <state width="1497" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="1497" height="261" key="GridCell.Tab.0.center" timestamp="1603292208043">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="2081" height="362" key="GridCell.Tab.0.center" timestamp="1603399343649">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
+    <state width="2081" height="362" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603399343649" />
     <state width="1497" height="261" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="1497" height="261" key="GridCell.Tab.0.left" timestamp="1603292208042">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="2081" height="362" key="GridCell.Tab.0.left" timestamp="1603399343649">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
+    <state width="2081" height="362" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603399343649" />
     <state width="1497" height="261" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208042" />
-    <state width="1497" height="261" key="GridCell.Tab.0.right" timestamp="1603292208043">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="2081" height="362" key="GridCell.Tab.0.right" timestamp="1603399343649">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
+    <state width="2081" height="362" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603399343649" />
     <state width="1497" height="261" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
     <state width="1497" height="270" key="GridCell.Tab.1.bottom" timestamp="1603291454620">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -242,13 +263,15 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1497" height="270" key="GridCell.Tab.4.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603291454621" />
-    <state x="533" y="207" key="RiderGenerateDialog" timestamp="1603293082315">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="711" y="278" key="RiderGenerateDialog" timestamp="1603397408805">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603293082315" />
-    <state x="761" y="205" key="SettingsEditor" timestamp="1603294497701">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="711" y="278" key="RiderGenerateDialog/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603397408805" />
+    <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603364395635" />
+    <state x="1015" y="275" key="SettingsEditor" timestamp="1603397121524">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
+    <state x="1015" y="275" key="SettingsEditor/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603397121524" />
     <state x="761" y="205" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1603294497701" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1603294917955">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -270,9 +293,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="879" y="433" key="git4idea.ui.GitStashDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603270384179" />
-    <state x="620" y="253" width="672" height="678" key="search.everywhere.popup" timestamp="1603294476240">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="827" y="340" width="896" height="911" key="search.everywhere.popup" timestamp="1603398623619">
+      <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="620" y="253" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1603294476240" />
+    <state x="827" y="340" width="896" height="911" key="search.everywhere.popup/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603398623619" />
+    <state x="620" y="253" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1603364998473" />
   </component>
 </project>

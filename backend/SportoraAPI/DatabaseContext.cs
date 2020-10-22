@@ -13,7 +13,7 @@ namespace SportoraAPI
         public DbSet<Business> Businesses { get; set; }
         public DbSet<Club> Clubs { get; set; }
         public DbSet<Group> Groups { get; set; }
-        public DbSet<Event> Events { get; set; }
+        public DbSet<SportEvent> Events { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

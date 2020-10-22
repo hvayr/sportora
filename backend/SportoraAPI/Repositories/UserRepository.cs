@@ -16,15 +16,13 @@ namespace SportoraAPI.Repositories
 
         public void AddUser(User user)
         {
-            user.Id = GenerateUniqueId();
-
             _context.Add(user);
             _context.SaveChanges();
         }
 
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
-        public User GetUser(int userId) =>
+        public User GetUserById(int userId) =>
             _context.Users.FirstOrDefault(u => u.Id == userId);
 
         public void UpdateUser(User newUser)
@@ -40,9 +38,11 @@ namespace SportoraAPI.Repositories
             userToUpdate.GroupIds = newUser.GroupIds;
             userToUpdate.ImageUrl = newUser.ImageUrl;
 
+            _context.Update(userToUpdate);
             _context.SaveChanges();
         }
 
+        /*
         public int GenerateUniqueId()
         {
             Random r = new Random();
@@ -57,6 +57,7 @@ namespace SportoraAPI.Repositories
 
             return id;
         }
+        */
 
         public void RemoveUser(int userId)
         {

@@ -7,7 +7,7 @@ namespace SportoraAPI.Repositories
     {
         void AddBusiness(Business business);
         List<Business> GetAllBusinesses();
-        Business GetSingleBusiness(int id);
+        Business GetBusinessById(int id);
 
         void RemoveBusiness(int id);
         void UpdateBusiness(Business newBusiness);

@@ -24,6 +24,9 @@ namespace SportoraAPI
             Username=postgres;Password=dbpass;Database=sportora_db"));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBusinessRepository, BusinessRepository>();
+            services.AddScoped<IClubRepository, ClubRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<ISportEventRepository, SportEventRepository>();
             services.AddControllers();
         }
 

@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace SportoraAPI.Models
 {
-    public class Event
+    public class SportEvent
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -1,4 +1,5 @@
-﻿namespace SportoraAPI.Models
+﻿
+namespace SportoraAPI.Models
 {
     public class User
     {

@@ -6,6 +6,7 @@ namespace SportoraAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+
     public class ClubsController : ControllerBase
     {
         private readonly IClubRepository _clubRepository;
@@ -55,5 +56,25 @@ namespace SportoraAPI.Controllers
             return Ok(club);
 
         }
+        
+        [HttpPut("{id}")]
+        public IActionResult UpdateClub(int id, [FromBody] Club club)
+        {
+            Club clubToUpdate = _clubRepository.GetClubById(id);
+
+            if (clubToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (!TryValidateModel(club))
+            {
+                return BadRequest(ModelState);
+            }
+            
+            _clubRepository.UpdateClub(clubToUpdate);
+            return NoContent();
+        }
+
     }
 }

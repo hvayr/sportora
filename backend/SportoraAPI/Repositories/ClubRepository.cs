@@ -33,7 +33,6 @@ namespace SportoraAPI.Repositories
             clubToUpdate.SkillLevel = newClub.SkillLevel;
             _context.SaveChanges();
         }
-
         public void RemoveClub(int id)
         {
             Club clubToRemove = _context.Clubs.FirstOrDefault(c => c.Id == id);

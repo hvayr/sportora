@@ -18,10 +18,10 @@ namespace SportoraAPI.Controllers
         [HttpGet]
         public IActionResult GetUsers() => Ok(_userRepository.GetUsers());
 
-        [HttpGet("{userId}")]
-        public IActionResult GetUserById(int userId)
+        [HttpGet("{id}")]
+        public IActionResult GetUserById(int id)
         {
-            User user = _userRepository.GetUser(userId);
+            User user = _userRepository.GetUserById(id);
 
             if (user == null)
             {
@@ -46,7 +46,7 @@ namespace SportoraAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)
         {
-            User user = _userRepository.GetUser(id);
+            User user = _userRepository.GetUserById(id);
             if (user == null)
             {
                 return NotFound();
@@ -54,6 +54,25 @@ namespace SportoraAPI.Controllers
 
             _userRepository.RemoveUser(id);
             return Ok(user);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] User user)
+        {
+            User userToUpdate = _userRepository.GetUserById(id);
+
+            if (userToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            if (!TryValidateModel(user))
+            {
+                return BadRequest(ModelState);
+            }
+            
+            _userRepository.UpdateUser(userToUpdate);
+            return NoContent();
         }
     }
 }

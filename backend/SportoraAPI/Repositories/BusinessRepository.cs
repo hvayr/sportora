@@ -13,7 +13,7 @@ namespace SportoraAPI.Repositories
             _context = context;
         }
 
-        public Business GetSingleBusiness(int id) =>
+        public Business GetBusinessById(int id) =>
             _context.Businesses.FirstOrDefault(b => b.Id == id);
 
         public List<Business> GetAllBusinesses() => _context.Businesses.ToList();
