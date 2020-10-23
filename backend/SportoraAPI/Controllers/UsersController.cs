@@ -71,7 +71,7 @@ namespace SportoraAPI.Controllers
                 return BadRequest(ModelState);
             }
             
-            _userRepository.UpdateUser(userToUpdate);
+            _userRepository.UpdateUser(id, user);
             return NoContent();
         }
     }

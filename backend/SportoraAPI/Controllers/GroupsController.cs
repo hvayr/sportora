@@ -71,7 +71,7 @@ namespace SportoraAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            _groupRepository.UpdateGroup(groupToUpdate);
+            _groupRepository.UpdateGroup(id, group);
             return NoContent();
         }
     }

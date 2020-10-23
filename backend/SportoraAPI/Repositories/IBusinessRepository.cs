@@ -10,6 +10,6 @@ namespace SportoraAPI.Repositories
         Business GetBusinessById(int id);
 
         void RemoveBusiness(int id);
-        void UpdateBusiness(Business newBusiness);
+        void UpdateBusiness(int id, Business newBusiness);
     }
 }

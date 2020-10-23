@@ -43,6 +43,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, newBusiness);
         }
         
+        [HttpDelete("{id}")]
         public IActionResult DeleteBusiness(int id)
         {
             Business businessToDelete = _businessRepository.GetBusinessById(id);
@@ -70,7 +71,7 @@ namespace SportoraAPI.Controllers
                 return BadRequest(ModelState);
             }
             
-            _businessRepository.UpdateBusiness(businessToUpdate);
+            _businessRepository.UpdateBusiness(id, business);
             return NoContent();
         }
 

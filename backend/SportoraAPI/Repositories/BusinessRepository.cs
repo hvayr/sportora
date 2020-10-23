@@ -7,6 +7,7 @@ namespace SportoraAPI.Repositories
     public class BusinessRepository : IBusinessRepository
     {
         private readonly DatabaseContext _context;
+        private IBusinessRepository _businessRepositoryImplementation;
 
         public BusinessRepository(DatabaseContext context)
         {
@@ -24,12 +25,12 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateBusiness(Business newBusiness)
+        public void UpdateBusiness(int id, Business newBusiness)
         {
             Business businessToUpdate =
-                _context.Businesses.FirstOrDefault(b => b.Id == newBusiness.Id);
+                _context.Businesses.FirstOrDefault(b => b.Id == id);
 
-            businessToUpdate.Id = newBusiness.Id;
+            businessToUpdate.Id = id;
             businessToUpdate.Location = newBusiness.Location;
             businessToUpdate.Name = newBusiness.Name;
             businessToUpdate.GroupIds = newBusiness.GroupIds;

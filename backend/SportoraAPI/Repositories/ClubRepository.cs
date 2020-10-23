@@ -23,11 +23,11 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateClub(Club newClub)
+        public void UpdateClub(int id, Club newClub)
         {
-            Club clubToUpdate = _context.Clubs.FirstOrDefault(c => c.Id == newClub.Id);
+            Club clubToUpdate = _context.Clubs.FirstOrDefault(c => c.Id == id);
 
-            clubToUpdate.Id = newClub.Id;
+            clubToUpdate.Id = id;
             clubToUpdate.Name = newClub.Name;
             clubToUpdate.GroupIds = newClub.GroupIds;
             clubToUpdate.SkillLevel = newClub.SkillLevel;

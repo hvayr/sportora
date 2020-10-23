@@ -4,6 +4,8 @@ using SportoraAPI.Repositories;
 
 namespace SportoraAPI.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class SportEventsController : Controller
     {
         private readonly ISportEventRepository _sportEventRepository;
@@ -69,7 +71,7 @@ namespace SportoraAPI.Controllers
                 return BadRequest(ModelState);
             }
             
-            _sportEventRepository.UpdateSportEvent(sportEventToUpdate);
+            _sportEventRepository.UpdateSportEvent(id, sportEvent);
             return NoContent();
         }
 

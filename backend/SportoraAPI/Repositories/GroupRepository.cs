@@ -24,13 +24,15 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateGroup(Group newGroup)
+        public void UpdateGroup(int id, Group newGroup)
         {
             Group groupToUpdate =
-                _context.Groups.FirstOrDefault(g => g.Id == newGroup.Id);
+                _context.Groups.FirstOrDefault(g => g.Id == id);
 
-            groupToUpdate.Id = newGroup.Id;
+            groupToUpdate.Id = id;
             groupToUpdate.Name = newGroup.Name;
+            _context.Update(groupToUpdate);
+            _context.SaveChanges();
         }
 
         public void RemoveGroup(int id)

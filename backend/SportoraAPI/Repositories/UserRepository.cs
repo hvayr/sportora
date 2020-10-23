@@ -25,12 +25,12 @@ namespace SportoraAPI.Repositories
         public User GetUserById(int userId) =>
             _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        public void UpdateUser(User newUser)
+        public void UpdateUser(int id, User newUser)
         {
             User userToUpdate =
-                _context.Users.FirstOrDefault(u => u.Id == newUser.Id);
+                _context.Users.FirstOrDefault(u => u.Id == id);
 
-            userToUpdate.Id = newUser.Id;
+            userToUpdate.Id = id;
             userToUpdate.Name = newUser.Name;
             userToUpdate.Nickname = newUser.Nickname;
             userToUpdate.Email = newUser.Email;
@@ -41,24 +41,7 @@ namespace SportoraAPI.Repositories
             _context.Update(userToUpdate);
             _context.SaveChanges();
         }
-
-        /*
-        public int GenerateUniqueId()
-        {
-            Random r = new Random();
-            int id;
-            User foundUser = new User();
-
-            do
-            {
-                id = r.Next(1, 999);
-                foundUser = _context.Users.FirstOrDefault(u => u.Id == id);
-            } while (foundUser != null);
-
-            return id;
-        }
-        */
-
+        
         public void RemoveUser(int userId)
         {
             User userToDelete = _context.Users.FirstOrDefault(u => u.Id.Equals(userId));

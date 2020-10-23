@@ -8,7 +8,7 @@ namespace SportoraAPI.Repositories
         Club GetClubById(int id);
         IEnumerable<Club> GetAllClubs();
         void AddClub(Club club);
-        void UpdateClub(Club newClub);
+        void UpdateClub(int id, Club newClub);
         void RemoveClub(int id);
     }
 }

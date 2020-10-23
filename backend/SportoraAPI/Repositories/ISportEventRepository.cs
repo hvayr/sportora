@@ -8,7 +8,7 @@ namespace SportoraAPI.Repositories
         void AddSportEvent(SportEvent sportEvent);
         IEnumerable<SportEvent> GetSportEvents();
         SportEvent GetSportEventById(int eventId);
-        void UpdateSportEvent(SportEvent newSportEvent);
+        void UpdateSportEvent(int id, SportEvent newSportEvent);
         void RemoveSportEvent(int eventId);
     }
 }

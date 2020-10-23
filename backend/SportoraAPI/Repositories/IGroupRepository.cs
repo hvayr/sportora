@@ -8,7 +8,7 @@ namespace SportoraAPI.Repositories
         Group GetGroupById(int id);
         IEnumerable<Group> GetAllGroups();
         void AddGroup(Group club);
-        void UpdateGroup(Group newGroup);
+        void UpdateGroup(int id, Group group);
         void RemoveGroup(int id);
     }
 }

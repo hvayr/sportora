@@ -52,7 +52,7 @@ namespace SportoraAPI.Controllers
                 return NotFound();
             }
 
-            _clubRepository.GetClubById(id);
+            _clubRepository.RemoveClub(id);
             return Ok(club);
 
         }
@@ -72,7 +72,7 @@ namespace SportoraAPI.Controllers
                 return BadRequest(ModelState);
             }
             
-            _clubRepository.UpdateClub(clubToUpdate);
+            _clubRepository.UpdateClub(id, club);
             return NoContent();
         }
 

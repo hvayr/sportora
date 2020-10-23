@@ -19,18 +19,18 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<SportEvent> GetSportEvents() => _context.Events.ToList();
+        public IEnumerable<SportEvent> GetSportEvents() => _context.SportEvents.ToList();
 
         public SportEvent GetSportEventById(int eventId) =>
-            _context.Events.FirstOrDefault(u => u.Id == eventId);
+            _context.SportEvents.FirstOrDefault(u => u.Id == eventId);
 
-        public void UpdateSportEvent(SportEvent newSportEvent)
+        public void UpdateSportEvent(int id, SportEvent newSportEvent)
         {
             SportEvent sportEventToUpdate =
-                _context.Events.FirstOrDefault(u => u.Id == newSportEvent.Id);
+                _context.SportEvents.FirstOrDefault(u => u.Id == id);
 
+            sportEventToUpdate.Id = id;
             sportEventToUpdate.Description = newSportEvent.Description;
-            sportEventToUpdate.Id = newSportEvent.Id;
             sportEventToUpdate.Name = newSportEvent.Name;
             sportEventToUpdate.Location = newSportEvent.Location;
             sportEventToUpdate.Participants = newSportEvent.Participants;
@@ -44,10 +44,10 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
         
-        public void RemoveSportEvent(int eventId)
+        public void RemoveSportEvent(int id)
         {
-            SportEvent sportEventToDelete = _context.Events.FirstOrDefault(u => u.Id.Equals(eventId));
-            _context.Events.Remove(sportEventToDelete);
+            SportEvent sportEventToDelete = _context.SportEvents.FirstOrDefault(u => u.Id.Equals(id));
+            _context.SportEvents.Remove(sportEventToDelete);
             _context.SaveChanges();
         }
 
