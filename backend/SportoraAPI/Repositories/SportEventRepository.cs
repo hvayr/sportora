@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SportoraAPI.Models;
 
@@ -15,6 +16,7 @@ namespace SportoraAPI.Repositories
 
         public void AddSportEvent(SportEvent sportEvent)
         {
+            sportEvent.EventCreatedTime = DateTime.Now;
             _context.Add(sportEvent);
             _context.SaveChanges();
         }
@@ -37,7 +39,6 @@ namespace SportoraAPI.Repositories
             sportEventToUpdate.MaxParticipants = newSportEvent.MaxParticipants;
             sportEventToUpdate.ActiveStatus = newSportEvent.ActiveStatus;
             sportEventToUpdate.AutoInvite = newSportEvent.AutoInvite;
-            sportEventToUpdate.EventCreatedTime = newSportEvent.EventCreatedTime;
             sportEventToUpdate.EventStartTime = newSportEvent.EventStartTime;
             
             _context.Update(sportEventToUpdate);
