@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -56,8 +57,8 @@ namespace SportoraAPI.Controllers
             return Ok(user);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] User user)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] JsonPatchDocument<User> patchDocument)
         {
             User userToUpdate = _userRepository.GetUserById(id);
 
@@ -65,13 +66,10 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
-            if (!TryValidateModel(user))
-            {
-                return BadRequest(ModelState);
-            }
             
-            _userRepository.UpdateUser(id, user);
+            _userRepository.UpdateUser(id, patchDocument);
+            
+
             return NoContent();
         }
     }

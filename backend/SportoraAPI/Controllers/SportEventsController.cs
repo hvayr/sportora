@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -56,8 +57,8 @@ namespace SportoraAPI.Controllers
             return Ok(sportEvent);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateSportEvent(int id, [FromBody] SportEvent sportEvent)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateSportEvent(int id, [FromBody] JsonPatchDocument<SportEvent> patchDocument)
         {
             SportEvent sportEventToUpdate = _sportEventRepository.GetSportEventById(id);
 
@@ -65,13 +66,9 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
-            if (!TryValidateModel(sportEvent))
-            {
-                return BadRequest(ModelState);
-            }
             
-            _sportEventRepository.UpdateSportEvent(id, sportEvent);
+            _sportEventRepository.UpdateSportEvent(patchDocument, sportEventToUpdate);
+            
             return NoContent();
         }
 

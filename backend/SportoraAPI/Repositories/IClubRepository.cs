@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -8,7 +9,7 @@ namespace SportoraAPI.Repositories
         Club GetClubById(int id);
         IEnumerable<Club> GetAllClubs();
         void AddClub(Club club);
-        void UpdateClub(int id, Club newClub);
+        void UpdateClub(JsonPatchDocument<Club> patchDocument, Club clubToUpdate);
         void RemoveClub(int id);
     }
 }

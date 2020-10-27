@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -25,7 +26,24 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateBusiness(int id, Business newBusiness)
+
+        public void RemoveBusiness(int id)
+        {
+            Business businessToRemove =
+                _context.Businesses.FirstOrDefault(b => b.Id == id);
+            _context.Remove(businessToRemove);
+            _context.SaveChanges();
+        }
+
+        public void UpdateBusiness(JsonPatchDocument<Business> patchDocument, Business businessToUpdate)
+        {
+            patchDocument.ApplyTo(businessToUpdate);
+            
+            _context.SaveChanges();
+        }
+
+        /*
+        public void UpdateBusiness(int id, Business newBusiness)         //For put endpoint
         {
             Business businessToUpdate =
                 _context.Businesses.FirstOrDefault(b => b.Id == id);
@@ -37,13 +55,9 @@ namespace SportoraAPI.Repositories
             businessToUpdate.PhoneNumber = newBusiness.PhoneNumber;
             businessToUpdate.Premises = newBusiness.Premises;
         }
-
-        public void RemoveBusiness(int id)
-        {
-            Business businessToRemove =
-                _context.Businesses.FirstOrDefault(b => b.Id == id);
-            _context.Remove(businessToRemove);
-            _context.SaveChanges();
-        }
+        */
     }
+    
+    
+    
 }

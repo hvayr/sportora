@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
 namespace SportoraAPI
@@ -27,7 +29,8 @@ namespace SportoraAPI
             services.AddScoped<IClubRepository, ClubRepository>();
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ISportEventRepository, SportEventRepository>();
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

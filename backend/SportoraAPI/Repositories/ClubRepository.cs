@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -23,15 +24,11 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateClub(int id, Club newClub)
+        public void UpdateClub(JsonPatchDocument<Club> patchDocument, Club clubToUpdate)
         {
-            Club clubToUpdate = _context.Clubs.FirstOrDefault(c => c.Id == id);
-
-            clubToUpdate.Id = id;
-            clubToUpdate.Name = newClub.Name;
-            clubToUpdate.GroupIds = newClub.GroupIds;
-            clubToUpdate.SkillLevel = newClub.SkillLevel;
+            patchDocument.ApplyTo(clubToUpdate);
             _context.SaveChanges();
+
         }
         public void RemoveClub(int id)
         {

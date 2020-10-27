@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -56,8 +57,8 @@ namespace SportoraAPI.Controllers
             return Ok(businessToDelete);
         }
         
-        [HttpPut("{id}")]
-        public IActionResult UpdateBusiness(int id, [FromBody] Business business)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateBusiness(int id, [FromBody] JsonPatchDocument<Business> patchDocument)
         {
             Business businessToUpdate = _businessRepository.GetBusinessById(id);
 
@@ -65,13 +66,8 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
-            if (!TryValidateModel(business))
-            {
-                return BadRequest(ModelState);
-            }
             
-            _businessRepository.UpdateBusiness(id, business);
+            _businessRepository.UpdateBusiness(patchDocument, businessToUpdate);
             return NoContent();
         }
 

@@ -14,12 +14,8 @@
       </e>
       <e p="DatabaseContext.cs" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20201021143324_newInitial.cs" t="Include" />
-        <e p="20201021143324_newInitial.Designer.cs" t="Include" />
-        <e p="20201022181348_UserKey.cs" t="Include" />
-        <e p="20201022181348_UserKey.Designer.cs" t="Include" />
-        <e p="20201023123047_SportEvents.cs" t="Include" />
-        <e p="20201023123047_SportEvents.Designer.cs" t="Include" />
+        <e p="20201027154445_Recreated db.cs" t="Include" />
+        <e p="20201027154445_Recreated db.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
@@ -29,6 +25,8 @@
         <e p="SkillLevel.cs" t="Include" />
         <e p="SportEvent.cs" t="Include" />
         <e p="User.cs" t="Include" />
+        <e p="UserEmailUniqueAttribute.cs" t="Include" />
+        <e p="UsernameUniqueAttribute.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">

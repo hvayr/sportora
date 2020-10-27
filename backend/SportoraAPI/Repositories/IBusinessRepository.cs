@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -10,6 +11,6 @@ namespace SportoraAPI.Repositories
         Business GetBusinessById(int id);
 
         void RemoveBusiness(int id);
-        void UpdateBusiness(int id, Business newBusiness);
+        void UpdateBusiness(JsonPatchDocument<Business> patchDocument, Business businessToUpdate);
     }
 }

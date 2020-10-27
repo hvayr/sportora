@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -8,6 +8,7 @@ namespace SportoraAPI.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly DatabaseContext _context;
+        private IUserRepository _userRepositoryImplementation;
 
         public UserRepository(DatabaseContext context)
         {
@@ -25,21 +26,14 @@ namespace SportoraAPI.Repositories
         public User GetUserById(int userId) =>
             _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        public void UpdateUser(int id, User newUser)
+        public void UpdateUser(int id, JsonPatchDocument<User> patchDocument)
         {
             User userToUpdate =
                 _context.Users.FirstOrDefault(u => u.Id == id);
-
-            userToUpdate.Id = id;
-            userToUpdate.Name = newUser.Name;
-            userToUpdate.Nickname = newUser.Nickname;
-            userToUpdate.Email = newUser.Email;
-            userToUpdate.Gender = newUser.Gender;
-            userToUpdate.GroupIds = newUser.GroupIds;
-            userToUpdate.ImageUrl = newUser.ImageUrl;
-
-            _context.Update(userToUpdate);
+            
+            patchDocument.ApplyTo(userToUpdate);
             _context.SaveChanges();
+
         }
         
         public void RemoveUser(int userId)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -26,22 +27,9 @@ namespace SportoraAPI.Repositories
         public SportEvent GetSportEventById(int eventId) =>
             _context.SportEvents.FirstOrDefault(u => u.Id == eventId);
 
-        public void UpdateSportEvent(int id, SportEvent newSportEvent)
+        public void UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent)
         {
-            SportEvent sportEventToUpdate =
-                _context.SportEvents.FirstOrDefault(u => u.Id == id);
-
-            sportEventToUpdate.Id = id;
-            sportEventToUpdate.Description = newSportEvent.Description;
-            sportEventToUpdate.Name = newSportEvent.Name;
-            sportEventToUpdate.Location = newSportEvent.Location;
-            sportEventToUpdate.Participants = newSportEvent.Participants;
-            sportEventToUpdate.MaxParticipants = newSportEvent.MaxParticipants;
-            sportEventToUpdate.ActiveStatus = newSportEvent.ActiveStatus;
-            sportEventToUpdate.AutoInvite = newSportEvent.AutoInvite;
-            sportEventToUpdate.EventStartTime = newSportEvent.EventStartTime;
-            
-            _context.Update(sportEventToUpdate);
+            patchDocument.ApplyTo(sportEvent);
             _context.SaveChanges();
         }
         

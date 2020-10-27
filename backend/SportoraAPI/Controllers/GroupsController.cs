@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -56,8 +57,8 @@ namespace SportoraAPI.Controllers
             return Ok(group);
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateGroup(int id, [FromBody] Group group)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateGroup(int id, [FromBody] JsonPatchDocument<Group> patchDocument)
         {
             Group groupToUpdate = _groupRepository.GetGroupById(id);
 
@@ -65,13 +66,8 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
-            if (!TryValidateModel(group))
-            {
-                return BadRequest(ModelState);
-            }
-
-            _groupRepository.UpdateGroup(id, group);
+            
+            _groupRepository.UpdateGroup(patchDocument, groupToUpdate);
             return NoContent();
         }
     }

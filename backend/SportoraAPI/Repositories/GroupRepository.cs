@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -24,15 +25,9 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public void UpdateGroup(int id, Group newGroup)
-        {
-            Group groupToUpdate =
-                _context.Groups.FirstOrDefault(g => g.Id == id);
-
-            groupToUpdate.Id = id;
-            groupToUpdate.Name = newGroup.Name;
-            _context.Update(groupToUpdate);
-            _context.SaveChanges();
+        public void UpdateGroup(JsonPatchDocument<Group> patchDocument, Group groupToUpdate)
+        { ;
+            patchDocument.ApplyTo(groupToUpdate);
         }
 
         public void RemoveGroup(int id)

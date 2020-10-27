@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 
@@ -57,8 +58,8 @@ namespace SportoraAPI.Controllers
 
         }
         
-        [HttpPut("{id}")]
-        public IActionResult UpdateClub(int id, [FromBody] Club club)
+        [HttpPatch("{id}")]
+        public IActionResult UpdateClub(int id, [FromBody] JsonPatchDocument<Club> patchDocument)
         {
             Club clubToUpdate = _clubRepository.GetClubById(id);
 
@@ -66,13 +67,8 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
-            if (!TryValidateModel(club))
-            {
-                return BadRequest(ModelState);
-            }
             
-            _clubRepository.UpdateClub(id, club);
+            _clubRepository.UpdateClub(patchDocument, clubToUpdate);
             return NoContent();
         }
 
