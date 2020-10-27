@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportoraAPI;
@@ -9,9 +10,10 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201021143324_newInitial")]
+    partial class newInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +46,26 @@ namespace SportoraAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Businesses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GroupIds = new[] { 1, 2 },
+                            Location = "Katu666",
+                            Name = "Harrin Sali",
+                            PhoneNumber = "112",
+                            Premises = new[] { "Kuntosali", "Uimahalli" }
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GroupIds = new[] { 1, 2 },
+                            Location = "Testaajakatu 3",
+                            Name = "Tero Testaajan Kuntosali",
+                            PhoneNumber = "040 123 4567",
+                            Premises = new[] { "Kuntosali", "Uimahalli" }
+                        });
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.Club", b =>
@@ -67,22 +89,7 @@ namespace SportoraAPI.Migrations
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("SportoraAPI.Models.Group", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.SportEvent", b =>
+            modelBuilder.Entity("SportoraAPI.Models.Event", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,7 +125,22 @@ namespace SportoraAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SportEvents");
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("SportoraAPI.Models.Group", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.User", b =>
@@ -149,6 +171,18 @@ namespace SportoraAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "hvayr@hotmail.com",
+                            Gender = "Male",
+                            GroupIds = new[] { 1 },
+                            ImageUrl = "www",
+                            Name = "Harri V",
+                            Nickname = "Harma"
+                        });
                 });
 #pragma warning restore 612, 618
         }
