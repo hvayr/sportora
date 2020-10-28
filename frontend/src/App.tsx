@@ -47,16 +47,17 @@ function App() {
           <Typography variant="h2" component="div">
             Sportora
           </Typography>
-          <TextField placeholder="Search" variant="standard" type="search" />
+
           <Grid
             container
             direction="row"
             justify="flex-end"
             alignItems="flex-start"
           >
+            <TextField placeholder="Search" variant="standard" type="search" />
             <ButtonGroup variant="contained" color="primary">
-              <Button>Sign In</Button>
-              <Button>Register</Button>
+              <Button href="#SignIn">Sign In</Button>
+              <Button href="#Register">Register</Button>
             </ButtonGroup>
           </Grid>
         </header>
