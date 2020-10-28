@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SportoraAPI.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Recreateddb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,11 +14,11 @@ namespace SportoraAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Email = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
                     GroupIds = table.Column<int[]>(type: "integer[]", nullable: true),
                     Location = table.Column<string>(type: "text", nullable: true),
-                    Prices = table.Column<List<decimal>>(type: "numeric[]", nullable: true),
                     Premises = table.Column<string[]>(type: "text[]", nullable: true)
                 },
                 constraints: table =>
@@ -43,7 +42,20 @@ namespace SportoraAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Events",
+                name: "Groups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SportEvents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -60,20 +72,7 @@ namespace SportoraAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Events", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
+                    table.PrimaryKey("PK_SportEvents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,9 +81,10 @@ namespace SportoraAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Nickname = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: false),
+                    LastName = table.Column<string>(type: "text", nullable: false),
+                    UserName = table.Column<string>(type: "text", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: true),
                     GroupIds = table.Column<int[]>(type: "integer[]", nullable: true),
                     ImageUrl = table.Column<string>(type: "text", nullable: true)
@@ -94,10 +94,41 @@ namespace SportoraAPI.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.InsertData(
+            migrationBuilder.CreateIndex(
+                name: "IX_Businesses_Email",
+                table: "Businesses",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Businesses_Name",
+                table: "Businesses",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clubs_Name",
+                table: "Clubs",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Groups_Name",
+                table: "Groups",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
                 table: "Users",
-                columns: new[] { "Id", "Email", "Gender", "GroupIds", "ImageUrl", "Name", "Nickname" },
-                values: new object[] { 1, "hvayr@hotmail.com", "Male", new[] { 0, 1 }, "www", "Harri V", "Harma" });
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -109,10 +140,10 @@ namespace SportoraAPI.Migrations
                 name: "Clubs");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Groups");
 
             migrationBuilder.DropTable(
-                name: "Groups");
+                name: "SportEvents");
 
             migrationBuilder.DropTable(
                 name: "Users");

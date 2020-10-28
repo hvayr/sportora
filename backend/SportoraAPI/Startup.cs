@@ -1,9 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SportoraAPI.Models;
+using SportoraAPI.Repositories;
 
 namespace SportoraAPI
 {
@@ -20,8 +23,14 @@ namespace SportoraAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(@"Server=PostgreSQL 12;Host=localhost;Port=5432;
-            Username=postgres;Password=1234;Database=sportora_db"));
-            services.AddControllers();
+            Username=postgres;Password=dbpass;Database=sportora_db"));
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IBusinessRepository, BusinessRepository>();
+            services.AddScoped<IClubRepository, ClubRepository>();
+            services.AddScoped<IGroupRepository, GroupRepository>();
+            services.AddScoped<ISportEventRepository, SportEventRepository>();
+            services.AddControllers().AddNewtonsoftJson();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

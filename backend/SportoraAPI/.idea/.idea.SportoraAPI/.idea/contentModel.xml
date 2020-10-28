@@ -5,15 +5,28 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="bin" t="ExcludeRecursive" />
-      <e p="Controllers" t="Include" />
+      <e p="Controllers" t="Include">
+        <e p="BusinessController.cs" t="Include" />
+        <e p="ClubsController.cs" t="Include" />
+        <e p="GroupsController.cs" t="Include" />
+        <e p="SportEventsController.cs" t="Include" />
+        <e p="UsersController.cs" t="Include" />
+      </e>
       <e p="DatabaseContext.cs" t="Include" />
+      <e p="Migrations" t="Include">
+        <e p="20201027154445_Recreated db.cs" t="Include" />
+        <e p="20201027154445_Recreated db.Designer.cs" t="Include" />
+        <e p="DatabaseContextModelSnapshot.cs" t="Include" />
+      </e>
       <e p="Models" t="Include">
         <e p="Business.cs" t="Include" />
         <e p="Club.cs" t="Include" />
-        <e p="Event.cs" t="Include" />
         <e p="Group.cs" t="Include" />
         <e p="SkillLevel.cs" t="Include" />
+        <e p="SportEvent.cs" t="Include" />
         <e p="User.cs" t="Include" />
+        <e p="UserEmailUniqueAttribute.cs" t="Include" />
+        <e p="UsernameUniqueAttribute.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
@@ -26,6 +39,18 @@
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
         <e p="launchSettings.json" t="Include" />
+      </e>
+      <e p="Repositories" t="Include">
+        <e p="BusinessRepository.cs" t="Include" />
+        <e p="ClubRepository.cs" t="Include" />
+        <e p="GroupRepository.cs" t="Include" />
+        <e p="IBusinessRepository.cs" t="Include" />
+        <e p="IClubRepository.cs" t="Include" />
+        <e p="IGroupRepository.cs" t="Include" />
+        <e p="ISportEventRepository.cs" t="Include" />
+        <e p="IUserRepository.cs" t="Include" />
+        <e p="SportEventRepository.cs" t="Include" />
+        <e p="UserRepository.cs" t="Include" />
       </e>
       <e p="SportoraAPI.csproj" t="IncludeRecursive" />
       <e p="SportoraAPI.sln" t="IncludeFlat" />

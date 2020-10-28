@@ -1,32 +1,28 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using SportoraAPI.Models;
 
 namespace SportoraAPI
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<User>     Users      { get; set; }
-        public DbSet<Business> Businesses { get; set; }
-        public DbSet<Club>     Clubs      { get; set; }
-        public DbSet<Group>    Groups     { get; set; }
-        public DbSet<Event>    Events     { get; set; }
-
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
         }
 
+        public DbSet<User> Users { get; set; }
+        public DbSet<Business> Businesses { get; set; }
+        public DbSet<Club> Clubs { get; set; }
+        public DbSet<Group> Groups { get; set; }
+        public DbSet<SportEvent> SportEvents { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasData(new User
-                                                {
-                                                    Id       = 1,
-                                                    Email    = $"hvayr@hotmail.com",
-                                                    Gender   = "Male",
-                                                    Name     = "Harri V",
-                                                    Nickname = "Harma",
-                                                    GroupIds = new []{0, 1},
-                                                    ImageUrl = $"www"
-                                                });
+            modelBuilder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+            modelBuilder.Entity<User>().HasIndex(u => u.UserName).IsUnique();
+            modelBuilder.Entity<Business>().HasIndex(b => b.Name).IsUnique();
+            modelBuilder.Entity<Business>().HasIndex(b => b.Email).IsUnique();
+            modelBuilder.Entity<Club>().HasIndex(c => c.Name).IsUnique();
+            modelBuilder.Entity<Group>().HasIndex(g => g.Name).IsUnique();
         }
     }
 }

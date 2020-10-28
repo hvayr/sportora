@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace SportoraAPI.Models
 {
     public class Business
     {
-        public  String        Name        { get; set; }
-        public  int           Id          { get; set; }
-        public  String        PhoneNumber { get; set; }
-        public  int[]         GroupIds    { get; set; }
-        public  String        Location    { get; set; }
-        public  List<decimal> Prices      { get; set; }
-        public  String[]      Premises    { get; set; }
-        private String        Password    { get; set; }
+        public int Id { get; set; }
+        [Required]
+        public string Name { get; set; }
+        [Required]
+        private string Password { get; set; }
+        [Required]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Phone]
+        public string PhoneNumber { get; set; }
+        public int[] GroupIds { get; set; }
+        public string Location { get; set; }
+        public string[] Premises { get; set; }
     }
 }
