@@ -4,6 +4,10 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField';
 
+import Tabs from './Tabs';
+
+import { RegisterForm } from './Components/RegisterForm';
+
 import {
   makeStyles,
   ThemeProvider,
@@ -12,9 +16,10 @@ import {
 import { orange } from '@material-ui/core/colors';
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { Grid, Modal } from '@material-ui/core';
+import { LoginForm } from './Components/LoginForm';
 
-const useStyles = makeStyles({
+makeStyles({
   root: {
     background: 'linear-gradient(45deg, #300, #930)',
     border: 0,
@@ -39,7 +44,17 @@ const theme = createMuiTheme({
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-function App() {
+export function App() {
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
@@ -56,14 +71,27 @@ function App() {
           >
             <TextField placeholder="Search" variant="standard" type="search" />
             <ButtonGroup variant="contained" color="primary">
-              <Button href="#SignIn">Sign In</Button>
-              <Button href="#Register">Register</Button>
+              <Button href="#SignIn" onClick={handleOpen}>
+                Sign In
+              </Button>
+              <Modal open={open} onClose={handleClose}>
+                <div className="modal-size">
+                  <LoginForm />
+                </div>
+              </Modal>
+              <Button href="#Register" onClick={handleOpen}>
+                Register
+              </Button>
+              <Modal open={open} onClose={handleClose}>
+                <div className="modal-size">
+                  <RegisterForm />
+                </div>
+              </Modal>
             </ButtonGroup>
           </Grid>
         </header>
+        <Tabs />
       </div>
     </ThemeProvider>
   );
 }
-
-export default App;
