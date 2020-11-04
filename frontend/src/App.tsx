@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 
 import Tabs from './Tabs';
 
-import { RegisterForm } from './Components/RegisterForm';
+import { RegisterForm } from './Modals/RegisterForm';
 
 import {
   makeStyles,
@@ -17,7 +17,7 @@ import { orange } from '@material-ui/core/colors';
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Modal } from '@material-ui/core';
-import { LoginForm } from './Components/LoginForm';
+import { LoginForm } from './Modals/LoginForm';
 
 makeStyles({
   root: {
@@ -45,14 +45,20 @@ const theme = createMuiTheme({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function App() {
-  const [open, setOpen] = React.useState(false);
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openRegister, setOpenRegister] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleOpenRegister = () => {
+    setOpenRegister(true);
+  };
+
+  const handleOpenLogin = () => {
+    setOpenLogin(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenLogin(false);
+    setOpenRegister(false);
   };
 
   return (
@@ -71,19 +77,19 @@ export function App() {
           >
             <TextField placeholder="Search" variant="standard" type="search" />
             <ButtonGroup variant="contained" color="primary">
-              <Button href="#SignIn" onClick={handleOpen}>
+              <Button href="#SignIn" onClick={handleOpenLogin}>
                 Sign In
               </Button>
-              <Modal open={open} onClose={handleClose}>
-                <div className="modal-size">
+              <Modal open={openLogin} onClose={handleClose}>
+                <div className="modal-login">
                   <LoginForm />
                 </div>
               </Modal>
-              <Button href="#Register" onClick={handleOpen}>
+              <Button href="#Register" onClick={handleOpenRegister}>
                 Register
               </Button>
-              <Modal open={open} onClose={handleClose}>
-                <div className="modal-size">
+              <Modal open={openRegister} onClose={handleClose}>
+                <div className="modal-register">
                   <RegisterForm />
                 </div>
               </Modal>

@@ -1,7 +1,20 @@
-.modal-size {
+.modal-login {
     position: absolute;
     width: 25%;
     height: 25%;
+
+    top: 15%;
+    left: 50%;
+    right: 25%;
+    bottom: 25%;
+
+    transform: translate(-50%, -50%);
+}
+
+.modal-register {
+    position: absolute;
+    width: 50%;
+    height: 30%;
 
     top: 15%;
     left: 50%;
