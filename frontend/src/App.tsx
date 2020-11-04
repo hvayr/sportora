@@ -18,6 +18,8 @@ import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Modal } from '@material-ui/core';
 import { LoginForm } from './Modals/LoginForm';
+import UserComponent from './UserComponent';
+import EventComponent from './EventComponent';
 
 makeStyles({
   root: {
@@ -62,42 +64,50 @@ export function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        <header className="App-Header">
-          <Typography variant="h2" component="div">
-            Sportora
-          </Typography>
+    <div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <header className="App-Header">
+            <Typography variant="h2" component="div">
+              Sportora
+            </Typography>
 
-          <Grid
-            container
-            direction="row"
-            justify="flex-end"
-            alignItems="flex-start"
-          >
-            <TextField placeholder="Search" variant="standard" type="search" />
-            <ButtonGroup variant="contained" color="primary">
-              <Button href="#SignIn" onClick={handleOpenLogin}>
-                Sign In
-              </Button>
-              <Modal open={openLogin} onClose={handleClose}>
-                <div className="modal-login">
-                  <LoginForm />
-                </div>
-              </Modal>
-              <Button href="#Register" onClick={handleOpenRegister}>
-                Register
-              </Button>
-              <Modal open={openRegister} onClose={handleClose}>
-                <div className="modal-register">
-                  <RegisterForm />
-                </div>
-              </Modal>
-            </ButtonGroup>
-          </Grid>
-        </header>
-        <Tabs />
-      </div>
-    </ThemeProvider>
+            <Grid
+              container
+              direction="row"
+              justify="flex-end"
+              alignItems="flex-start"
+            >
+              <TextField
+                placeholder="Search"
+                variant="standard"
+                type="search"
+              />
+              <ButtonGroup variant="contained" color="primary">
+                <Button href="#SignIn" onClick={handleOpenLogin}>
+                  Sign In
+                </Button>
+                <Modal open={openLogin} onClose={handleClose}>
+                  <div className="modal-login">
+                    <LoginForm />
+                  </div>
+                </Modal>
+                <Button href="#Register" onClick={handleOpenRegister}>
+                  Register
+                </Button>
+                <Modal open={openRegister} onClose={handleClose}>
+                  <div className="modal-register">
+                    <RegisterForm />
+                  </div>
+                </Modal>
+              </ButtonGroup>
+            </Grid>
+          </header>
+          <Tabs />
+        </div>
+      </ThemeProvider>
+      <UserComponent />
+      <EventComponent />
+    </div>
   );
 }
