@@ -11,7 +11,7 @@ function UserComponent() {
       .then((result) => {
         setUsers(result);
       });
-  });
+  }, []);
 
   return (
     <div>

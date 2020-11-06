@@ -26,17 +26,19 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:connection" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/UserComponent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/UserSearch.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SportoraAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SportoraAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/UserComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/UserComponent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +50,8 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/84DD02A2-0F9F-4F84-A962-852FB5A636BF/3/AuthorizationMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Git/Sportora/backend/SportoraAPI/Startup.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Git/Sportora/backend/SportoraAPI/Startup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0DF4C01E-760B-492A-98B6-5D00F3DDA2D3/5/DiagnosticsLoggerExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -65,8 +69,6 @@
         <option value="$PROJECT_DIR$/Controllers/CreatedEventsController.cs" />
         <option value="$PROJECT_DIR$/Models/EmailUniqueAttribute.cs" />
         <option value="$PROJECT_DIR$/Models/UsernameUniqueAttribute.cs" />
-        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
-        <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
         <option value="$PROJECT_DIR$/DatabaseContext.cs" />
         <option value="$PROJECT_DIR$/Models/UserEmailUniqueAttribute.cs" />
         <option value="$PROJECT_DIR$/Repositories/GroupRepository.cs" />
@@ -86,8 +88,10 @@
         <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
         <option value="$PROJECT_DIR$/Controllers/GroupsController.cs" />
         <option value="$PROJECT_DIR$/Controllers/ClubsController.cs" />
-        <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
         <option value="$PROJECT_DIR$/Startup.cs" />
+        <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
+        <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+        <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
       </list>
     </option>
   </component>
@@ -171,13 +175,28 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="connection" />
                       </list>
                     </value>
                   </entry>
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="connection" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -189,25 +208,25 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1134" height="256" key="GridCell.Tab.0.bottom" timestamp="1604528711312">
+    <state width="1130" height="254" key="GridCell.Tab.0.bottom" timestamp="1604592346687">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state width="1134" height="256" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604528711312" />
+    <state width="1130" height="254" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604592346687" />
     <state width="1497" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="1134" height="256" key="GridCell.Tab.0.center" timestamp="1604528711312">
+    <state width="1130" height="254" key="GridCell.Tab.0.center" timestamp="1604592346686">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state width="1134" height="256" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604528711312" />
+    <state width="1130" height="254" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604592346686" />
     <state width="1497" height="261" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="1134" height="256" key="GridCell.Tab.0.left" timestamp="1604528711312">
+    <state width="1130" height="254" key="GridCell.Tab.0.left" timestamp="1604592346686">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state width="1134" height="256" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604528711312" />
+    <state width="1130" height="254" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604592346686" />
     <state width="1497" height="261" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208042" />
-    <state width="1134" height="256" key="GridCell.Tab.0.right" timestamp="1604528711312">
+    <state width="1130" height="254" key="GridCell.Tab.0.right" timestamp="1604592346687">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state width="1134" height="256" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604528711312" />
+    <state width="1130" height="254" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604592346687" />
     <state width="1497" height="261" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
     <state width="2063" height="257" key="GridCell.Tab.1.bottom" timestamp="1603802673913">
       <screen x="0" y="0" width="2560" height="1410" />
@@ -294,10 +313,10 @@
     </state>
     <state x="711" y="278" key="RiderGenerateDialog/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603798706315" />
     <state x="533" y="207" key="RiderGenerateDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603364395635" />
-    <state x="1015" y="275" key="SettingsEditor" timestamp="1603452599219">
+    <state x="1015" y="275" key="SettingsEditor" timestamp="1604573451261">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="1015" y="275" key="SettingsEditor/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1603452599219" />
+    <state x="1015" y="275" key="SettingsEditor/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604573451261" />
     <state x="761" y="205" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1603294497701" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1603294917955">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -316,14 +335,18 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="638" y="139" width="644" height="801" key="find.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1603294944812" />
+    <state x="473" y="368" key="git4idea.branch.GitSmartOperationDialog" timestamp="1604573208312">
+      <screen x="0" y="0" width="2560" height="1410" />
+    </state>
+    <state x="473" y="368" key="git4idea.branch.GitSmartOperationDialog/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604573208312" />
     <state x="879" y="433" key="git4idea.ui.GitStashDialog" timestamp="1603270384179">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="879" y="433" key="git4idea.ui.GitStashDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1603270384179" />
-    <state x="277" y="172" width="896" height="911" key="search.everywhere.popup" timestamp="1604527617335">
+    <state x="277" y="172" width="896" height="911" key="search.everywhere.popup" timestamp="1604576631886">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
-    <state x="277" y="172" width="896" height="911" key="search.everywhere.popup/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604527617335" />
+    <state x="277" y="172" width="896" height="911" key="search.everywhere.popup/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1604576631886" />
     <state x="620" y="253" width="672" height="678" key="search.everywhere.popup/0.0.1920.1050@0.0.1920.1050" timestamp="1603364998473" />
   </component>
 </project>

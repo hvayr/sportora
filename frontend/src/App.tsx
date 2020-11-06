@@ -20,6 +20,7 @@ import { Grid, Modal } from '@material-ui/core';
 import { LoginForm } from './Modals/LoginForm';
 import UserComponent from './UserComponent';
 import EventComponent from './EventComponent';
+import UserSearch from './UserSearch';
 
 makeStyles({
   root: {
@@ -78,11 +79,12 @@ export function App() {
               justify="flex-end"
               alignItems="flex-start"
             >
-              <TextField
+              {/*<TextField
                 placeholder="Search"
                 variant="standard"
                 type="search"
-              />
+              />*/}
+              <UserSearch />
               <ButtonGroup variant="contained" color="primary">
                 <Button href="#SignIn" onClick={handleOpenLogin}>
                   Sign In
