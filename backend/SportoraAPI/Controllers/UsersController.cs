@@ -32,6 +32,18 @@ namespace SportoraAPI.Controllers
             return Ok(user);
         }
 
+        [HttpGet("name/{search?}")]
+        public IActionResult GetUsersByName(string search)
+        {
+            /*if (search == null || search == "")
+            {
+                return Ok(_userRepository.GetUsers());
+            } */
+            
+            return Ok(_userRepository.GetUsersByName(search));
+        }
+        
+
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {

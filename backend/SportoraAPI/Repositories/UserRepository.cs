@@ -28,19 +28,23 @@ namespace SportoraAPI.Repositories
 
         public void UpdateUser(int id, JsonPatchDocument<User> patchDocument)
         {
-            User userToUpdate =
-                _context.Users.FirstOrDefault(u => u.Id == id);
-            
+            User userToUpdate = _context.Users.FirstOrDefault(u => u.Id == id);
+
             patchDocument.ApplyTo(userToUpdate);
             _context.SaveChanges();
-
         }
-        
-        public void RemoveUser(int userId)
+
+        public List<User> GetUsersByName(string name)
         {
-            User userToDelete = _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
-            _context.Users.Remove(userToDelete);
-            _context.SaveChanges();
+            return _context.Users.Where(u => u.UserName.Contains(name)).ToList();
+        }
+
+        public void RemoveUser(int userId)
+            {
+                User userToDelete =
+                    _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
+                _context.Users.Remove(userToDelete);
+                _context.SaveChanges();
+            }
         }
     }
-}

@@ -10,8 +10,8 @@ namespace SportoraAPI.Repositories
         IEnumerable<User> GetUsers();
         User GetUserById(int userId);
         void RemoveUser(int userId);
-        public void UpdateUser(int id, JsonPatchDocument<User> patchDocument);
-        
+        void UpdateUser(int id, JsonPatchDocument<User> patchDocument);
+        List<User> GetUsersByName(string name);
 
 
     }

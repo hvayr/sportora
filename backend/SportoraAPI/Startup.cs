@@ -30,6 +30,12 @@ namespace SportoraAPI
             services.AddScoped<IGroupRepository, GroupRepository>();
             services.AddScoped<ISportEventRepository, SportEventRepository>();
             services.AddControllers().AddNewtonsoftJson();
+            services.AddCors(options => options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin();
+                
+            }));
+            
 
         }
 
@@ -46,6 +52,8 @@ namespace SportoraAPI
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
