@@ -4,6 +4,8 @@ import {
   Card,
   CardContent,
   FormGroup,
+  Grid,
+  makeStyles,
   TextField,
   Typography,
 } from '@material-ui/core';
@@ -16,8 +18,18 @@ const initialValues = {
   password: '',
 };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormControl-root': {
+      margin: theme.spacing(1),
+      width: '80%',
+    },
+  },
+}));
+
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function LoginForm() {
+  const classes = useStyles();
   return (
     <Card>
       <CardContent>
@@ -42,34 +54,43 @@ export function LoginForm() {
           }}
         >
           {({ values, errors, isSubmitting, isValidating }) => (
-            <Form>
-              <Box marginBottom={2}>
-                <FormGroup>
-                  <Field
-                    name="userName"
-                    as={TextField}
-                    label="User Name"
-                    variant="outlined"
-                  />
-                  <ErrorMessage name="userName" />
-                </FormGroup>
-              </Box>
+            <Form className={classes.root}>
+              <Grid container>
+                <Grid item xs={6}>
+                  <Box marginBottom={2}>
+                    <FormGroup>
+                      <Field
+                        name="userName"
+                        as={TextField}
+                        label="User Name"
+                        variant="outlined"
+                      />
+                      <ErrorMessage name="userName" />
+                    </FormGroup>
+                  </Box>
+                </Grid>
 
-              <Box marginBottom={2}>
-                <FormGroup>
-                  <Field
-                    name="password"
-                    as={TextField}
-                    label="Password"
-                    variant="outlined"
-                  />
-                  <ErrorMessage name="password" />
-                </FormGroup>
-              </Box>
-
-              <Button type="submit" disabled={isSubmitting || isValidating}>
-                Login
-              </Button>
+                <Grid item xs={6}>
+                  <Box marginBottom={2}>
+                    <FormGroup>
+                      <Field
+                        name="password"
+                        as={TextField}
+                        label="Password"
+                        variant="outlined"
+                      />
+                      <ErrorMessage name="password" />
+                    </FormGroup>
+                  </Box>
+                </Grid>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  disabled={isSubmitting || isValidating}
+                >
+                  Login
+                </Button>
+              </Grid>
 
               <pre>{JSON.stringify(errors, null, 4)}</pre>
               <pre>{JSON.stringify(values, null, 4)}</pre>
