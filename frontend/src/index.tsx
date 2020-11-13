@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { App } from './App';
 import * as serviceWorker from './serviceWorker';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain={'sportora.eu.auth0.com'}
+    clientId={'A1Bs6sqgX2lSCgX5Kn8olgCLJEKJS1rB'}
+    redirectUri={window.location.origin}
+  >
     <App />
-  </React.StrictMode>,
+  </Auth0Provider>,
   document.getElementById('root'),
 );
 

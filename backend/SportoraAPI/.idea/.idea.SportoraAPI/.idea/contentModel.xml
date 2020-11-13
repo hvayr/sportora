@@ -4,6 +4,10 @@
     <e p="C:\Git\Sportora\backend\SportoraAPI" t="IncludeRecursive">
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
+      <e p="Authorization" t="Include">
+        <e p="MustBeEventAuthorHandler.cs" t="Include" />
+        <e p="MustBeEventAuthorRequirement.cs" t="Include" />
+      </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
         <e p="BusinessController.cs" t="Include" />
@@ -14,11 +18,12 @@
       </e>
       <e p="DatabaseContext.cs" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20201027154445_Recreated db.cs" t="Include" />
-        <e p="20201027154445_Recreated db.Designer.cs" t="Include" />
+        <e p="20201113135859_adminIds.cs" t="Include" />
+        <e p="20201113135859_adminIds.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
+        <e p="AuthorizedUser.cs" t="Include" />
         <e p="Business.cs" t="Include" />
         <e p="Club.cs" t="Include" />
         <e p="Group.cs" t="Include" />

@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import TextField from '@material-ui/core/TextField';
 
 import Tabs from './Tabs';
 
@@ -79,11 +78,6 @@ export function App() {
               justify="flex-end"
               alignItems="flex-start"
             >
-              {/*<TextField
-                placeholder="Search"
-                variant="standard"
-                type="search"
-              />*/}
               <UserSearch />
               <ButtonGroup variant="contained" color="primary">
                 <Button href="#SignIn" onClick={handleOpenLogin}>

@@ -7,11 +7,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+using SportoraAPI.Authorization;
 
 namespace SportoraAPI
 {
     public class Startup
     {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,6 +40,22 @@ namespace SportoraAPI
                 builder.AllowAnyOrigin();
                 
             }));
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme =
+                    JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration["Auth0:Authority"];
+                options.Audience = Configuration["Auth0:Audience"];
+            });
+            services.AddHttpClient();
+            services.AddAuthorization(options => options.AddPolicy("MustBeEventAuthor",
+                policy => policy.Requirements.Add(new MustBeEventAuthorRequirement())));
+            services.AddScoped<IAuthorizationHandler, MustBeEventAuthorHandler>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
             
 
         }
@@ -54,6 +75,8 @@ namespace SportoraAPI
             app.UseRouting();
 
             app.UseCors();
+            
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

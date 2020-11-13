@@ -26,6 +26,10 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<int[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -64,10 +68,15 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<int[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<int[]>("GroupIds")
                         .HasColumnType("integer[]");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("SkillLevel")
@@ -88,7 +97,12 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<int[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -109,6 +123,10 @@ namespace SportoraAPI.Migrations
                     b.Property<bool>("ActiveStatus")
                         .HasColumnType("boolean");
 
+                    b.Property<int[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<int[]>("AutoInvite")
                         .HasColumnType("integer[]");
 
@@ -128,6 +146,7 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int[]>("Participants")

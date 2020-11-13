@@ -6,6 +6,9 @@ namespace SportoraAPI.Models
     public class SportEvent
     {
         public int Id { get; set; }
+        public string Author { get; set; }
+        [Required] 
+        public int[] AdminIds { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
@@ -16,5 +19,6 @@ namespace SportoraAPI.Models
         public DateTime EventStartTime { get; set; }
         public DateTime EventCreatedTime { get; set; }
         public int[] AutoInvite { get; set; }
+        
     }
 }

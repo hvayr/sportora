@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
@@ -8,7 +9,10 @@ namespace SportoraAPI.Repositories
     {
         void AddSportEvent(SportEvent sportEvent);
         IEnumerable<SportEvent> GetSportEvents();
+        Task<IEnumerable<SportEvent>> GetSportEventsAsync();
+        
         SportEvent GetSportEventById(int eventId);
+        Task<SportEvent> GetSportEventByIdAsync(int eventId);
         void UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent);
         void RemoveSportEvent(int eventId);
     }

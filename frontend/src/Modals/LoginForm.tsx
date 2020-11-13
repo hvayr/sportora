@@ -12,6 +12,7 @@ import {
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import { object, string } from 'yup';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const initialValues = {
   userName: '',
@@ -29,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function LoginForm() {
+  const { loginWithRedirect } = useAuth0();
+
   const classes = useStyles();
   return (
     <Card>
@@ -87,8 +90,9 @@ export function LoginForm() {
                   variant="contained"
                   type="submit"
                   disabled={isSubmitting || isValidating}
+                  onClick={() => loginWithRedirect()}
                 >
-                  Login
+                  Log In
                 </Button>
               </Grid>
 

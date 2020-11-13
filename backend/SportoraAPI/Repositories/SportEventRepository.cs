@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.EntityFrameworkCore;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -24,8 +26,18 @@ namespace SportoraAPI.Repositories
 
         public IEnumerable<SportEvent> GetSportEvents() => _context.SportEvents.ToList();
 
+        public async Task<IEnumerable<SportEvent>> GetSportEventsAsync()
+        {
+            return await _context.SportEvents.ToListAsync();
+        }
+
         public SportEvent GetSportEventById(int eventId) =>
             _context.SportEvents.FirstOrDefault(u => u.Id == eventId);
+
+        public async Task<SportEvent> GetSportEventByIdAsync(int eventId)
+        {
+            return await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
+        }
 
         public void UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent)
         {

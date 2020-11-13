@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportoraAPI.Controllers
 {
@@ -43,7 +44,7 @@ namespace SportoraAPI.Controllers
             return Ok(_userRepository.GetUsersByName(search));
         }
         
-
+        [Authorize]
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
