@@ -127,6 +127,9 @@ namespace SportoraAPI.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
+                    b.Property<string>("Author")
+                        .HasColumnType("text");
+
                     b.Property<int[]>("AutoInvite")
                         .HasColumnType("integer[]");
 

@@ -18,8 +18,8 @@
       </e>
       <e p="DatabaseContext.cs" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20201113135859_adminIds.cs" t="Include" />
-        <e p="20201113135859_adminIds.Designer.cs" t="Include" />
+        <e p="20201113172036_author.cs" t="Include" />
+        <e p="20201113172036_author.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">

@@ -83,10 +83,10 @@ namespace SportoraAPI.Controllers
 
             SportEvent sportEventToAdd = sportEvent;
 
-            var value = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            /*var value = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             int valueToInt = Int32.Parse(value);
             sportEventToAdd.AdminIds = new[] {valueToInt};
-            sportEventToAdd.Author = await GetUserName();
+            sportEventToAdd.Author = await GetUserName();*/
 
             _sportEventRepository.AddSportEvent(sportEventToAdd);
 

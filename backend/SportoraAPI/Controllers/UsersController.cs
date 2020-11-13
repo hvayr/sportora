@@ -44,7 +44,6 @@ namespace SportoraAPI.Controllers
             return Ok(_userRepository.GetUsersByName(search));
         }
         
-        [Authorize]
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {

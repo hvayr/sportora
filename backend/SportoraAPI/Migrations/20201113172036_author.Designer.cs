@@ -10,8 +10,8 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201113135859_adminIds")]
-    partial class adminIds
+    [Migration("20201113172036_author")]
+    partial class author
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -128,6 +128,9 @@ namespace SportoraAPI.Migrations
                     b.Property<int[]>("AdminIds")
                         .IsRequired()
                         .HasColumnType("integer[]");
+
+                    b.Property<string>("Author")
+                        .HasColumnType("text");
 
                     b.Property<int[]>("AutoInvite")
                         .HasColumnType("integer[]");
