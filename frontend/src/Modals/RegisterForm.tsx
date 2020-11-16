@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   FormGroup,
-  Grid,
   makeStyles,
   MenuItem,
   TextField,
@@ -13,6 +12,7 @@ import {
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import { number, object, string } from 'yup';
+import { saveUser } from '../saveUser';
 
 const initialValues = {
   firstName: '',
@@ -24,11 +24,18 @@ const initialValues = {
   group: 0,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const onSubmit = (values) => {
+  console.log('Form data', JSON.stringify(values));
+  saveUser(values);
+};
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& .MuiFormControl-root': {
+    '& > *': {
       margin: theme.spacing(1),
-      width: '80%',
+      width: '25ch',
     },
   },
 }));
@@ -64,122 +71,114 @@ export function RegisterForm() {
             image: string(),
           })}
           initialValues={initialValues}
-          onSubmit={(values) => {
-            return new Promise(() => {
-              console.log(values);
-            });
-          }}
+          onSubmit={onSubmit}
         >
-          {({ values, errors, isSubmitting, isValidating }) => (
+          {({ values, errors }) => (
             <Form className={classes.root} autoComplete="off">
-              <Grid container>
-                <Grid item xs={6}>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="firstName"
-                        as={TextField}
-                        label="First Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="firstName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="userName"
-                        as={TextField}
-                        label="User Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="userName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="password"
-                        as={TextField}
-                        label="Password"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="password" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field name="group" label="group" as={TextField} select>
-                        <MenuItem value={0}>Select ...</MenuItem>
-                        <MenuItem value={1}>0</MenuItem>
-                        <MenuItem value={2}>1</MenuItem>
-                        <MenuItem value={3}>2</MenuItem>
-                        <MenuItem value={4}>3</MenuItem>
-                        <MenuItem value={5}>4</MenuItem>
-                        <MenuItem value={6}>5</MenuItem>
-                      </Field>
-                      <ErrorMessage name="group" />
-                    </FormGroup>
-                  </Box>
-                </Grid>
-                <Grid item xs={6}>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="lastName"
-                        as={TextField}
-                        label="Last Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="lastName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="email"
-                        as={TextField}
-                        label="Email"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="email" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <label>Gender</label>
-                    <FormGroup>
-                      <label>
-                        <Field type="radio" name="gender" value="Male" />
-                        Male
-                      </label>
-                      <label>
-                        <Field type="radio" name="gender" value="Female" />
-                        Female
-                      </label>
-                      <label>
-                        <Field type="radio" name="gender" value="Other" />
-                        Other
-                      </label>
-                    </FormGroup>
-                    <ErrorMessage name="gender" />
-                  </Box>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    disabled={isSubmitting || isValidating}
-                  >
-                    Submit
-                  </Button>
-                </Grid>
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="firstName"
+                    id="firstName"
+                    as={TextField}
+                    label="First Name"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <ErrorMessage name="firstName" />
+                </FormGroup>
+              </Box>
 
-                <pre>{JSON.stringify(errors, null, 4)}</pre>
-                <pre>{JSON.stringify(values, null, 4)}</pre>
-              </Grid>
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="lastName"
+                    as={TextField}
+                    label="Last Name"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <ErrorMessage name="lastName" />
+                </FormGroup>
+              </Box>
+
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="userName"
+                    as={TextField}
+                    label="User Name"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <ErrorMessage name="userName" />
+                </FormGroup>
+              </Box>
+
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="email"
+                    as={TextField}
+                    label="Email"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <ErrorMessage name="email" />
+                </FormGroup>
+              </Box>
+
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="password"
+                    as={TextField}
+                    label="Password"
+                    variant="outlined"
+                    size="small"
+                  />
+                  <ErrorMessage name="password" />
+                </FormGroup>
+              </Box>
+
+              <Box>
+                <label>Gender</label>
+                <FormGroup>
+                  <label>
+                    <Field type="radio" name="gender" value="Male" />
+                    Male
+                  </label>
+                  <label>
+                    <Field type="radio" name="gender" value="Female" />
+                    Female
+                  </label>
+                  <label>
+                    <Field type="radio" name="gender" value="Other" />
+                    Other
+                  </label>
+                </FormGroup>
+                <ErrorMessage name="gender" />
+              </Box>
+
+              <Box>
+                <FormGroup>
+                  <Field name="group" label="group" as={TextField} select>
+                    <MenuItem value={0}>Select ...</MenuItem>
+                    <MenuItem value={1}>0</MenuItem>
+                    <MenuItem value={2}>1</MenuItem>
+                    <MenuItem value={3}>2</MenuItem>
+                    <MenuItem value={4}>3</MenuItem>
+                    <MenuItem value={5}>4</MenuItem>
+                    <MenuItem value={6}>5</MenuItem>
+                  </Field>
+                  <ErrorMessage name="group" />
+                </FormGroup>
+              </Box>
+
+              <Button type="submit">Submit</Button>
+
+              <pre>{JSON.stringify(errors, null, 4)}</pre>
+              <pre>{JSON.stringify(values, null, 4)}</pre>
             </Form>
           )}
         </Formik>
