@@ -1,11 +1,13 @@
 /* eslint-disable */
+import error from 'eslint-plugin-react';
+
 export const saveUser = (
     values
 ) => {
   fetch('https://localhost:44348/users', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(
       {
@@ -15,9 +17,18 @@ export const saveUser = (
         userName: values.userName,
         password: values.password,
         gender: values.gender,
-      }
+      },
     ),
   })
-      .then((res) => res.json())
-      .then(res => console.log('Test', res));
+    .then(res => {
+      if (!res.ok) {
+        throw Error(res.statusText);
+      }
+      return res;
+    })
+    .then(res => {
+      console.log('ok');
+    }).catch(res => console.log(error))
+
+
 }
