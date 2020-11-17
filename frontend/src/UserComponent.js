@@ -10,6 +10,7 @@ function UserComponent() {
       .then((result) => result.json())
       .then((result) => {
         setUsers(result);
+        console.log('Length: ' + result.length);
       });
   }, []);
 
