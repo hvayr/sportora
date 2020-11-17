@@ -32,10 +32,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/doFetch.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/saveUser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/Modals/RegisterForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/Modals/RegisterForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/Auth.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Startup.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/EventComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/EventComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/Tabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/Tabs.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,13 +47,18 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="fetch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAuthorRequirement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/84DD02A2-0F9F-4F84-A962-852FB5A636BF/3/AuthorizationMiddleware.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6FEAE9FB-5F55-45E0-A272-9CACB3EF41A6/17/AuthorizationHandler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F35D33A9-A263-47AD-9959-3F7E2B786ACD/1/IdentityModelEventSource.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAuthorRequirement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6FEAE9FB-5F55-45E0-A272-9CACB3EF41A6/4/AuthorizationHandlerContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/0DF4C01E-760B-492A-98B6-5D00F3DDA2D3/5/DiagnosticsLoggerExtensions.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -88,7 +97,6 @@
         <option value="$PROJECT_DIR$/Models/Club.cs" />
         <option value="$PROJECT_DIR$/Models/Group.cs" />
         <option value="$PROJECT_DIR$/Authorization/MustBeEventAuthorRequirement.cs" />
-        <option value="$PROJECT_DIR$/Startup.cs" />
         <option value="$PROJECT_DIR$/Models/AuthorizedUser.cs" />
         <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
         <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
@@ -96,6 +104,7 @@
         <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
         <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
         <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
+        <option value="$PROJECT_DIR$/Startup.cs" />
       </list>
     </option>
   </component>
@@ -213,37 +222,37 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2086" height="216" key="GridCell.Tab.0.bottom" timestamp="1605548681252">
+    <state width="2086" height="216" key="GridCell.Tab.0.bottom" timestamp="1605554796542">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="1424" height="241" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
     <state width="1424" height="246" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1605194316292" />
     <state width="1497" height="261" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="2086" height="216" key="GridCell.Tab.0.bottom/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605548681252" />
+    <state width="2086" height="216" key="GridCell.Tab.0.bottom/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605554796542" />
     <state width="1238" height="251" key="GridCell.Tab.0.bottom/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1605180010806" />
-    <state width="2086" height="216" key="GridCell.Tab.0.center" timestamp="1605548681252">
+    <state width="2086" height="216" key="GridCell.Tab.0.center" timestamp="1605554796542">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="1424" height="241" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
     <state width="1424" height="246" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1605194316292" />
     <state width="1497" height="261" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="2086" height="216" key="GridCell.Tab.0.center/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605548681252" />
+    <state width="2086" height="216" key="GridCell.Tab.0.center/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605554796542" />
     <state width="1238" height="251" key="GridCell.Tab.0.center/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1605180010806" />
-    <state width="2086" height="216" key="GridCell.Tab.0.left" timestamp="1605548681252">
+    <state width="2086" height="216" key="GridCell.Tab.0.left" timestamp="1605554796542">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="1424" height="241" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233671" />
     <state width="1424" height="246" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1605194316292" />
     <state width="1497" height="261" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208042" />
-    <state width="2086" height="216" key="GridCell.Tab.0.left/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605548681252" />
+    <state width="2086" height="216" key="GridCell.Tab.0.left/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605554796542" />
     <state width="1238" height="251" key="GridCell.Tab.0.left/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1605180010806" />
-    <state width="2086" height="216" key="GridCell.Tab.0.right" timestamp="1605548681252">
+    <state width="2086" height="216" key="GridCell.Tab.0.right" timestamp="1605554796542">
       <screen x="0" y="0" width="2560" height="1410" />
     </state>
     <state width="1424" height="241" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
     <state width="1424" height="246" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@0.0.2560.1410" timestamp="1605194316292" />
     <state width="1497" height="261" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1603292208043" />
-    <state width="2086" height="216" key="GridCell.Tab.0.right/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605548681252" />
+    <state width="2086" height="216" key="GridCell.Tab.0.right/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1605554796542" />
     <state width="1238" height="251" key="GridCell.Tab.0.right/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1605180010806" />
     <state width="2063" height="257" key="GridCell.Tab.1.bottom" timestamp="1603802673913">
       <screen x="0" y="0" width="2560" height="1410" />

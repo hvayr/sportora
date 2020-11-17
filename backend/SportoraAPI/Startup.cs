@@ -38,7 +38,8 @@ namespace SportoraAPI
             services.AddCors(options => options.AddDefaultPolicy(builder =>
             {
                 builder.AllowAnyOrigin();
-                
+                builder.AllowAnyHeader();
+
             }));
             services.AddAuthentication(options =>
             {

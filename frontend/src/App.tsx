@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
 
 import Tabs from './Tabs';
 
@@ -64,46 +65,59 @@ export function App() {
   };
 
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          <header className="App-Header">
-            <Typography variant="h2" component="div">
-              Sportora
-            </Typography>
+    <Router>
+      <div>
+        <ThemeProvider theme={theme}>
+          <div className="App">
+            <header className="App-Header">
+              <Typography variant="h2" component="div">
+                Sportora
+              </Typography>
 
-            <Grid
-              container
-              direction="row"
-              justify="flex-end"
-              alignItems="flex-start"
-            >
-              <UserSearch />
-              <ButtonGroup variant="contained" color="primary">
-                <Button href="#SignIn" onClick={handleOpenLogin}>
-                  Sign In
-                </Button>
-                <Modal open={openLogin} onClose={handleClose}>
-                  <div className="modal-login">
-                    <LoginForm />
-                  </div>
-                </Modal>
-                <Button href="#Register" onClick={handleOpenRegister}>
-                  Register
-                </Button>
-                <Modal open={openRegister} onClose={handleClose}>
-                  <div className="modal-register">
-                    <RegisterForm />
-                  </div>
-                </Modal>
-              </ButtonGroup>
-            </Grid>
-          </header>
-          <Tabs />
-        </div>
-      </ThemeProvider>
-      <UserComponent />
-      <EventComponent />
-    </div>
+              <Grid
+                container
+                direction="row"
+                justify="flex-end"
+                alignItems="flex-start"
+              >
+                <ButtonGroup variant="contained" color="primary">
+                  <Button href="#SignIn" onClick={handleOpenLogin}>
+                    Sign In
+                  </Button>
+                  <Modal open={openLogin} onClose={handleClose}>
+                    <div className="modal-login">
+                      <LoginForm />
+                    </div>
+                  </Modal>
+                  <Button href="#Register" onClick={handleOpenRegister}>
+                    Register
+                  </Button>
+                  <Modal open={openRegister} onClose={handleClose}>
+                    <div className="modal-register">
+                      <RegisterForm />
+                    </div>
+                  </Modal>
+                </ButtonGroup>
+              </Grid>
+            </header>
+            <Tabs />
+          </div>
+        </ThemeProvider>
+        {/*<h1>
+          <Link to="/">Users Data</Link>
+        </h1>
+        <h1>
+          <Link to="/events">Events Data</Link>
+        </h1>
+        <Switch>
+          <Route exact path="/">
+            <UserComponent />
+          </Route>
+          <Route path="/events">
+            <EventComponent />
+          </Route>
+        </Switch>*/}
+      </div>
+    </Router>
   );
 }
