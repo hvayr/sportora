@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.JsonPatch;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
@@ -34,15 +35,30 @@ namespace SportoraAPI.Controllers
         }
 
         [HttpGet("name/{search?}")]
-        public IActionResult GetUsersByName(string search)
+        public async Task<IActionResult> GetUsersWhereUsernameContains(string search)
         {
-            /*if (search == null || search == "")
-            {
-                return Ok(_userRepository.GetUsers());
-            } */
+            var result = await _userRepository.GetUsersWhereUsernameContains(search);
             
-            return Ok(_userRepository.GetUsersByName(search));
+            return Ok(result);
         }
+
+        [HttpGet("exactName/{search?}")]
+        public async Task<IActionResult> GetUsersByExactName(string search)
+        {
+            var result = await _userRepository.GetUsersByExactUsername(search);
+            
+            return Ok(result);
+        }
+
+        [HttpGet("email/{search?}")]
+        public async Task<IActionResult> GetUsersByExactEmail(string search)
+        {
+            var result = await _userRepository.GetUsersByExactEmail(search);
+            
+            return Ok(result);
+        }
+        
+        
         
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)

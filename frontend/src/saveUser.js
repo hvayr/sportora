@@ -1,41 +1,39 @@
 /* eslint-disable */
-import error from 'eslint-plugin-react';
-import { CheckUserNameAvailability } from './CheckUserNameAvailability';
+import { isUserNameAvailable } from './IsUserNameAvailable';
+import {handleErrors} from './handleErrors';
+import { isEmailAvailable } from './IsEmailAvailable';
 
-export const saveUser = (
-    values
-) => {
-  console.log(values.userName)
-  if (CheckUserNameAvailability(values.userName)===false) {
-    alert("Username already in use!")
-  }
+export const saveUser = async (values) => {
 
-  fetch('https://localhost:44348/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(
-      {
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        userName: values.userName,
-        password: values.password,
-        gender: values.gender,
+  let checkUniquenessSuccess = false;
+
+  !await isUserNameAvailable(values.userName) ? alert('Username already in' +
+    ' use!') : await isEmailAvailable(values.email) ? checkUniquenessSuccess = true : alert('Email already in use');
+
+  if (checkUniquenessSuccess) {
+
+    const results = await fetch('https://localhost:44348/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    ),
-  })
-    /*.then(res => {
-      if (!res.ok) {
-        throw Error(res.statusText);
-      }
-      return res;
+      body: JSON.stringify(
+        {
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          userName: values.userName,
+          password: values.password,
+          gender: values.gender,
+        },
+      ),
     })
-    .then(res => {
-      console.log('ok');
-    }).catch(res => console.log(error))*/
-
-
-
-}
+      .then(handleErrors)
+      .then((res) => {
+        if (res.ok) {
+          console.log('User registered');
+          alert('User registered!');
+        }
+      });
+  }
+};

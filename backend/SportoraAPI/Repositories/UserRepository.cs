@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.EntityFrameworkCore;
 using SportoraAPI.Models;
 
 namespace SportoraAPI.Repositories
@@ -8,7 +10,6 @@ namespace SportoraAPI.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly DatabaseContext _context;
-        private IUserRepository _userRepositoryImplementation;
 
         public UserRepository(DatabaseContext context)
         {
@@ -34,9 +35,19 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public List<User> GetUsersByName(string name)
+        public async Task<List<User>> GetUsersWhereUsernameContains(string name)
         {
-            return _context.Users.Where(u => u.UserName.Contains(name)).ToList();
+            return await _context.Users.Where(u => u.UserName.Contains(name)).ToListAsync();
+        }
+
+        public async Task<List<User>> GetUsersByExactUsername(string name)
+        {
+            return await _context.Users.Where(u => u.UserName.Equals(name)).ToListAsync();
+        }
+
+        public async Task<List<User>> GetUsersByExactEmail(string email)
+        {
+            return await _context.Users.Where(u => u.Email.Equals(email)).ToListAsync();
         }
 
         public void RemoveUser(int userId)

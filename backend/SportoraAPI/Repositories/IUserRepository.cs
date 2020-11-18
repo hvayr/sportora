@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.JsonPatch;
 using SportoraAPI.Models;
 
@@ -11,8 +12,9 @@ namespace SportoraAPI.Repositories
         User GetUserById(int userId);
         void RemoveUser(int userId);
         void UpdateUser(int id, JsonPatchDocument<User> patchDocument);
-        List<User> GetUsersByName(string name);
-
+        Task<List<User>> GetUsersWhereUsernameContains(string name);
+        Task<List<User>> GetUsersByExactUsername(string name);
+        Task<List<User>> GetUsersByExactEmail(string email);
 
     }
 }
