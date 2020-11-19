@@ -7,9 +7,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import UserComponent from './UserComponent';
-import EventComponent from './EventComponent';
-import UserSearch from './UserSearch';
+import UserComponent from './components/UserComponent';
+import EventComponent from './components/EventComponent';
+import UserSearch from './components/UserSearch';
+import Profile from './components/Profile';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -80,9 +81,7 @@ export default function SimpleTabs() {
           <Tab label="Events" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <UserComponent />
-      </TabPanel>
+      <TabPanel value={value} index={0}></TabPanel>
       <TabPanel value={value} index={1}>
         <UserSearch />
       </TabPanel>

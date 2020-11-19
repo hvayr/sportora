@@ -1,17 +1,12 @@
 /* eslint-disable */
-import { isUserNameAvailable } from './IsUserNameAvailable';
+import { isAvailable } from './IsAvailable';
 import {handleErrors} from './handleErrors';
-import { isEmailAvailable } from './IsEmailAvailable';
 
 export const saveUser = async (values) => {
 
-  let checkUniquenessSuccess = false;
-
-  !await isUserNameAvailable(values.userName) ? alert('Username already in' +
-    ' use!') : await isEmailAvailable(values.email) ? checkUniquenessSuccess = true : alert('Email already in use');
-
-  if (checkUniquenessSuccess) {
-
+  if (!await isAvailable(values.userName)) {
+    alert('Username already in use!');
+  } else if (await isAvailable(values.email)) {
     const results = await fetch('https://localhost:44348/users', {
       method: 'POST',
       headers: {
@@ -35,5 +30,10 @@ export const saveUser = async (values) => {
           alert('User registered!');
         }
       });
+  } else {
+    console.log("Email is already in use!")
   }
+
+
+
 };

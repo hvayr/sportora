@@ -18,9 +18,8 @@ import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { Grid, Modal } from '@material-ui/core';
 import { LoginForm } from './Modals/LoginForm';
-import UserComponent from './UserComponent';
-import EventComponent from './EventComponent';
-import UserSearch from './UserSearch';
+import NavBar from './components/nav-bar';
+import { Profile } from './components/Profile';
 
 makeStyles({
   root: {
@@ -117,6 +116,7 @@ export function App() {
             <EventComponent />
           </Route>
         </Switch>*/}
+        <NavBar />
       </div>
     </Router>
   );

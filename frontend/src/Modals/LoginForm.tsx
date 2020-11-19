@@ -89,7 +89,7 @@ export function LoginForm() {
                 <Button
                   variant="contained"
                   type="submit"
-                  disabled={isSubmitting || isValidating}
+                  // disabled={isSubmitting || isValidating}
                   onClick={() => loginWithRedirect()}
                 >
                   Log In
