@@ -1,13 +1,6 @@
 import React from 'react';
 import './App.css';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { Switch, Route, BrowserRouter as Router, Link } from 'react-router-dom';
-
-import Tabs from './Tabs';
-
-import { RegisterForm } from './Modals/RegisterForm';
-
+import { Switch, Route, Redirect, BrowserRouter, Link } from 'react-router-dom';
 import {
   makeStyles,
   ThemeProvider,
@@ -16,11 +9,11 @@ import {
 import { orange } from '@material-ui/core/colors';
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
-import { Grid, Modal } from '@material-ui/core';
-import { LoginForm } from './Modals/LoginForm';
+import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
 import UserComponent from './UserComponent';
 import EventComponent from './EventComponent';
 import UserSearch from './UserSearch';
+import { ModalHandler } from './Modals/ModalHandler';
 
 makeStyles({
   root: {
@@ -48,76 +41,71 @@ const theme = createMuiTheme({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function App() {
-  const [openLogin, setOpenLogin] = React.useState(false);
-  const [openRegister, setOpenRegister] = React.useState(false);
-
-  const handleOpenRegister = () => {
-    setOpenRegister(true);
-  };
-
-  const handleOpenLogin = () => {
-    setOpenLogin(true);
-  };
-
-  const handleClose = () => {
-    setOpenLogin(false);
-    setOpenRegister(false);
-  };
+  const routes = ['/home', '/browse', '/events'];
 
   return (
-    <Router>
-      <div>
-        <ThemeProvider theme={theme}>
-          <div className="App">
-            <header className="App-Header">
-              <Typography variant="h2" component="div">
-                Sportora
-              </Typography>
-
-              <Grid
-                container
-                direction="row"
-                justify="flex-end"
-                alignItems="flex-start"
-              >
-                <ButtonGroup variant="contained" color="primary">
-                  <Button href="#SignIn" onClick={handleOpenLogin}>
-                    Sign In
-                  </Button>
-                  <Modal open={openLogin} onClose={handleClose}>
-                    <div className="modal-login">
-                      <LoginForm />
+    <div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          <Typography variant="h2" component="div">
+            Sportora
+          </Typography>
+          <BrowserRouter>
+            <AppBar>
+              <Toolbar>
+                <Route
+                  path="/"
+                  render={(history) => (
+                    <div>
+                      <Tabs
+                        value={
+                          history.location.pathname !== '/'
+                            ? history.location.pathname
+                            : false
+                        }
+                      >
+                        <Tab
+                          value={routes[0]}
+                          label="Home"
+                          component={Link}
+                          to={routes[0]}
+                        />
+                        <Tab
+                          value={routes[1]}
+                          label="Browse"
+                          component={Link}
+                          to={routes[1]}
+                        />
+                        <Tab
+                          value={routes[2]}
+                          label="Events"
+                          component={Link}
+                          to={routes[2]}
+                        />
+                      </Tabs>
                     </div>
-                  </Modal>
-                  <Button href="#Register" onClick={handleOpenRegister}>
-                    Register
-                  </Button>
-                  <Modal open={openRegister} onClose={handleClose}>
-                    <div className="modal-register">
-                      <RegisterForm />
-                    </div>
-                  </Modal>
-                </ButtonGroup>
-              </Grid>
-            </header>
-            <Tabs />
-          </div>
-        </ThemeProvider>
-        {/*<h1>
-          <Link to="/">Users Data</Link>
-        </h1>
-        <h1>
-          <Link to="/events">Events Data</Link>
-        </h1>
-        <Switch>
-          <Route exact path="/">
-            <UserComponent />
-          </Route>
-          <Route path="/events">
-            <EventComponent />
-          </Route>
-        </Switch>*/}
-      </div>
-    </Router>
+                  )}
+                />
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-end"
+                  alignItems="flex-start"
+                >
+                  <ModalHandler />
+                </Grid>
+              </Toolbar>
+            </AppBar>
+            <div>
+              <Switch>
+                <Route path="/home" component={UserComponent} />
+                <Route path="/browse" component={UserSearch} />
+                <Route path="/events" component={EventComponent} />
+              </Switch>
+            </div>
+          </BrowserRouter>
+        </div>
+      </ThemeProvider>
+    </div>
   );
 }
