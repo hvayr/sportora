@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AuthNav from './auth-nav';
+import { MainView } from './main-view';
 
 const NavBar = () => {
   return (
@@ -8,7 +9,7 @@ const NavBar = () => {
       <nav className="navbar navbar-expand-md navbar-light bg-light">
         <div className="container">
           <div className="navbar-brand logo" />
-          <AuthNav />
+          <MainView />
         </div>
       </nav>
     </div>

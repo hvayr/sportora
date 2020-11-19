@@ -13,6 +13,10 @@ import UserComponent from '../Fetch/UserComponent';
 import EventComponent from '../Fetch/EventComponent';
 import UserSearch from '../Fetch/UserSearch';
 import { ModalHandler } from '../Modals/ModalHandler';
+import Profile from '../Profile';
+import ProtectedRoute from '../../Auth/protected-route';
+import NavBar from './nav-bar';
+import AuthNav from './auth-nav';
 
 makeStyles({
   root: {
@@ -39,8 +43,8 @@ const theme = createMuiTheme({
 });
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function FrontPage() {
-  const routes = ['/home', '/browse', '/events'];
+export function MainView() {
+  const routes = ['/home', '/browse', '/events', '/profile'];
   return (
     <div>
       <ThemeProvider theme={theme}>
@@ -80,6 +84,12 @@ export function FrontPage() {
                           component={Link}
                           to={routes[2]}
                         />
+                        <Tab
+                          value={routes[3]}
+                          label="Profile"
+                          component={Link}
+                          to={routes[3]}
+                        />
                       </Tabs>
                     </div>
                   )}
@@ -99,6 +109,7 @@ export function FrontPage() {
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
                 <Route path="/events" component={EventComponent} />
+                <Route path="/profile" component={AuthNav} />
               </Switch>
             </div>
           </BrowserRouter>

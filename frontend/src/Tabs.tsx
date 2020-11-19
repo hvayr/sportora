@@ -10,6 +10,9 @@ import Box from '@material-ui/core/Box';
 import UserComponent from './components/Fetch/UserComponent';
 import EventComponent from './components/Fetch/EventComponent';
 import UserSearch from './components/Fetch/UserSearch';
+import Profile from './components/Profile';
+import NavBar from './components/Views/nav-bar';
+import AuthNav from './components/Views/auth-nav';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -78,6 +81,7 @@ export default function SimpleTabs() {
           <Tab label="Home" {...a11yProps(0)} />
           <Tab label="Browse" {...a11yProps(1)} />
           <Tab label="Events" {...a11yProps(2)} />
+          <Tab label="Profile" {...a11yProps(3)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -88,6 +92,9 @@ export default function SimpleTabs() {
       </TabPanel>
       <TabPanel value={value} index={2}>
         <EventComponent />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        <AuthNav />
       </TabPanel>
     </div>
   );

@@ -1,7 +1,8 @@
 import React from 'react';
-import { FrontPage } from './components/Pages/FrontPage';
+import { MainView } from './components/Views/main-view';
+import NavBar from './components/Views/nav-bar';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function App() {
-  return <FrontPage />;
+  return <NavBar />;
 }

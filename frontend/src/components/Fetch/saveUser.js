@@ -1,11 +1,11 @@
-import { isAvailable } from './IsAvailable';
 import { handleErrors } from './handleErrors';
+import { isAvailable } from './isAvailable';
 
 export const saveUser = async (values) => {
   if (!(await isAvailable('name', values.userName))) {
     alert('Username already in use!');
   } else if (await isAvailable('email', values.email)) {
-    const results = await fetch('https://localhost:44348/users', {
+    await fetch('https://localhost:44348/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
