@@ -1,12 +1,10 @@
-export async function isAvailable(search) {
+export async function isAvailable(attribute, search) {
   let isAttributeAvailable = false;
 
   try {
-    const apiUri =
-      search.toString() === 'values.userName' ? 'exactName' : 'email';
+    const apiUri = attribute === 'name' ? 'exactName' : 'email';
 
-    console.log(search.toString());
-    await fetch('https://localhost:44348/users/' + apiUri)
+    await fetch('https://localhost:44348/users/' + apiUri + `/${search}`)
       .then((res) => res.json())
       .then((res) => {
         console.log(search + ' ' + res.length);

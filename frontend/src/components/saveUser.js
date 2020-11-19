@@ -4,9 +4,10 @@ import {handleErrors} from './handleErrors';
 
 export const saveUser = async (values) => {
 
-  if (!await isAvailable(values.userName)) {
+  if (!await isAvailable('name', values.userName)) {
     alert('Username already in use!');
-  } else if (await isAvailable(values.email)) {
+  } else if (await isAvailable('email', values.email)) {
+
     const results = await fetch('https://localhost:44348/users', {
       method: 'POST',
       headers: {
@@ -31,9 +32,8 @@ export const saveUser = async (values) => {
         }
       });
   } else {
-    console.log("Email is already in use!")
+    alert("Email is already in use!")
   }
-
 
 
 };
