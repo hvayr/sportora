@@ -7,9 +7,9 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import UserComponent from './UserComponent';
-import EventComponent from './EventComponent';
-import UserSearch from './UserSearch';
+import UserComponent from './components/Fetch/UserComponent';
+import EventComponent from './components/Fetch/EventComponent';
+import UserSearch from './components/Fetch/UserSearch';
 
 interface TabPanelProps {
   children?: React.ReactNode;
