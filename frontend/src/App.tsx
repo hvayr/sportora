@@ -51,7 +51,7 @@ export function App() {
             Sportora
           </Typography>
           <BrowserRouter>
-            <AppBar>
+            <AppBar position="static">
               <Toolbar>
                 <Route
                   path="/"
