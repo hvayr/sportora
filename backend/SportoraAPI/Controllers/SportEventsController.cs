@@ -52,6 +52,15 @@ namespace SportoraAPI.Controllers
             }
         }
 
+        [Authorize]
+        [HttpGet("protected")]
+        public async Task<IActionResult> GetProtectedSportEvents()
+        {
+            var result = await _sportEventRepository.GetSportEventsAsync();
+
+            return Ok(result);
+        }
+        
         [HttpGet]
         public async Task<IActionResult> GetSportEvents()
         {
