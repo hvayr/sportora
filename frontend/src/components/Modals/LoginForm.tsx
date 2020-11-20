@@ -67,6 +67,7 @@ export function LoginForm() {
                         as={TextField}
                         label="User Name"
                         variant="outlined"
+                        size="small"
                       />
                       <ErrorMessage name="userName" />
                     </FormGroup>
@@ -81,6 +82,7 @@ export function LoginForm() {
                         as={TextField}
                         label="Password"
                         variant="outlined"
+                        size="small"
                       />
                       <ErrorMessage name="password" />
                     </FormGroup>
