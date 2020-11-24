@@ -4,17 +4,18 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Repositories;
 
 namespace SportoraAPI.Authorization
 {
     public class
-        MustBeEventAuthorHandler : AuthorizationHandler<MustBeEventAuthorRequirement>
+        MustBeEventAdminHandler : AuthorizationHandler<MustBeEventAdminRequirement>
     {
         private readonly ISportEventRepository _repository;
         private readonly IHttpContextAccessor _contextAccessor;
 
-        public MustBeEventAuthorHandler(ISportEventRepository repository,
+        public MustBeEventAdminHandler(ISportEventRepository repository,
             IHttpContextAccessor contextAccessor)
         {
             _repository = repository;
@@ -22,7 +23,7 @@ namespace SportoraAPI.Authorization
         }
 
         protected override async Task HandleRequirementAsync(
-            AuthorizationHandlerContext context, MustBeEventAuthorRequirement requirement)
+            AuthorizationHandlerContext context, MustBeEventAdminRequirement requirement)
         {
             if (!context.User.Identity.IsAuthenticated)
             {
@@ -37,13 +38,14 @@ namespace SportoraAPI.Authorization
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             var sportEvent = await _repository.GetSportEventByIdAsync(sportEventIdAsInt);
+
             if (sportEvent == null)
             {
                 context.Succeed(requirement);
                 return;
             }
 
-            if (!sportEvent.AdminIds.Contains(Int32.Parse(userId)))
+            if (!sportEvent.AdminIds.Contains(userId))
             {
                 context.Fail();
                 return;

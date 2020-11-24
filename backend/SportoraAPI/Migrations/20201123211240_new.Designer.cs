@@ -10,8 +10,8 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201113172036_author")]
-    partial class author
+    [Migration("20201123211240_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,9 +28,9 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<int[]>("AdminIds")
+                    b.Property<string[]>("AdminIds")
                         .IsRequired()
-                        .HasColumnType("integer[]");
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -70,9 +70,9 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<int[]>("AdminIds")
+                    b.Property<string[]>("AdminIds")
                         .IsRequired()
-                        .HasColumnType("integer[]");
+                        .HasColumnType("text[]");
 
                     b.Property<int[]>("GroupIds")
                         .HasColumnType("integer[]");
@@ -99,9 +99,9 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<int[]>("AdminIds")
+                    b.Property<string[]>("AdminIds")
                         .IsRequired()
-                        .HasColumnType("integer[]");
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -125,9 +125,9 @@ namespace SportoraAPI.Migrations
                     b.Property<bool>("ActiveStatus")
                         .HasColumnType("boolean");
 
-                    b.Property<int[]>("AdminIds")
+                    b.Property<string[]>("AdminIds")
                         .IsRequired()
-                        .HasColumnType("integer[]");
+                        .HasColumnType("text[]");
 
                     b.Property<string>("Author")
                         .HasColumnType("text");
@@ -164,17 +164,14 @@ namespace SportoraAPI.Migrations
 
             modelBuilder.Entity("SportoraAPI.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Gender")
@@ -187,7 +184,6 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")

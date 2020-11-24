@@ -24,10 +24,10 @@ namespace SportoraAPI.Repositories
 
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
-        public User GetUserById(int userId) =>
+        public User GetUserById(string userId) =>
             _context.Users.FirstOrDefault(u => u.Id == userId);
 
-        public void UpdateUser(int id, JsonPatchDocument<User> patchDocument)
+        public void UpdateUser(string id, JsonPatchDocument<User> patchDocument)
         {
             User userToUpdate = _context.Users.FirstOrDefault(u => u.Id == id);
 
@@ -50,7 +50,7 @@ namespace SportoraAPI.Repositories
             return await _context.Users.Where(u => u.Email.Equals(email)).ToListAsync();
         }
 
-        public void RemoveUser(int userId)
+        public void RemoveUser(string userId)
             {
                 User userToDelete =
                     _context.Users.FirstOrDefault(u => u.Id.Equals(userId));

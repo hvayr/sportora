@@ -8,7 +8,7 @@ namespace SportoraAPI.Models
         public int Id { get; set; }
         public string Author { get; set; }
         [Required] 
-        public int[] AdminIds { get; set; }
+        public string[] AdminIds { get; set; }
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }

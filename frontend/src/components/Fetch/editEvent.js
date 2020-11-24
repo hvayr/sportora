@@ -1,15 +1,34 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import React, { useState } from 'react';
+import { handleErrors } from './handleErrors';
 
-export const editEvent = async () => {
-  /*const [message, setMessage] = useState('');
-  // eslint-disable-next-line no-undef
-  const serverUrl = process.env.REACT_APP_SERVER_URL;
-  const { getAccessTokenSilently } = useAuth0;*/
+export const editEvent=async (eventId) => {
+  console.log('Editing event...');
 
-  const callApi = async () => {
-    const response = await fetch();
-  };
+  const { getAccessTokenSilently } = useAuth0();
+  const token = await getAccessTokenSilently();
 
-  return <div>jee</div>;
+  fetch('https://localhost:44348/sportevents/' + eventId, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify([
+      {
+        op: 'replace',
+        path: '/Name',
+        value: 'patchTOIMIIIIII!!!',
+      },
+    ]),
+  })
+    .then(handleErrors)
+    .then((res) => {
+      if (res.ok) {
+        console.log('Event edited');
+        alert('Event edited');
+      }
+    });
 };
+
+export default editEvent;

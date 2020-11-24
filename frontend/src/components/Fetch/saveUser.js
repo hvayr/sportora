@@ -1,32 +1,24 @@
 import { handleErrors } from './handleErrors';
 import { isAvailable } from './isAvailable';
+import { useAuth0 } from '@auth0/auth0-react';
 
-export const saveUser = async (values) => {
-  if (!(await isAvailable('name', values.userName))) {
-    alert('Username already in use!');
-  } else if (await isAvailable('email', values.email)) {
-    await fetch('https://localhost:44348/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        firstName: values.firstName,
-        lastName: values.lastName,
-        email: values.email,
-        userName: values.userName,
-        password: values.password,
-        gender: values.gender,
-      }),
-    })
-      .then(handleErrors)
-      .then((res) => {
-        if (res.ok) {
-          console.log('User registered');
-          alert('User registered!');
-        }
-      });
-  } else {
-    alert('Email is already in use!');
-  }
+export const saveUser = async (user) => {
+  console.log('Saving user..');
+  await fetch('https://localhost:44348/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id: user.sub,
+      userName: user.name,
+      email: user.email,
+    }),
+  })
+    .then(handleErrors)
+    .then((res) => {
+      if (res.ok) {
+        alert('User added to database!');
+      }
+    });
 };

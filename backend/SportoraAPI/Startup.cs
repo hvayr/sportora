@@ -39,6 +39,8 @@ namespace SportoraAPI
             {
                 builder.AllowAnyOrigin();
                 builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                
 
             }));
             services.AddAuthentication(options =>
@@ -52,9 +54,9 @@ namespace SportoraAPI
                 options.Audience = Configuration["Auth0:Audience"];
             });
             services.AddHttpClient();
-            services.AddAuthorization(options => options.AddPolicy("MustBeEventAuthor",
-                policy => policy.Requirements.Add(new MustBeEventAuthorRequirement())));
-            services.AddScoped<IAuthorizationHandler, MustBeEventAuthorHandler>();
+            services.AddAuthorization(options => options.AddPolicy("MustBeEventAdmin",
+                policy => policy.Requirements.Add(new MustBeEventAdminRequirement())));
+            services.AddScoped<IAuthorizationHandler, MustBeEventAdminHandler>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             

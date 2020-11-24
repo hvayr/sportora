@@ -5,8 +5,8 @@
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="Authorization" t="Include">
-        <e p="MustBeEventAuthorHandler.cs" t="Include" />
-        <e p="MustBeEventAuthorRequirement.cs" t="Include" />
+        <e p="MustBeEventAdminHandler.cs" t="Include" />
+        <e p="MustBeEventAdminRequirement.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
@@ -18,8 +18,8 @@
       </e>
       <e p="DatabaseContext.cs" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20201113172036_author.cs" t="Include" />
-        <e p="20201113172036_author.Designer.cs" t="Include" />
+        <e p="20201123211240_new.cs" t="Include" />
+        <e p="20201123211240_new.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
@@ -30,8 +30,6 @@
         <e p="SkillLevel.cs" t="Include" />
         <e p="SportEvent.cs" t="Include" />
         <e p="User.cs" t="Include" />
-        <e p="UserEmailUniqueAttribute.cs" t="Include" />
-        <e p="UsernameUniqueAttribute.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
@@ -60,6 +58,10 @@
       <e p="SportoraAPI.csproj" t="IncludeRecursive" />
       <e p="SportoraAPI.sln" t="IncludeFlat" />
       <e p="Startup.cs" t="Include" />
+      <e p="Validation" t="Include">
+        <e p="UserEmailUniqueAttribute.cs" t="Include" />
+        <e p="UsernameUniqueAttribute.cs" t="Include" />
+      </e>
     </e>
     <e p="C:\Users\hvayr\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\hvayr\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_SportoraAPI.2079263981.00" t="ExcludeRecursive" />

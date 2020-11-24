@@ -31,26 +31,27 @@ namespace SportoraAPI.Repositories
             return await _context.SportEvents.ToListAsync();
         }
 
-        public SportEvent GetSportEventById(int eventId) =>
-            _context.SportEvents.FirstOrDefault(u => u.Id == eventId);
+        public async Task<SportEvent> GetSportEventById(int eventId) =>
+            await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
 
-        public async Task<SportEvent> GetSportEventByIdAsync(int eventId)
-        {
-            return await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
-        }
+        public async Task<SportEvent> GetSportEventByIdAsync(int eventId) =>
+            await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
 
-        public void UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent)
+        public async Task<SportEvent> UpdateSportEvent(
+            JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent)
         {
             patchDocument.ApplyTo(sportEvent);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return sportEvent;
         }
         
+
         public void RemoveSportEvent(int id)
         {
-            SportEvent sportEventToDelete = _context.SportEvents.FirstOrDefault(u => u.Id.Equals(id));
+            SportEvent sportEventToDelete =
+                _context.SportEvents.FirstOrDefault(u => u.Id.Equals(id));
             _context.SportEvents.Remove(sportEventToDelete);
             _context.SaveChanges();
         }
-
     }
 }

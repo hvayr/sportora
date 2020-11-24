@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SportoraAPI.Migrations
 {
-    public partial class author : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace SportoraAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AdminIds = table.Column<int[]>(type: "integer[]", nullable: false),
+                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: true),
@@ -33,7 +33,7 @@ namespace SportoraAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AdminIds = table.Column<int[]>(type: "integer[]", nullable: false),
+                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     GroupIds = table.Column<int[]>(type: "integer[]", nullable: true),
                     SkillLevel = table.Column<int>(type: "integer", nullable: false)
@@ -49,7 +49,7 @@ namespace SportoraAPI.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AdminIds = table.Column<int[]>(type: "integer[]", nullable: false),
+                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -64,7 +64,7 @@ namespace SportoraAPI.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Author = table.Column<string>(type: "text", nullable: true),
-                    AdminIds = table.Column<int[]>(type: "integer[]", nullable: false),
+                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Location = table.Column<string>(type: "text", nullable: true),
@@ -84,11 +84,10 @@ namespace SportoraAPI.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "text", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: true),
                     GroupIds = table.Column<int[]>(type: "integer[]", nullable: true),

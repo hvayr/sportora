@@ -2,9 +2,9 @@
 
 namespace SportoraAPI.Authorization
 {
-    public class MustBeEventAuthorRequirement : IAuthorizationRequirement
+    public class MustBeEventAdminRequirement : IAuthorizationRequirement
     {
-        public MustBeEventAuthorRequirement()
+        public MustBeEventAdminRequirement()
         {
             
         }

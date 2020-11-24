@@ -9,9 +9,9 @@ namespace SportoraAPI.Repositories
     {
         void AddUser(User user);
         IEnumerable<User> GetUsers();
-        User GetUserById(int userId);
-        void RemoveUser(int userId);
-        void UpdateUser(int id, JsonPatchDocument<User> patchDocument);
+        User GetUserById(string userId);
+        void RemoveUser(string userId);
+        void UpdateUser(string id, JsonPatchDocument<User> patchDocument);
         Task<List<User>> GetUsersWhereUsernameContains(string name);
         Task<List<User>> GetUsersByExactUsername(string name);
         Task<List<User>> GetUsersByExactEmail(string email);

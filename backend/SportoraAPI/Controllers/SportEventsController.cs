@@ -102,11 +102,11 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, sportEvent);
         }
 
-        [Authorize(Policy = "MustBeEventAuthor")]
+        [Authorize(Policy = "MustBeEventAdmin")]
         [HttpDelete("{id}")]
-        public IActionResult DeleteSportEvent(int id)
+        public async Task<IActionResult> DeleteSportEvent(int id)
         {
-            SportEvent sportEvent = _sportEventRepository.GetSportEventById(id);
+            SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
             if (sportEvent == null)
             {
                 return NotFound();
@@ -116,11 +116,12 @@ namespace SportoraAPI.Controllers
             return Ok(sportEvent);
         }
 
+        [Authorize(Policy = "MustBeEventAdmin")]
         [HttpPatch("{id}")]
-        public IActionResult UpdateSportEvent(int id,
+        public async Task<IActionResult> UpdateSportEvent(int id,
             [FromBody] JsonPatchDocument<SportEvent> patchDocument)
         {
-            SportEvent sportEventToUpdate = _sportEventRepository.GetSportEventById(id);
+            SportEvent sportEventToUpdate = await _sportEventRepository.GetSportEventById(id);
 
             if (sportEventToUpdate == null)
             {

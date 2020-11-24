@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
 import {
   makeStyles,
@@ -17,6 +17,9 @@ import Profile from '../Profile';
 import ProtectedRoute from '../../Auth/protected-route';
 import NavBar from './nav-bar';
 import AuthNav from './auth-nav';
+import { useAuth0 } from '@auth0/auth0-react';
+import { saveUser } from '../Fetch/saveUser';
+import { isAvailable } from '../Fetch/isAvailable';
 
 makeStyles({
   root: {
@@ -44,6 +47,18 @@ const theme = createMuiTheme({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function MainView() {
+  const { isAuthenticated, user } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      console.log('SUB ' + user.sub);
+      console.log('Checking availability...');
+      if (isAvailable('id', user.sub)) {
+        saveUser(user);
+      }
+    }
+  }, [isAuthenticated]);
+
   const routes = ['/home', '/browse', '/events', '/profile'];
   return (
     <div>

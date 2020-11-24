@@ -2,7 +2,12 @@ export async function isAvailable(attribute, search) {
   let isAttributeAvailable = false;
 
   try {
-    const apiUri = attribute === 'name' ? 'exactName' : 'email';
+    let apiUri;
+    if (attribute === 'name') {
+      apiUri = 'exactName';
+    } else {
+      apiUri = attribute === 'email' ? 'email' : 'id';
+    }
 
     await fetch('https://localhost:44348/users/' + apiUri + `/${search}`)
       .then((res) => res.json())
@@ -13,7 +18,7 @@ export async function isAvailable(attribute, search) {
         }
       });
   } catch (e) {
-    console.log(e);
+    console.log('isAvailable error ' + e);
     alert(e);
   }
 

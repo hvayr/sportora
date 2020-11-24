@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Button from '@material-ui/core/Button';
+import { editEvent } from './editEvent';
+import { Button } from '@material-ui/core';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function EventComponent() {
@@ -14,9 +15,15 @@ function EventComponent() {
       });
   });
 
+  function onClickHandle() {
+    console.log('Handling..');
+    editEvent(3);
+  }
+
   return (
     <div>
       <h2>Events Data</h2>
+      <Button onClick={() => onClickHandle()}>Edit</Button>
       <table>
         <thead>
           <tr>
@@ -37,7 +44,6 @@ function EventComponent() {
               <td>{event.participants}</td>
               <td>{event.eventStartTime}</td>
               <td>{event.description}</td>
-              <Button>Edit</Button>
             </tr>
           ))}
         </tbody>

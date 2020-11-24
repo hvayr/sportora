@@ -11,9 +11,10 @@ namespace SportoraAPI.Repositories
         IEnumerable<SportEvent> GetSportEvents();
         Task<IEnumerable<SportEvent>> GetSportEventsAsync();
         
-        SportEvent GetSportEventById(int eventId);
+        Task<SportEvent> GetSportEventById(int eventId);
         Task<SportEvent> GetSportEventByIdAsync(int eventId);
-        void UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent);
+        Task<SportEvent> UpdateSportEvent(JsonPatchDocument<SportEvent> patchDocument,
+            SportEvent sportEvent);
         void RemoveSportEvent(int eventId);
     }
 }

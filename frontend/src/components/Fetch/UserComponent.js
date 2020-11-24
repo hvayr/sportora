@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import getUsers from './getUsers';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function UserComponent() {
-  // eslint-disable-next-line no-unused-vars
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetch('https://localhost:44348/users')
-      .then((result) => result.json())
-      .then((result) => {
-        setUsers(result);
-        console.log('Length: ' + result.length);
-      });
-  }, []);
+  const users = getUsers();
 
   return (
     <div>

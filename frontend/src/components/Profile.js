@@ -23,6 +23,7 @@ export const Profile = () => {
       </div>
       <div className="row">
         <pre className="col-12 text-light bg-dark p-4">
+          <h1>SUB: {user.sub}</h1>
           {JSON.stringify(user, null, 2)}
         </pre>
       </div>
