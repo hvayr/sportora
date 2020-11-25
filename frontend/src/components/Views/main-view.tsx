@@ -12,11 +12,10 @@ import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
 import UserComponent from '../Fetch/UserComponent';
 import EventComponent from '../Fetch/EventComponent';
 import UserSearch from '../Fetch/UserSearch';
-import { ModalHandler } from '../Modals/ModalHandler';
-import Profile from '../Profile';
-import ProtectedRoute from '../../Auth/protected-route';
-import NavBar from './nav-bar';
-import AuthNav from './auth-nav';
+import Profile from '../Profile/Profile';
+import ProfileMenu from '../Profile/ProfileMenu';
+import { EditProfile } from '../Profile/EditProfile';
+import LoginButton from '../Profile/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { saveUser } from '../Fetch/saveUser';
 import { isAvailable } from '../Fetch/isAvailable';
@@ -103,12 +102,6 @@ export function MainView() {
                           component={Link}
                           to={routes[2]}
                         />
-                        <Tab
-                          value={routes[3]}
-                          label="Profile"
-                          component={Link}
-                          to={routes[3]}
-                        />
                       </Tabs>
                     </div>
                   )}
@@ -119,7 +112,9 @@ export function MainView() {
                   justify="flex-end"
                   alignItems="flex-start"
                 >
-                  <ModalHandler />
+                  <div>
+                    {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
+                  </div>
                 </Grid>
               </Toolbar>
             </AppBar>
@@ -128,7 +123,8 @@ export function MainView() {
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
                 <Route path="/events" component={EventComponent} />
-                <Route path="/profile" component={AuthNav} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/editProfile" component={EditProfile} />
               </Switch>
             </div>
           </BrowserRouter>

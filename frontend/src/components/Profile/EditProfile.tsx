@@ -42,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function RegisterForm() {
+export function EditProfile() {
   const classes = useStyles();
   return (
     <Card>
       <CardContent>
-        <Typography variant="h4">New Account</Typography>
+        <Typography variant="h4">Edit Profile</Typography>
 
         <Formik
           validationSchema={object({

@@ -1,0 +1,474 @@
+LOGIN FORM
+
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  FormGroup,
+  Grid,
+  makeStyles,
+  TextField,
+  Typography,
+} from '@material-ui/core';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React from 'react';
+import { object, string } from 'yup';
+import { useAuth0 } from '@auth0/auth0-react';
+
+const initialValues = {
+  userName: '',
+  password: '',
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormControl-root': {
+      margin: theme.spacing(1),
+      width: '80%',
+    },
+  },
+}));
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function LoginForm() {
+  const { loginWithRedirect } = useAuth0();
+
+  const classes = useStyles();
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h4">Login</Typography>
+
+        <Formik
+          validationSchema={object({
+            userName: string()
+              .required('User name is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(50, 'Too Long'),
+            password: string()
+              .required('Password is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(20, 'Too Long'),
+          })}
+          initialValues={initialValues}
+          onSubmit={(values) => {
+            return new Promise(() => {
+              console.log(values);
+            });
+          }}
+        >
+          {({ values, errors, isSubmitting, isValidating }) => (
+            <Form className={classes.root}>
+              <Grid container>
+                <Grid item xs={6}>
+                  <Box marginBottom={2}>
+                    <FormGroup>
+                      <Field
+                        name="userName"
+                        as={TextField}
+                        label="User Name"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="userName" />
+                    </FormGroup>
+                  </Box>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <Box marginBottom={2}>
+                    <FormGroup>
+                      <Field
+                        name="password"
+                        as={TextField}
+                        label="Password"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="password" />
+                    </FormGroup>
+                  </Box>
+                </Grid>
+                <Button
+                  variant="contained"
+                  type="submit"
+                  // disabled={isSubmitting || isValidating}
+                  onClick={() => loginWithRedirect()}
+                >
+                  Log In
+                </Button>
+              </Grid>
+
+              <pre>{JSON.stringify(errors, null, 4)}</pre>
+              <pre>{JSON.stringify(values, null, 4)}</pre>
+            </Form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
+  );
+}
+
+REGISTER FORM 
+
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  FormGroup,
+  Grid,
+  makeStyles,
+  MenuItem,
+  TextField,
+  Typography,
+} from '@material-ui/core';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React from 'react';
+import { number, object, string } from 'yup';
+import { saveUser } from '../Fetch/saveUser';
+
+const initialValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  userName: '',
+  password: '',
+  gender: '',
+  group: 0,
+};
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const onSubmit = (values) => {
+  console.log('Form data', JSON.stringify(values));
+  saveUser(values);
+};
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiFormControl-root': {
+      margin: theme.spacing(1),
+      width: '80%',
+    },
+  },
+}));
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function RegisterForm() {
+  const classes = useStyles();
+  return (
+    <Card>
+      <CardContent>
+        <Typography variant="h4">New Account</Typography>
+
+        <Formik
+          validationSchema={object({
+            firstName: string()
+              .required('First name is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(50, 'Too Long'),
+            lastName: string()
+              .required('Last name is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(50, 'Too Long'),
+            userName: string()
+              .required('User name is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(50, 'Too Long'),
+            email: string().email('Invalid email').required('Required'),
+            password: string()
+              .required('Password is required')
+              .min(2, 'Must contain atleast 2 characters')
+              .max(20, 'Too Long'),
+            group: number().required().min(0).max(5),
+            image: string(),
+          })}
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+        >
+          {({ values, errors }) => (
+            <Form className={classes.root} autoComplete="off">
+              <Grid container>
+                <Grid item xs={6}>
+                  <Box>
+                    <FormGroup>
+                      <Field
+                        name="firstName"
+                        id="firstName"
+                        as={TextField}
+                        label="First Name"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="firstName" />
+                    </FormGroup>
+                  </Box>
+                  <Box>
+                    <FormGroup>
+                      <Field
+                        name="userName"
+                        as={TextField}
+                        label="User Name"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="userName" />
+                    </FormGroup>
+                  </Box>
+                  <Box>
+                    <FormGroup>
+                      <Field
+                        name="password"
+                        as={TextField}
+                        label="Password"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="password" />
+                    </FormGroup>
+                  </Box>
+                  <Box>
+                    <FormGroup>
+                      <Field name="group" label="group" as={TextField} select>
+                        <MenuItem value={0}>Select ...</MenuItem>
+                        <MenuItem value={1}>0</MenuItem>
+                        <MenuItem value={2}>1</MenuItem>
+                        <MenuItem value={3}>2</MenuItem>
+                        <MenuItem value={4}>3</MenuItem>
+                        <MenuItem value={5}>4</MenuItem>
+                        <MenuItem value={6}>5</MenuItem>
+                      </Field>
+                      <ErrorMessage name="group" />
+                    </FormGroup>
+                  </Box>
+                </Grid>
+
+                <Grid item xs={6}>
+                  <Box>
+                    <FormGroup>
+                      <Field
+                        name="lastName"
+                        as={TextField}
+                        label="Last Name"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="lastName" />
+                    </FormGroup>
+                  </Box>
+                  <Box>
+                    <FormGroup>
+                      <Field
+                        name="email"
+                        as={TextField}
+                        label="Email"
+                        variant="outlined"
+                        size="small"
+                      />
+                      <ErrorMessage name="email" />
+                    </FormGroup>
+                  </Box>
+                  <Box>
+                    <label>Gender</label>
+                    <FormGroup>
+                      <label>
+                        <Field type="radio" name="gender" value="Male" />
+                        Male
+                      </label>
+                      <label>
+                        <Field type="radio" name="gender" value="Female" />
+                        Female
+                      </label>
+                      <label>
+                        <Field type="radio" name="gender" value="Other" />
+                        Other
+                      </label>
+                    </FormGroup>
+                    <ErrorMessage name="gender" />
+                  </Box>
+                  <Button variant="contained" type="submit">
+                    Submit
+                  </Button>
+                </Grid>
+              </Grid>
+
+              <pre>{JSON.stringify(errors, null, 4)}</pre>
+              <pre>{JSON.stringify(values, null, 4)}</pre>
+            </Form>
+          )}
+        </Formik>
+      </CardContent>
+    </Card>
+  );
+}
+
+MODAL HANDLER
+
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import React from 'react';
+import { LoginForm } from './LoginForm';
+import { RegisterForm } from './RegisterForm';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    modal: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    paper: {
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+  }),
+);
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function ModalHandler() {
+  const classes = useStyles();
+  const [openLogin, setOpenLogin] = React.useState(false);
+  const [openRegister, setOpenRegister] = React.useState(false);
+
+  const handleOpenRegister = () => {
+    setOpenRegister(true);
+  };
+
+  const handleOpenLogin = () => {
+    setOpenLogin(true);
+  };
+
+  const handleClose = () => {
+    setOpenLogin(false);
+    setOpenRegister(false);
+  };
+  return (
+    <div>
+      <ButtonGroup variant="contained" color="primary">
+        <Button href="#SignIn" onClick={handleOpenLogin}>
+          Sign In
+        </Button>
+        <Modal
+          className={classes.modal}
+          open={openLogin}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={openLogin}>
+            <div className={classes.paper}>
+              <LoginForm />
+            </div>
+          </Fade>
+        </Modal>
+        <Button href="#Register" onClick={handleOpenRegister}>
+          Register
+        </Button>
+        <Modal
+          className={classes.modal}
+          open={openRegister}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={openRegister}>
+            <div className={classes.paper}>
+              <RegisterForm />
+            </div>
+          </Fade>
+        </Modal>
+      </ButtonGroup>
+    </div>
+  );
+}
+
+EXTERNAL API
+
+import React, { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+
+const ExternalApi = () => {
+  const [data, setData] = useState([]);
+  // eslint-disable-next-line no-undef
+  const serverUrl = process.env.REACT_APP_SERVER_URL;
+
+  const { getAccessTokenSilently } = useAuth0();
+
+  const callApi = async () => {
+    try {
+      fetch('https://localhost:44348/sportevents')
+        .then((result) => result.json())
+        .then((result) => {
+          setData(result);
+        });
+    } catch (error) {
+      setData(error.message);
+    }
+  };
+
+  const callSecureApi = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+
+      await fetch(`https://localhost:44348/sportevents/protected`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => setData(res));
+    } catch (error) {
+      setData(error.message);
+    }
+  };
+
+  return (
+    <div className="container">
+      <h1>Events</h1>
+      <div
+        className="btn-group mt-5"
+        role="group"
+        aria-label="External API Requests Examples"
+      >
+        <button type="button" className="btn btn-primary" onClick={callApi}>
+          Get Public Events
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={callSecureApi}
+        >
+          Get Protected Events
+        </button>
+      </div>
+      {data.length > 0 && (
+        <div className="mt-5">
+          <h6 className="muted">Result</h6>
+          <div className="container-fluid">
+            <div className="row">
+              <code className="col-12 text-light bg-dark p-4">
+                {JSON.stringify(data, null, 2)}
+              </code>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ExternalApi;
