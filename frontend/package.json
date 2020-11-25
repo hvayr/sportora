@@ -17,7 +17,7 @@
     "fontsource-roboto": "^3.0.3",
     "formik": "^2.2.1",
     "npm": "^7.0.7",
-    "react": "^16.14.0",
+    "react": "^0.0.0-8e5adfbd7",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.0",

@@ -50,13 +50,17 @@ export function MainView() {
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
-    if (isAuthenticated) {
-      console.log('SUB ' + user.sub);
-      console.log('Checking availability...');
-      if (isAvailable('id', user.sub)) {
-        saveUser(user);
+    setTimeout(async () => {
+      {
+        if (isAuthenticated) {
+          console.log('SUB ' + user.sub);
+          console.log('Checking availability...');
+          if (await isAvailable('id', user.sub)) {
+            saveUser(user);
+          }
+        }
       }
-    }
+    }, 3000);
   }, [isAuthenticated]);
 
   const routes = ['/home', '/browse', '/events', '/profile'];

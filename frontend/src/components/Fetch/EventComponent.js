@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { editEvent } from './editEvent';
+import EditEvent from './editEvent';
 import { Button } from '@material-ui/core';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function EventComponent() {
-  // eslint-disable-next-line no-unused-vars
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -17,7 +15,7 @@ function EventComponent() {
 
   function onClickHandle() {
     console.log('Handling..');
-    editEvent(3);
+    EditEvent(3);
   }
 
   return (

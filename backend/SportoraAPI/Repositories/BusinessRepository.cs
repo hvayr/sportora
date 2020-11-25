@@ -43,7 +43,7 @@ namespace SportoraAPI.Repositories
         }
 
         /*
-        public void UpdateBusiness(int id, Business newBusiness)         //For put endpoint
+        public void UpdateBusiness(int id, Business newBusiness)         //Put update
         {
             Business businessToUpdate =
                 _context.Businesses.FirstOrDefault(b => b.Id == id);
