@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
 import {
   makeStyles,
@@ -44,8 +44,7 @@ const theme = createMuiTheme({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function MainView() {
+const MainView: React.FC = () => {
   const { isAuthenticated, user } = useAuth0();
 
   useEffect(() => {
@@ -132,4 +131,6 @@ export function MainView() {
       </ThemeProvider>
     </div>
   );
-}
+};
+
+export default MainView;

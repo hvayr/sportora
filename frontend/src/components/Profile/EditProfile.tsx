@@ -4,26 +4,14 @@ import {
   Card,
   CardContent,
   FormGroup,
-  Grid,
   makeStyles,
-  MenuItem,
   TextField,
   Typography,
 } from '@material-ui/core';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
-import { number, object, string } from 'yup';
+import * as Yup from 'yup';
 import { saveUserOld } from '../Fetch/saveUserOld';
-
-const initialValues = {
-  firstName: '',
-  lastName: '',
-  email: '',
-  userName: '',
-  password: '',
-  gender: '',
-  group: 0,
-};
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -44,141 +32,117 @@ const useStyles = makeStyles((theme) => ({
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function EditProfile() {
   const classes = useStyles();
+  const initialValues = {
+    firstName: '',
+    lastName: '',
+    age: '',
+    gender: '',
+  };
   return (
     <Card>
       <CardContent>
         <Typography variant="h4">Edit Profile</Typography>
 
         <Formik
-          validationSchema={object({
-            firstName: string()
+          validationSchema={Yup.object({
+            firstName: Yup.string()
               .required('First name is required')
               .min(2, 'Must contain atleast 2 characters')
               .max(50, 'Too Long'),
-            lastName: string()
+            lastName: Yup.string()
               .required('Last name is required')
               .min(2, 'Must contain atleast 2 characters')
               .max(50, 'Too Long'),
-            userName: string()
+            age: Yup.number()
               .required('User name is required')
               .min(2, 'Must contain atleast 2 characters')
               .max(50, 'Too Long'),
-            email: string().email('Invalid email').required('Required'),
-            password: string()
-              .required('Password is required')
-              .min(2, 'Must contain atleast 2 characters')
-              .max(20, 'Too Long'),
-            group: number().required().min(0).max(5),
-            image: string(),
+            gender: Yup.string().required('Gender is required'),
           })}
+          initialStatus
           initialValues={initialValues}
           onSubmit={onSubmit}
         >
-          {({ values, errors }) => (
+          {({ handleChange, values, errors }) => (
             <Form className={classes.root} autoComplete="off">
-              <Grid container>
-                <Grid item xs={6}>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="firstName"
-                        id="firstName"
-                        as={TextField}
-                        label="First Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="firstName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="userName"
-                        as={TextField}
-                        label="User Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="userName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="password"
-                        as={TextField}
-                        label="Password"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="password" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field name="group" label="group" as={TextField} select>
-                        <MenuItem value={0}>Select ...</MenuItem>
-                        <MenuItem value={1}>0</MenuItem>
-                        <MenuItem value={2}>1</MenuItem>
-                        <MenuItem value={3}>2</MenuItem>
-                        <MenuItem value={4}>3</MenuItem>
-                        <MenuItem value={5}>4</MenuItem>
-                        <MenuItem value={6}>5</MenuItem>
-                      </Field>
-                      <ErrorMessage name="group" />
-                    </FormGroup>
-                  </Box>
-                </Grid>
-
-                <Grid item xs={6}>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="lastName"
-                        as={TextField}
-                        label="Last Name"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="lastName" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <FormGroup>
-                      <Field
-                        name="email"
-                        as={TextField}
-                        label="Email"
-                        variant="outlined"
-                        size="small"
-                      />
-                      <ErrorMessage name="email" />
-                    </FormGroup>
-                  </Box>
-                  <Box>
-                    <label>Gender</label>
-                    <FormGroup>
-                      <label>
-                        <Field type="radio" name="gender" value="Male" />
-                        Male
-                      </label>
-                      <label>
-                        <Field type="radio" name="gender" value="Female" />
-                        Female
-                      </label>
-                      <label>
-                        <Field type="radio" name="gender" value="Other" />
-                        Other
-                      </label>
-                    </FormGroup>
-                    <ErrorMessage name="gender" />
-                  </Box>
-                  <Button variant="contained" type="submit">
-                    Submit
-                  </Button>
-                </Grid>
-              </Grid>
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="firstName"
+                    as={TextField}
+                    onChange={handleChange}
+                    initialStatus={errors.firstName}
+                    label="First Name"
+                    variant="outlined"
+                    size="small"
+                  />
+                  {errors.firstName ? <div>{errors.firstName}</div> : null}
+                </FormGroup>
+              </Box>
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="lastName"
+                    as={TextField}
+                    onChange={handleChange}
+                    initialStatus={errors.lastName}
+                    label="Last Name"
+                    variant="outlined"
+                    size="small"
+                  />
+                  {errors.lastName ? <div>{errors.lastName}</div> : null}
+                </FormGroup>
+              </Box>
+              <Box>
+                <FormGroup>
+                  <Field
+                    name="age"
+                    as={TextField}
+                    onChange={handleChange}
+                    initialStatus={errors.age}
+                    label="age"
+                    variant="outlined"
+                    size="small"
+                  />
+                  {errors.age ? <div>{errors.age}</div> : null}
+                </FormGroup>
+              </Box>
+              <Box>
+                <label>Gender</label>
+                <FormGroup>
+                  <label>
+                    <Field
+                      type="radio"
+                      name="gender"
+                      value="Male"
+                      initialStatus={errors.gender}
+                    />
+                    Male
+                  </label>
+                  <label>
+                    <Field
+                      type="radio"
+                      name="gender"
+                      value="Female"
+                      initialStatus={errors.gender}
+                    />
+                    Female
+                  </label>
+                  <label>
+                    <Field
+                      type="radio"
+                      name="gender"
+                      value="Other"
+                      initialStatus={errors.gender}
+                    />
+                    Other
+                  </label>
+                </FormGroup>
+                {errors.gender ? <div>{errors.gender}</div> : null}
+              </Box>
+              <Button variant="contained" type="submit">
+                Submit
+              </Button>
 
               <pre>{JSON.stringify(errors, null, 4)}</pre>
               <pre>{JSON.stringify(values, null, 4)}</pre>
