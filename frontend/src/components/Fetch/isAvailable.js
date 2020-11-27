@@ -15,7 +15,9 @@ export async function isAvailable(attribute, search) {
       .then((res) => res.json())
       .then((res) => {
         console.log(path);
-        if (res.length === 0) {
+        console.log('length ' + res.length);
+
+        if (!res.length) {
           isAttributeAvailable = true;
         }
       });

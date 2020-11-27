@@ -17,8 +17,8 @@ import ProfileMenu from '../Profile/ProfileMenu';
 import { EditProfile } from '../Profile/EditProfile';
 import LoginButton from '../Profile/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
-import { saveUser } from '../Fetch/saveUser';
 import { isAvailable } from '../Fetch/isAvailable';
+import { apiUrl, doFetch, method, path } from '../utils';
 
 makeStyles({
   root: {
@@ -55,7 +55,12 @@ export function MainView() {
           console.log('SUB ' + user.sub);
           console.log('Checking availability...');
           if (await isAvailable('id', user.sub)) {
-            saveUser(user);
+            const { sub, email, name } = user;
+            doFetch(apiUrl, path.USERS, method.POST, {
+              id: sub,
+              email: email,
+              userName: name,
+            });
           }
         }
       }

@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import EditEvent from './editEvent';
 import { Button } from '@material-ui/core';
+import ExternalApi from './ExternalApi';
+import { apiUrl, path, doFetch, method } from '../utils';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function EventComponent() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch('https://localhost:44348/sportevents')
-      .then((result) => result.json())
-      .then((result) => {
-        setEvents(result);
-      });
-  });
+    console.log('fetching..');
+    const fetchData = async () => {
+      const result = await doFetch(apiUrl, path.EVENTS, method.GET);
+      setEvents(result);
+    };
+    fetchData();
+  }, []);
 
   function onClickHandle() {
     console.log('Handling..');
@@ -46,6 +50,7 @@ function EventComponent() {
           ))}
         </tbody>
       </table>
+      <ExternalApi />
     </div>
   );
 }

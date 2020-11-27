@@ -28,7 +28,7 @@ namespace SportoraAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(@"Server=PostgreSQL 12;Host=localhost;Port=5432;
-            Username=postgres;Password=1234;Database=sportora_db"));
+            Username=postgres;Password=dbpass;Database=sportora_db"));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBusinessRepository, BusinessRepository>();
             services.AddScoped<IClubRepository, ClubRepository>();

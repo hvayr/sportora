@@ -1,11 +1,11 @@
 // eslint-disable-next-line @typescript-eslint/ban-types,@typescript-eslint/explicit-module-boundary-types
-export const doFetch = (
+export const doFetch2 = async (
   path: ApiUrl | string,
   method: RestMethod,
   // eslint-disable-next-line @typescript-eslint/ban-types
   body: object = {},
 ) => {
-  return fetch(
+  const response = await fetch(
     'https://localhost:44348/' + path,
     Object.assign(
       {},
@@ -18,6 +18,8 @@ export const doFetch = (
       method !== RestMethod.GET ? { body: JSON.stringify(body) } : {},
     ),
   );
+
+  return response.json();
 };
 
 export enum RestMethod {

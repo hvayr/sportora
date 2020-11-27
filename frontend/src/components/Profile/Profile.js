@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useAuth0 } from '@auth0/auth0-react';
+import ExternalApi from '../Fetch/ExternalApi';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Profile = () => {
