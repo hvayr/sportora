@@ -1,31 +1,22 @@
-export async function isAvailable(attribute, search) {
-  let isAttributeAvailable = false;
+import { apiUrl, doFetch, method, path } from '../utils';
+
+export async function isAvailable(searchFrom, searchFor) {
+  let isSearchedObjectAvailable = false;
 
   try {
-    let apiUri;
-    if (attribute === 'name') {
-      apiUri = 'exactName';
+    let url;
+    if (searchFrom === 'name') {
+      url = path.USERNAME;
     } else {
-      apiUri = attribute === 'email' ? 'email' : 'id';
+      url = searchFrom === 'email' ? path.EMAIL : path.USERID;
     }
 
-    let path = 'https://localhost:44348/users/' + apiUri + `/${search}`;
-
-    await fetch(path)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(path);
-        console.log('length ' + res.length);
-
-        if (!res.length) {
-          isAttributeAvailable = true;
-        }
-      });
+    await doFetch(apiUrl, url, method.GET, null, searchFor);
   } catch (e) {
     console.log('isAvailable error ' + e);
     alert(e);
   }
 
-  console.log(isAttributeAvailable ? 'true' : 'false');
-  return isAttributeAvailable;
+  console.log(isSearchedObjectAvailable ? 'available' : 'not available');
+  return isSearchedObjectAvailable;
 }

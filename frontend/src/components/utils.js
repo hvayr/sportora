@@ -1,7 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
-export const doFetch = async (apiUrl, path, method, body, token) => {
+export const doFetch = async (apiUrl, path, method, body, id, authorized) => {
   let fetchFrom = apiUrl + path;
+
+  if (id) {
+    fetchFrom += id;
+  }
 
   const response = await fetch(
     fetchFrom,
@@ -13,7 +17,9 @@ export const doFetch = async (apiUrl, path, method, body, token) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        Authorization: token ? `Bearer ${token}` : '',
+        Authorization: authorized
+          ? `Bearer ${localStorage.getItem('token')}`
+          : '',
       },
       method !== 'GET' ? { body: JSON.stringify(body) } : {},
     ),
@@ -33,6 +39,7 @@ export const path = {
   EVENTS: '/sportevents/',
   PROTECTEDEVENTS: '/sportevents/protected',
   EVENTID: '/sportevents/id',
+  EMAIL: '/users/email', //not implemented yet
 };
 
 export const apiUrl = `https://localhost:44348/`;

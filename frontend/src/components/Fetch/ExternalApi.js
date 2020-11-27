@@ -7,9 +7,6 @@ const ExternalApi = async () => {
   // eslint-disable-next-line no-undef
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
-  const [user] = useAuth0();
-  const token = await user.getAccessTokenSilently();
-
   const callApi = async () => {
     try {
       const results = await doFetch(apiUrl, path.EVENTS, method.GET);
@@ -26,7 +23,7 @@ const ExternalApi = async () => {
         path.PROTECTEDEVENTS,
         method.GET,
         null,
-        token,
+        true,
       );
       setData(results);
     } catch (error) {

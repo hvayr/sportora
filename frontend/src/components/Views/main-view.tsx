@@ -18,7 +18,8 @@ import { EditProfile } from '../Profile/EditProfile';
 import LoginButton from '../Profile/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { isAvailable } from '../Fetch/isAvailable';
-import { apiUrl, doFetch, method, path } from '../utils';
+import { apiUrl, method, path } from '../utils';
+import { doFetch } from '../utils';
 
 makeStyles({
   root: {
@@ -46,7 +47,7 @@ const theme = createMuiTheme({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function MainView() {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
     setTimeout(async () => {
@@ -62,6 +63,9 @@ export function MainView() {
               userName: name,
             });
           }
+          console.log('authenticated: ' + isAuthenticated);
+          const token = await getAccessTokenSilently();
+          localStorage.setItem('token', token);
         }
       }
     }, 3000);
