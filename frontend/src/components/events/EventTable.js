@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '@material-ui/core';
-import ExternalApi from './ExternalApi';
 import { address, doFetch, Method, Path } from '../../api/utils';
 
-function Event() {
+function EventTable() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -59,9 +58,8 @@ function Event() {
           ))}
         </tbody>
       </table>
-      <ExternalApi />
     </div>
   );
 }
 
-export default Event;
+export default EventTable;

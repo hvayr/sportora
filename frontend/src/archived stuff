@@ -401,7 +401,7 @@ EXTERNAL API
 import React, { useState } from 'react';
 import { doFetch, address, Path, Method } from '../../api/utils';
 
-const ExternalApi = () => {
+const ProtectedEvent = () => {
   const [data, setData] = useState([]);
   // eslint-disable-next-line no-undef
   const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -467,7 +467,7 @@ const ExternalApi = () => {
   );
 };
 
-export default ExternalApi;
+export default ProtectedEvent;
 
 
 

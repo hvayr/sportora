@@ -10,7 +10,7 @@ import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
 import UserComponent from '../users/UserComponent';
-import Event from '../events/Event';
+import EventTable from '../events/EventTable';
 import UserSearch from '../users/UserSearch';
 import Profile from '../profile/Profile';
 import ProfileMenu from '../profile/ProfileMenu';
@@ -120,7 +120,7 @@ export function MainView() {
               <Switch>
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
-                <Route path="/events" component={Event} />
+                <Route path="/events" component={EventTable} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/editProfile" component={EditProfile} />
               </Switch>
