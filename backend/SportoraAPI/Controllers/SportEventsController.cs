@@ -69,7 +69,7 @@ namespace SportoraAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public async Task<IActionResult> GetSportEventById(int id)
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventByIdAsync(id);
@@ -102,8 +102,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, sportEvent);
         }
 
-        [Authorize(Policy = "MustBeEventAdmin")]
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public async Task<IActionResult> DeleteSportEvent(int id)
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
@@ -116,8 +115,7 @@ namespace SportoraAPI.Controllers
             return Ok(sportEvent);
         }
 
-        [Authorize(Policy = "MustBeEventAdmin")]
-        [HttpPatch("{id}")]
+        [HttpPatch("id/{id}")]
         public async Task<IActionResult> UpdateSportEvent(int id,
             [FromBody] JsonPatchDocument<SportEvent> patchDocument)
         {

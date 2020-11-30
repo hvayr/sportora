@@ -20,7 +20,7 @@ namespace SportoraAPI.Controllers
         [HttpGet]
         public IActionResult GetAllClubs() => Ok(_clubRepository.GetAllClubs());
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public IActionResult GetClubById(int id)
         {
             Club club = _clubRepository.GetClubById(id);
@@ -44,7 +44,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, newClub);
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public IActionResult RemoveClub(int id)
         {
             Club club = _clubRepository.GetClubById(id); 
@@ -58,7 +58,7 @@ namespace SportoraAPI.Controllers
 
         }
         
-        [HttpPatch("{id}")]
+        [HttpPatch("id/{id}")]
         public IActionResult UpdateClub(int id, [FromBody] JsonPatchDocument<Club> patchDocument)
         {
             Club clubToUpdate = _clubRepository.GetClubById(id);

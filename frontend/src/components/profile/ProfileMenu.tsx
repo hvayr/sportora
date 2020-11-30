@@ -52,11 +52,12 @@ export default function ProfileMenu() {
               Edit Profile
             </MenuItem>
             <MenuItem
-              onClick={() =>
+              onClick={() => {
                 logout({
                   returnTo: window.location.origin,
-                })
-              }
+                });
+                sessionStorage.clear();
+              }}
             >
               Logout
             </MenuItem>

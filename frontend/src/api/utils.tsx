@@ -1,0 +1,63 @@
+/* eslint-disable @typescript-eslint/ban-types */
+
+export const doFetch = async (
+  address: string,
+  path: Path,
+  method: Method,
+  authorize: boolean,
+  id?: string | null,
+  body?: object,
+) => {
+  let fetchFrom = address + path;
+
+  if (id) {
+    fetchFrom += `/id/${id}`;
+  }
+
+  console.log('from ' + fetchFrom);
+
+  const response = await fetch(
+    fetchFrom,
+    Object.assign(
+      {},
+
+      {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authorize
+            ? `Bearer ${sessionStorage.getItem('token')}`
+            : '',
+        },
+      },
+      method !== 'GET' ? { body: JSON.stringify(body) } : {},
+    ),
+  );
+
+  console.log('status ' + response.status);
+
+  const content =
+    response.status === 200 ? await response.json() : await response.text();
+
+  console.log('token ' + sessionStorage.getItem('token'));
+
+  return { status: response.status, content: content };
+};
+
+export enum Path {
+  USERS = '/users',
+  USERNAME = '/users/exactName',
+  EVENTS = '/sportevents',
+  PROTECTEDEVENTS = '/sportevents/protected',
+  EMAIL = '/users/email', //not implemented yet
+}
+
+export const address = `https://localhost:44348/`;
+
+export enum Method {
+  GET = 'GET',
+  POST = 'POST',
+  PATCH = 'PATCH',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}

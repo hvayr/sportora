@@ -19,7 +19,7 @@ namespace SportoraAPI.Controllers
         [HttpGet]
         public IActionResult GetGroups() => Ok(_groupRepository.GetAllGroups());
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public IActionResult GetGroupById(int id)
         {
             Group group = _groupRepository.GetGroupById(id);
@@ -44,7 +44,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, group);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public IActionResult DeleteGroup(int id)
         {
             Group group = _groupRepository.GetGroupById(id);
@@ -57,7 +57,7 @@ namespace SportoraAPI.Controllers
             return Ok(group);
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("id/{id}")]
         public IActionResult UpdateGroup(int id, [FromBody] JsonPatchDocument<Group> patchDocument)
         {
             Group groupToUpdate = _groupRepository.GetGroupById(id);

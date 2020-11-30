@@ -72,7 +72,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, user);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public IActionResult DeleteUser(string id)
         {
             User user = _userRepository.GetUserById(id);
@@ -85,7 +85,7 @@ namespace SportoraAPI.Controllers
             return Ok(user);
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("id/{id}")]
         public IActionResult UpdateUser(string id, [FromBody] JsonPatchDocument<User> patchDocument)
         {
             User userToUpdate = _userRepository.GetUserById(id);

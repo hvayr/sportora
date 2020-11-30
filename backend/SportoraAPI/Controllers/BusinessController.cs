@@ -16,7 +16,7 @@ namespace SportoraAPI.Controllers
             _businessRepository = businessRepository;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("id/{id}")]
         public IActionResult GetSingleBusiness(int id)
         {
             Business business = _businessRepository.GetBusinessById(id);
@@ -44,7 +44,7 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, newBusiness);
         }
         
-        [HttpDelete("{id}")]
+        [HttpDelete("id/{id}")]
         public IActionResult DeleteBusiness(int id)
         {
             Business businessToDelete = _businessRepository.GetBusinessById(id);
@@ -57,7 +57,7 @@ namespace SportoraAPI.Controllers
             return Ok(businessToDelete);
         }
         
-        [HttpPatch("{id}")]
+        [HttpPatch("id/{id}")]
         public IActionResult UpdateBusiness(int id, [FromBody] JsonPatchDocument<Business> patchDocument)
         {
             Business businessToUpdate = _businessRepository.GetBusinessById(id);

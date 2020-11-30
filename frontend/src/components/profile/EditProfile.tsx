@@ -13,7 +13,6 @@ import {
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import React from 'react';
 import { number, object, string } from 'yup';
-import { saveUserOld } from '../Fetch/saveUserOld';
 
 const initialValues = {
   firstName: '',
@@ -29,7 +28,7 @@ const initialValues = {
 // @ts-ignore
 const onSubmit = (values) => {
   console.log('Form data', JSON.stringify(values));
-  saveUserOld(values);
+  // save user here
 };
 
 const useStyles = makeStyles((theme) => ({

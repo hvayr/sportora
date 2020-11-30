@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import { apiUrl, path, method, doFetch } from '../utils';
+import { doFetch, address, Path, Method } from '../../api/utils';
 
-const ExternalApi = async () => {
+const ExternalApi = () => {
   const [data, setData] = useState([]);
   // eslint-disable-next-line no-undef
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
   const callApi = async () => {
     try {
-      const results = await doFetch(apiUrl, path.EVENTS, method.GET);
-      setData(results);
+      const results = await doFetch(address, Path.EVENTS, Method.GET);
+      setData(results.content);
     } catch (error) {
       setData(error.message);
     }
@@ -19,13 +18,12 @@ const ExternalApi = async () => {
   const callSecureApi = async () => {
     try {
       const results = await doFetch(
-        apiUrl,
-        path.PROTECTEDEVENTS,
-        method.GET,
-        null,
+        address,
+        Path.PROTECTEDEVENTS,
+        Method.GET,
         true,
       );
-      setData(results);
+      setData(results.status === 200 ? results.content : 'Login required');
     } catch (error) {
       setData(error.message);
     }
@@ -33,7 +31,6 @@ const ExternalApi = async () => {
 
   return (
     <div className="container">
-      <h1>Events</h1>
       <div
         className="btn-group mt-5"
         role="group"

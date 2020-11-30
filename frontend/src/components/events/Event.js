@@ -1,25 +1,34 @@
 import React, { useEffect, useState } from 'react';
-import EditEvent from './editEvent';
 import { Button } from '@material-ui/core';
 import ExternalApi from './ExternalApi';
-import { apiUrl, path, doFetch, method } from '../utils';
-import { useAuth0 } from '@auth0/auth0-react';
+import { address, doFetch, Method, Path } from '../../api/utils';
 
-function EventComponent() {
+function Event() {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     console.log('fetching..');
     const fetchData = async () => {
-      const result = await doFetch(apiUrl, path.EVENTS, method.GET);
-      setEvents(result);
+      const result = await doFetch(address, Path.EVENTS, Method.GET, false);
+      console.log('Result' + result);
+
+      setEvents(result.content);
     };
     fetchData();
   }, []);
 
-  function onClickHandle() {
+  async function onClickHandle() {
     console.log('Handling..');
-    EditEvent(3);
+
+    const patchedBody = [
+      {
+        op: 'replace',
+        path: '/Name',
+        value: 'toimiiii!!!!',
+      },
+    ];
+
+    await doFetch(address, Path.EVENTS, Method.PATCH, false, 2, patchedBody);
   }
 
   return (
@@ -55,4 +64,4 @@ function EventComponent() {
   );
 }
 
-export default EventComponent;
+export default Event;

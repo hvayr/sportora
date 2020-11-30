@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Switch, Route, BrowserRouter, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
 import {
+  createMuiTheme,
   makeStyles,
   ThemeProvider,
-  createMuiTheme,
 } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
-import UserComponent from '../Fetch/UserComponent';
-import EventComponent from '../Fetch/EventComponent';
-import UserSearch from '../Fetch/UserSearch';
-import Profile from '../Profile/Profile';
-import ProfileMenu from '../Profile/ProfileMenu';
-import { EditProfile } from '../Profile/EditProfile';
-import LoginButton from '../Profile/login-button';
+import UserComponent from '../users/UserComponent';
+import Event from '../events/Event';
+import UserSearch from '../users/UserSearch';
+import Profile from '../profile/Profile';
+import ProfileMenu from '../profile/ProfileMenu';
+import { EditProfile } from '../profile/EditProfile';
+import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
-import { isAvailable } from '../Fetch/isAvailable';
-import { apiUrl, method, path } from '../utils';
-import { doFetch } from '../utils';
+import { saveUserIfNotExisting } from '../../api/saveUserIfNotExisting';
 
 makeStyles({
   root: {
@@ -50,25 +48,16 @@ export function MainView() {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    setTimeout(async () => {
-      {
-        if (isAuthenticated) {
-          console.log('SUB ' + user.sub);
-          console.log('Checking availability...');
-          if (await isAvailable('id', user.sub)) {
-            const { sub, email, name } = user;
-            doFetch(apiUrl, path.USERS, method.POST, {
-              id: sub,
-              email: email,
-              userName: name,
-            });
-          }
-          console.log('authenticated: ' + isAuthenticated);
-          const token = await getAccessTokenSilently();
-          localStorage.setItem('token', token);
-        }
+    const save = async () => {
+      if (isAuthenticated) {
+        await saveUserIfNotExisting(user);
+        const token = await getAccessTokenSilently();
+        sessionStorage.setItem('token', token);
+        console.log('Token saved ');
       }
-    }, 3000);
+      console.log('authenticated: ' + isAuthenticated);
+    };
+    save();
   }, [isAuthenticated]);
 
   const routes = ['/home', '/browse', '/events', '/profile'];
@@ -131,7 +120,7 @@ export function MainView() {
               <Switch>
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
-                <Route path="/events" component={EventComponent} />
+                <Route path="/events" component={Event} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/editProfile" component={EditProfile} />
               </Switch>

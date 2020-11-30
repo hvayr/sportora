@@ -399,38 +399,35 @@ export function ModalHandler() {
 EXTERNAL API
 
 import React, { useState } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
+import { doFetch, address, Path, Method } from '../../api/utils';
 
 const ExternalApi = () => {
   const [data, setData] = useState([]);
   // eslint-disable-next-line no-undef
   const serverUrl = process.env.REACT_APP_SERVER_URL;
 
-  const { getAccessTokenSilently } = useAuth0();
-
   const callApi = async () => {
     try {
-      fetch('https://localhost:44348/sportevents')
-        .then((result) => result.json())
-        .then((result) => {
-          setData(result);
-        });
+      const results = await doFetch(address, Path.EVENTS, Method.GET);
+      setData(results.content);
     } catch (error) {
       setData(error.message);
     }
+    /*
+     FOR TESTING DELETE
+     await doFetch(apiUrl, path.EVENTS, method.DELETE, null, 3);
+    */
   };
 
   const callSecureApi = async () => {
     try {
-      const token = await getAccessTokenSilently();
-
-      await fetch(`https://localhost:44348/sportevents/protected`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((res) => setData(res));
+      const results = await doFetch(
+        address,
+        Path.PROTECTEDEVENTS,
+        Method.GET,
+        true,
+      );
+      setData(results.status === 200 ? results.content : 'Login required');
     } catch (error) {
       setData(error.message);
     }
@@ -438,7 +435,6 @@ const ExternalApi = () => {
 
   return (
     <div className="container">
-      <h1>Events</h1>
       <div
         className="btn-group mt-5"
         role="group"
@@ -472,3 +468,15 @@ const ExternalApi = () => {
 };
 
 export default ExternalApi;
+
+
+
+export function handleErrors(res) {
+  console.log('Status: ' + res.status);
+  if (!res.ok) {
+    res.status === 400 ? alert('Invalid request') : alert('Unexpected error');
+  }
+  return res;
+}
+
+

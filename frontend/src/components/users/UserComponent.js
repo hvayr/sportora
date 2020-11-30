@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { apiUrl, path, method, doFetch } from '../utils';
+import { doFetch, address, Path, Method } from '../../api/utils';
 
 function UserComponent() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const results = await doFetch(apiUrl, path.USERS, method.GET);
-      setUsers(results);
+      const results = await doFetch(address, Path.USERS, Method.GET);
+      setUsers(results.content);
     };
     fetchData();
   }, []);
