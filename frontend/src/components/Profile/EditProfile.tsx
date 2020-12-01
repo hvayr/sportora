@@ -5,13 +5,14 @@ import {
   CardContent,
   FormGroup,
   makeStyles,
-  TextField,
   Typography,
 } from '@material-ui/core';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
 import { saveUserOld } from '../Fetch/saveUserOld';
+import FormikField from '../Formik/FormikField';
+import FormikSelect, { FormikSelectItem } from '../Formik/FormikSelect';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -29,127 +30,93 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function EditProfile() {
+interface FormValues {
+  firstName: string;
+  lastName: string;
+  age: number;
+  gender: string;
+}
+
+const initialValues: FormValues = {
+  firstName: '',
+  lastName: '',
+  age: 0,
+  gender: '',
+};
+
+const genderItems: FormikSelectItem[] = [
+  {
+    label: 'Male',
+    value: 'male',
+  },
+  {
+    label: 'Female',
+    value: 'female',
+  },
+  {
+    label: 'Other',
+    value: 'other',
+  },
+];
+
+const SignupSchema = Yup.object().shape({
+  firstName: Yup.string().min(2, 'Too Short!').required('Required'),
+  lastName: Yup.string().min(2, 'Too Short!').required('Required!'),
+  age: Yup.number().max(100, 'Your not that old').required('Required!'),
+  gender: Yup.string().required('Required!'),
+});
+
+const EditProfile: React.FC = () => {
   const classes = useStyles();
-  const initialValues = {
-    firstName: '',
-    lastName: '',
-    age: '',
-    gender: '',
-  };
   return (
     <Card>
       <CardContent>
         <Typography variant="h4">Edit Profile</Typography>
 
         <Formik
-          validationSchema={Yup.object({
-            firstName: Yup.string()
-              .required('First name is required')
-              .min(2, 'Must contain atleast 2 characters')
-              .max(50, 'Too Long'),
-            lastName: Yup.string()
-              .required('Last name is required')
-              .min(2, 'Must contain atleast 2 characters')
-              .max(50, 'Too Long'),
-            age: Yup.number()
-              .required('User name is required')
-              .min(2, 'Must contain atleast 2 characters')
-              .max(50, 'Too Long'),
-            gender: Yup.string().required('Gender is required'),
-          })}
-          initialStatus
           initialValues={initialValues}
           onSubmit={onSubmit}
+          validationSchema={SignupSchema}
         >
-          {({ handleChange, values, errors }) => (
-            <Form className={classes.root} autoComplete="off">
+          {({ dirty, isValid }) => (
+            <Form className={classes.root}>
               <Box>
                 <FormGroup>
-                  <Field
-                    name="firstName"
-                    as={TextField}
-                    onChange={handleChange}
-                    initialStatus={errors.firstName}
-                    label="First Name"
-                    variant="outlined"
-                    size="small"
+                  <FormikField name="firstName" label="First Name" />
+                </FormGroup>
+              </Box>
+              <Box>
+                <FormGroup>
+                  <FormikField name="lastName" label="Last Name" />
+                </FormGroup>
+              </Box>
+              <Box>
+                <FormGroup>
+                  <FormikField name="age" label="Age" />
+                </FormGroup>
+              </Box>
+              <Box>
+                <FormGroup>
+                  <FormikSelect
+                    items={genderItems}
+                    name="gender"
+                    label="Gender"
                   />
-                  {errors.firstName ? <div>{errors.firstName}</div> : null}
                 </FormGroup>
               </Box>
-              <Box>
-                <FormGroup>
-                  <Field
-                    name="lastName"
-                    as={TextField}
-                    onChange={handleChange}
-                    initialStatus={errors.lastName}
-                    label="Last Name"
-                    variant="outlined"
-                    size="small"
-                  />
-                  {errors.lastName ? <div>{errors.lastName}</div> : null}
-                </FormGroup>
-              </Box>
-              <Box>
-                <FormGroup>
-                  <Field
-                    name="age"
-                    as={TextField}
-                    onChange={handleChange}
-                    initialStatus={errors.age}
-                    label="age"
-                    variant="outlined"
-                    size="small"
-                  />
-                  {errors.age ? <div>{errors.age}</div> : null}
-                </FormGroup>
-              </Box>
-              <Box>
-                <label>Gender</label>
-                <FormGroup>
-                  <label>
-                    <Field
-                      type="radio"
-                      name="gender"
-                      value="Male"
-                      initialStatus={errors.gender}
-                    />
-                    Male
-                  </label>
-                  <label>
-                    <Field
-                      type="radio"
-                      name="gender"
-                      value="Female"
-                      initialStatus={errors.gender}
-                    />
-                    Female
-                  </label>
-                  <label>
-                    <Field
-                      type="radio"
-                      name="gender"
-                      value="Other"
-                      initialStatus={errors.gender}
-                    />
-                    Other
-                  </label>
-                </FormGroup>
-                {errors.gender ? <div>{errors.gender}</div> : null}
-              </Box>
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                disabled={!dirty || !isValid}
+                type="submit"
+              >
                 Submit
               </Button>
-
-              <pre>{JSON.stringify(errors, null, 4)}</pre>
-              <pre>{JSON.stringify(values, null, 4)}</pre>
             </Form>
           )}
         </Formik>
       </CardContent>
     </Card>
   );
-}
+};
+
+export default EditProfile;

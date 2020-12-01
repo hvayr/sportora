@@ -14,7 +14,7 @@ import EventComponent from '../Fetch/EventComponent';
 import UserSearch from '../Fetch/UserSearch';
 import Profile from '../Profile/Profile';
 import ProfileMenu from '../Profile/ProfileMenu';
-import { EditProfile } from '../Profile/EditProfile';
+import EditProfile from '../Profile/EditProfile';
 import LoginButton from '../Profile/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { saveUser } from '../Fetch/saveUser';
