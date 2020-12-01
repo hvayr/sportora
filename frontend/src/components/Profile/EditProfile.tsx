@@ -60,10 +60,9 @@ const genderItems: FormikSelectItem[] = [
 ];
 
 const SignupSchema = Yup.object().shape({
-  firstName: Yup.string().min(2, 'Too Short!').required('Required'),
-  lastName: Yup.string().min(2, 'Too Short!').required('Required!'),
-  age: Yup.number().max(100, 'Your not that old').required('Required!'),
-  gender: Yup.string().required('Required!'),
+  firstName: Yup.string().min(2, 'Too short!').max(20, 'Too long!'),
+  lastName: Yup.string().min(2, 'Too short!').max(20, 'Too long!'),
+  age: Yup.number().max(100, 'Your not that old'),
 });
 
 const EditProfile: React.FC = () => {
@@ -80,11 +79,9 @@ const EditProfile: React.FC = () => {
         >
           {({ dirty, isValid }) => (
             <Form className={classes.root}>
-              <Box>
-                <FormGroup>
-                  <FormikField name="firstName" label="First Name" />
-                </FormGroup>
-              </Box>
+              <FormGroup>
+                <FormikField name="firstName" label="First Name" />
+              </FormGroup>
               <Box>
                 <FormGroup>
                   <FormikField name="lastName" label="Last Name" />
