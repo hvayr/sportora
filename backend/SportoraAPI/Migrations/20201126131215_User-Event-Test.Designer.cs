@@ -10,8 +10,8 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201123211240_new")]
-    partial class @new
+    [Migration("20201126131215_User-Event-Test")]
+    partial class UserEventTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace SportoraAPI.Migrations
             modelBuilder
                 .UseIdentityByDefaultColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.2.20475.6");
+                .HasAnnotation("ProductVersion", "5.0.0");
 
             modelBuilder.Entity("SportoraAPI.Models.Business", b =>
                 {
@@ -107,10 +107,15 @@ namespace SportoraAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
                         .IsUnique();
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Groups");
                 });
@@ -124,10 +129,6 @@ namespace SportoraAPI.Migrations
 
                     b.Property<bool>("ActiveStatus")
                         .HasColumnType("boolean");
-
-                    b.Property<string[]>("AdminIds")
-                        .IsRequired()
-                        .HasColumnType("text[]");
 
                     b.Property<string>("Author")
                         .HasColumnType("text");
@@ -154,9 +155,6 @@ namespace SportoraAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int[]>("Participants")
-                        .HasColumnType("integer[]");
-
                     b.HasKey("Id");
 
                     b.ToTable("SportEvents");
@@ -164,7 +162,13 @@ namespace SportoraAPI.Migrations
 
             modelBuilder.Entity("SportoraAPI.Models.User", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .UseIdentityByDefaultColumn();
+
+                    b.Property<string>("AuthId")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Email")
@@ -177,14 +181,17 @@ namespace SportoraAPI.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("text");
 
-                    b.Property<int[]>("GroupIds")
-                        .HasColumnType("integer[]");
-
                     b.Property<string>("ImageUrl")
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
                         .HasColumnType("text");
+
+                    b.Property<int?>("SportEventId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("SportEventId1")
+                        .HasColumnType("integer");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -195,10 +202,44 @@ namespace SportoraAPI.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
+                    b.HasIndex("SportEventId");
+
+                    b.HasIndex("SportEventId1");
+
                     b.HasIndex("UserName")
                         .IsUnique();
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SportoraAPI.Models.Group", b =>
+                {
+                    b.HasOne("SportoraAPI.Models.User", null)
+                        .WithMany("Groups")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("SportoraAPI.Models.User", b =>
+                {
+                    b.HasOne("SportoraAPI.Models.SportEvent", null)
+                        .WithMany("Admins")
+                        .HasForeignKey("SportEventId");
+
+                    b.HasOne("SportoraAPI.Models.SportEvent", null)
+                        .WithMany("Participants")
+                        .HasForeignKey("SportEventId1");
+                });
+
+            modelBuilder.Entity("SportoraAPI.Models.SportEvent", b =>
+                {
+                    b.Navigation("Admins");
+
+                    b.Navigation("Participants");
+                });
+
+            modelBuilder.Entity("SportoraAPI.Models.User", b =>
+                {
+                    b.Navigation("Groups");
                 });
 #pragma warning restore 612, 618
         }

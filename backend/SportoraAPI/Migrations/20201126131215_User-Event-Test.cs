@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace SportoraAPI.Migrations
 {
-    public partial class @new : Migration
+    public partial class UserEventTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,31 +44,15 @@ namespace SportoraAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Groups",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
-                    Name = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Groups", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "SportEvents",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Author = table.Column<string>(type: "text", nullable: true),
-                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true),
                     Location = table.Column<string>(type: "text", nullable: true),
-                    Participants = table.Column<int[]>(type: "integer[]", nullable: true),
                     MaxParticipants = table.Column<int>(type: "integer", nullable: false),
                     ActiveStatus = table.Column<bool>(type: "boolean", nullable: false),
                     EventStartTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -84,18 +68,54 @@ namespace SportoraAPI.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "text", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    AuthId = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: true),
                     LastName = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "text", nullable: false),
                     Gender = table.Column<string>(type: "text", nullable: true),
-                    GroupIds = table.Column<int[]>(type: "integer[]", nullable: true),
-                    ImageUrl = table.Column<string>(type: "text", nullable: true)
+                    ImageUrl = table.Column<string>(type: "text", nullable: true),
+                    SportEventId = table.Column<int>(type: "integer", nullable: true),
+                    SportEventId1 = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Users_SportEvents_SportEventId",
+                        column: x => x.SportEventId,
+                        principalTable: "SportEvents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Users_SportEvents_SportEventId1",
+                        column: x => x.SportEventId1,
+                        principalTable: "SportEvents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Groups",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    AdminIds = table.Column<string[]>(type: "text[]", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groups", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Groups_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -123,10 +143,25 @@ namespace SportoraAPI.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Groups_UserId",
+                table: "Groups",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_SportEventId",
+                table: "Users",
+                column: "SportEventId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_SportEventId1",
+                table: "Users",
+                column: "SportEventId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_UserName",
@@ -147,10 +182,10 @@ namespace SportoraAPI.Migrations
                 name: "Groups");
 
             migrationBuilder.DropTable(
-                name: "SportEvents");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "SportEvents");
         }
     }
 }

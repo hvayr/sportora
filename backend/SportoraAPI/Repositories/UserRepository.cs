@@ -25,11 +25,11 @@ namespace SportoraAPI.Repositories
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
         public User GetUserById(string userId) =>
-            _context.Users.FirstOrDefault(u => u.Id == userId);
+            _context.Users.FirstOrDefault(u => u.AuthId == userId);
 
         public void UpdateUser(string id, JsonPatchDocument<User> patchDocument)
         {
-            User userToUpdate = _context.Users.FirstOrDefault(u => u.Id == id);
+            User userToUpdate = _context.Users.FirstOrDefault(u => u.AuthId == id);
 
             patchDocument.ApplyTo(userToUpdate);
             _context.SaveChanges();

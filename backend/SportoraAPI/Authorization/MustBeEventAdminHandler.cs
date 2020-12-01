@@ -45,11 +45,17 @@ namespace SportoraAPI.Authorization
                 return;
             }
 
-            if (!sportEvent.AdminIds.Contains(userId))
+            if (!(sportEvent.Admins.FirstOrDefault(a => a.User.AuthId == userId) is null))
             {
                 context.Fail();
                 return;
             }
+
+            //if (!sportEvent.AdminIds.Contains(userId))
+            //{
+            //    context.Fail();
+            //    return;
+            //}
 
             context.Succeed(requirement);
         }

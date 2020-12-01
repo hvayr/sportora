@@ -27,7 +27,7 @@ namespace SportoraAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(Utils.DBConnectionHelper.GetConnectionString()));
+            services.AddDbContext<DatabaseContext>(options => options.UseLazyLoadingProxies().UseNpgsql(Utils.DBConnectionHelper.GetConnectionString()));
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IBusinessRepository, BusinessRepository>();
             services.AddScoped<IClubRepository, ClubRepository>();
