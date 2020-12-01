@@ -39,8 +39,6 @@ export const doFetch = async (
   const content =
     response.status === 200 ? await response.json() : await response.text();
 
-  console.log('token ' + sessionStorage.getItem('token'));
-
   return { status: response.status, content: content };
 };
 

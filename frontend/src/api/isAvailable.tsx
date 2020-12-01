@@ -13,7 +13,6 @@ export async function isAvailable(
     } else {
       url = searchFrom === 'email' ? Path.EMAIL : Path.USERS;
     }
-    console.log(url);
 
     const response = await doFetch(address, url, Method.GET, false, searchFor);
     console.log('Status ' + response.status);

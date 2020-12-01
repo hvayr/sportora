@@ -4,7 +4,6 @@ import { User } from '@auth0/auth0-react/dist/auth-state';
 
 export const saveUserIfNotExisting = async (user: User): Promise<void> => {
   const { sub, email, name } = user;
-  console.log('SUB ' + sub);
   console.log('Checking availability...');
   if (await isAvailable('id', sub)) {
     const saveUser = await doFetch(
