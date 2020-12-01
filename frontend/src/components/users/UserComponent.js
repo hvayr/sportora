@@ -2,14 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { doFetch, address, Path, Method } from '../../api/utils';
 
 function UserComponent() {
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       const results = await doFetch(address, Path.USERS, Method.GET);
-      setUsers(results.content);
+      console.log(results.status);
+      setData(results.status === 200 ? results.content : results.status);
     };
-    fetchData();
+
+    try {
+      fetchData();
+    } catch (e) {
+      console.log(e);
+    }
   }, []);
 
   return (
@@ -29,7 +35,7 @@ function UserComponent() {
           </tr>
         </thead>
         <tbody style={{ borderTop: '15px solid white' }}>
-          {users.map((user) => (
+          {data.map((user) => (
             <tr key={user.id}>
               <td>{user.id}</td>
               <td>{user.userName}</td>
