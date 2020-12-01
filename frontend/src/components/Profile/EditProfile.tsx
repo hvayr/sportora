@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Card,
   CardContent,
@@ -82,25 +81,23 @@ const EditProfile: React.FC = () => {
               <FormGroup>
                 <FormikField name="firstName" label="First Name" />
               </FormGroup>
-              <Box>
-                <FormGroup>
-                  <FormikField name="lastName" label="Last Name" />
-                </FormGroup>
-              </Box>
-              <Box>
-                <FormGroup>
-                  <FormikField name="age" label="Age" />
-                </FormGroup>
-              </Box>
-              <Box>
-                <FormGroup>
-                  <FormikSelect
-                    items={genderItems}
-                    name="gender"
-                    label="Gender"
-                  />
-                </FormGroup>
-              </Box>
+
+              <FormGroup>
+                <FormikField name="lastName" label="Last Name" />
+              </FormGroup>
+
+              <FormGroup>
+                <FormikField name="age" label="Age" />
+              </FormGroup>
+
+              <FormGroup>
+                <FormikSelect
+                  items={genderItems}
+                  name="gender"
+                  label="Gender"
+                />
+              </FormGroup>
+
               <Button
                 variant="contained"
                 disabled={!dirty || !isValid}
