@@ -57,5 +57,14 @@ namespace SportoraAPI.Repositories
                 _context.Users.Remove(userToDelete);
                 _context.SaveChanges();
             }
+
+        public List<Group> GetUserGroupsById(int id)
+        {
+            User user = _context.Users.FirstOrDefault(u => u.Id == id);
+            if (user is null)
+                return null;
+
+            return user.UserGroups;
         }
     }
+}
