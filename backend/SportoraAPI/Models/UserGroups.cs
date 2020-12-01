@@ -10,6 +10,6 @@ namespace SportoraAPI.Models
     {
         [Key]
         public int Id { get; set; }
-        public virtual User User { get; set; }
+        public virtual Group Group { get; set; }
     }
 }

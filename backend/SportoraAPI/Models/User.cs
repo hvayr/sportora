@@ -37,7 +37,7 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Groups.Users list directly
         /// </summary>
-        public List<User> UserGroups => Groups.Select(r => r.User).ToList();
+        public List<Group> UserGroups => Groups.Select(r => r.Group).ToList();
 
         public string ImageUrl { get; set; }
         
