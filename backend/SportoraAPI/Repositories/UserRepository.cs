@@ -25,7 +25,7 @@ namespace SportoraAPI.Repositories
         public IEnumerable<User> GetUsers() => _context.Users.ToList();
 
         public User GetUserById(string userId) =>
-            _context.Users.FirstOrDefault(u => u.Id == userId);
+            _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
 
         public void UpdateUser(string id, JsonPatchDocument<User> patchDocument)
         {

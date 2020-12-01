@@ -1,7 +1,8 @@
 import React from 'react';
-import { MainView } from './components/views/main-view';
+import MainView from './components/views/main-view';
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function App() {
+const App: React.FC = () => {
   return <MainView />;
-}
+};
+
+export default App;

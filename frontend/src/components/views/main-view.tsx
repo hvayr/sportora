@@ -14,7 +14,7 @@ import EventTable from '../events/EventTable';
 import UserSearch from '../users/UserSearch';
 import Profile from '../profile/Profile';
 import ProfileMenu from '../profile/ProfileMenu';
-import { EditProfile } from '../profile/EditProfile';
+import EditProfile from '../profile/EditProfile';
 import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { saveUserIfNotExisting } from '../../api/saveUserIfNotExisting';
@@ -43,8 +43,7 @@ const theme = createMuiTheme({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function MainView() {
+const MainView: React.FC = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
@@ -130,4 +129,6 @@ export function MainView() {
       </ThemeProvider>
     </div>
   );
-}
+};
+
+export default MainView;
