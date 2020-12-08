@@ -22,7 +22,10 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetUsers() => _context.Users.ToList();
+        public IEnumerable<User> GetUsers()
+        {
+            return _context.Users;
+        }
 
         public User GetUserById(string userId) =>
             _context.Users.FirstOrDefault(u => u.AuthId == userId);
@@ -60,7 +63,10 @@ namespace SportoraAPI.Repositories
 
         public List<Group> GetUserGroupsById(int id)
         {
-            User user = _context.Users.FirstOrDefault(u => u.Id == id);
+            User user = _context.Users
+                .Include(p => p.Groups)
+                .ThenInclude(p => p.Group).FirstOrDefault(u => u.Id == id);
+
             if (user is null)
                 return null;
 

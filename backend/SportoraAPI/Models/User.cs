@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace SportoraAPI.Models
 {
@@ -33,6 +34,7 @@ namespace SportoraAPI.Models
         /// Use UserGroups property instead
         /// </summary>
         [Required]
+        [Newtonsoft.Json.JsonIgnore]
         public virtual List<UserGroups> Groups { get; set; }
         /// <summary>
         /// Returns the Groups.Users list directly
