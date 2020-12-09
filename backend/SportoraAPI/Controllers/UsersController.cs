@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 
 namespace SportoraAPI.Controllers
 {
@@ -57,9 +58,20 @@ namespace SportoraAPI.Controllers
             
             return Ok(result);
         }
-        
-        
-        
+
+        [HttpGet("usergroups/{id}")]
+        public IActionResult GetUserGroupsById(int id)
+        {
+            User userGroups = _userRepository.GetUserGroupsById(id);
+
+            if (userGroups == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(userGroups);
+        }
+
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportoraAPI;
@@ -9,9 +10,10 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201201164036_ObjectReferences")]
+    partial class ObjectReferences
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -338,15 +340,10 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("integer");
-
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
 
                     b.HasIndex("UserId");
 
@@ -446,15 +443,11 @@ namespace SportoraAPI.Migrations
 
             modelBuilder.Entity("SportoraAPI.Models.UserGroups", b =>
                 {
-                    b.HasOne("SportoraAPI.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("SportoraAPI.Models.User", null)
+                    b.HasOne("SportoraAPI.Models.User", "User")
                         .WithMany("Groups")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("Group");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.Business", b =>

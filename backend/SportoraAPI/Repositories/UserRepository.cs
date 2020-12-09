@@ -22,14 +22,17 @@ namespace SportoraAPI.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetUsers() => _context.Users.ToList();
+        public IEnumerable<User> GetUsers()
+        {
+            return _context.Users;
+        }
 
         public User GetUserById(string userId) =>
-            _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
+            _context.Users.FirstOrDefault(u => u.AuthId == userId);
 
         public void UpdateUser(string id, JsonPatchDocument<User> patchDocument)
         {
-            User userToUpdate = _context.Users.FirstOrDefault(u => u.Id == id);
+            User userToUpdate = _context.Users.FirstOrDefault(u => u.AuthId == id);
 
             patchDocument.ApplyTo(userToUpdate);
             _context.SaveChanges();
@@ -57,5 +60,17 @@ namespace SportoraAPI.Repositories
                 _context.Users.Remove(userToDelete);
                 _context.SaveChanges();
             }
+
+        public User GetUserGroupsById(int id)
+        {
+            User user = _context.Users
+                .Include(p => p.Groups)
+                .ThenInclude(p => p.Group).FirstOrDefault(u => u.Id == id);
+
+            if (user is null)
+                return null;
+
+            return user;
         }
     }
+}

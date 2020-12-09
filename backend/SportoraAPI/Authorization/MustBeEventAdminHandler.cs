@@ -32,7 +32,7 @@ namespace SportoraAPI.Authorization
             }
 
             var sportEventId =
-                _contextAccessor.HttpContext.Request.RouteValues["sportEventId"];
+                _contextAccessor.HttpContext.Request.RouteValues["id"];
             int sportEventIdAsInt = Convert.ToInt32(sportEventId);
 
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -45,7 +45,7 @@ namespace SportoraAPI.Authorization
                 return;
             }
 
-            if (!sportEvent.AdminIds.Contains(userId))
+            if (!(sportEvent.Admins.FirstOrDefault(a => a.User.AuthId == userId) is null))
             {
                 context.Fail();
                 return;

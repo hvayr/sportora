@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SportoraAPI;
@@ -9,9 +10,10 @@ using SportoraAPI;
 namespace SportoraAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20201126132301_User-Event-Test3")]
+    partial class UserEventTest3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,16 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<string[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<int[]>("GroupIds")
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("Location")
                         .HasColumnType("text");
@@ -54,56 +63,19 @@ namespace SportoraAPI.Migrations
                     b.ToTable("Businesses");
                 });
 
-            modelBuilder.Entity("SportoraAPI.Models.BusinessAdmins", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("BusinessId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BusinessId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("BusinessAdmins");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.BusinessGroups", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("BusinessId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BusinessId");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("BusinessGroups");
-                });
-
             modelBuilder.Entity("SportoraAPI.Models.Club", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
+
+                    b.Property<string[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
+                    b.Property<int[]>("GroupIds")
+                        .HasColumnType("integer[]");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -120,50 +92,6 @@ namespace SportoraAPI.Migrations
                     b.ToTable("Clubs");
                 });
 
-            modelBuilder.Entity("SportoraAPI.Models.ClubAdmins", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClubId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ClubAdmins");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.ClubGroups", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("ClubId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClubId");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("ClubGroups");
-                });
-
             modelBuilder.Entity("SportoraAPI.Models.Group", b =>
                 {
                     b.Property<int>("Id")
@@ -171,38 +99,25 @@ namespace SportoraAPI.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
+                    b.Property<string[]>("AdminIds")
+                        .IsRequired()
+                        .HasColumnType("text[]");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.ToTable("Groups");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.GroupAdmins", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("integer");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GroupId");
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("GroupAdmins");
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.SportEvent", b =>
@@ -331,91 +246,11 @@ namespace SportoraAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SportoraAPI.Models.UserGroups", b =>
+            modelBuilder.Entity("SportoraAPI.Models.Group", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .UseIdentityByDefaultColumn();
-
-                    b.Property<int?>("GroupId")
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserGroups");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.BusinessAdmins", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Business", null)
-                        .WithMany("Admins")
-                        .HasForeignKey("BusinessId");
-
-                    b.HasOne("SportoraAPI.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.BusinessGroups", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Business", null)
+                    b.HasOne("SportoraAPI.Models.User", null)
                         .WithMany("Groups")
-                        .HasForeignKey("BusinessId");
-
-                    b.HasOne("SportoraAPI.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
-                    b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.ClubAdmins", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Club", null)
-                        .WithMany("Admins")
-                        .HasForeignKey("ClubId");
-
-                    b.HasOne("SportoraAPI.Models.User", "User")
-                        .WithMany()
                         .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.ClubGroups", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Club", null)
-                        .WithMany("Groups")
-                        .HasForeignKey("ClubId");
-
-                    b.HasOne("SportoraAPI.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
-                    b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.GroupAdmins", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Group", null)
-                        .WithMany("Admins")
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("SportoraAPI.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.SportEventAdmins", b =>
@@ -442,38 +277,6 @@ namespace SportoraAPI.Migrations
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.UserGroups", b =>
-                {
-                    b.HasOne("SportoraAPI.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
-
-                    b.HasOne("SportoraAPI.Models.User", null)
-                        .WithMany("Groups")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.Business", b =>
-                {
-                    b.Navigation("Admins");
-
-                    b.Navigation("Groups");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.Club", b =>
-                {
-                    b.Navigation("Admins");
-
-                    b.Navigation("Groups");
-                });
-
-            modelBuilder.Entity("SportoraAPI.Models.Group", b =>
-                {
-                    b.Navigation("Admins");
                 });
 
             modelBuilder.Entity("SportoraAPI.Models.SportEvent", b =>
