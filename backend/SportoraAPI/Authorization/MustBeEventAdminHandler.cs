@@ -32,7 +32,7 @@ namespace SportoraAPI.Authorization
             }
 
             var sportEventId =
-                _contextAccessor.HttpContext.Request.RouteValues["sportEventId"];
+                _contextAccessor.HttpContext.Request.RouteValues["id"];
             int sportEventIdAsInt = Convert.ToInt32(sportEventId);
 
             var userId = context.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -50,12 +50,6 @@ namespace SportoraAPI.Authorization
                 context.Fail();
                 return;
             }
-
-            //if (!sportEvent.AdminIds.Contains(userId))
-            //{
-            //    context.Fail();
-            //    return;
-            //}
 
             context.Succeed(requirement);
         }

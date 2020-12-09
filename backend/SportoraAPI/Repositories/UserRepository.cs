@@ -61,7 +61,7 @@ namespace SportoraAPI.Repositories
                 _context.SaveChanges();
             }
 
-        public List<Group> GetUserGroupsById(int id)
+        public User GetUserGroupsById(int id)
         {
             User user = _context.Users
                 .Include(p => p.Groups)
@@ -70,7 +70,7 @@ namespace SportoraAPI.Repositories
             if (user is null)
                 return null;
 
-            return user.UserGroups;
+            return user;
         }
     }
 }

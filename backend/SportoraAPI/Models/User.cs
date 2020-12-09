@@ -36,10 +36,18 @@ namespace SportoraAPI.Models
         [Required]
         [Newtonsoft.Json.JsonIgnore]
         public virtual List<UserGroups> Groups { get; set; }
+
         /// <summary>
         /// Returns the Groups.Users list directly
         /// </summary>
-        public List<Group> UserGroups => Groups.Select(r => r.Group).ToList();
+        public List<Group> UserGroups
+        {
+            get { if (Groups is null)
+                    return null;
+
+                  return Groups.Select(r => r.Group).ToList();
+            }
+        }
 
         public string ImageUrl { get; set; }
         

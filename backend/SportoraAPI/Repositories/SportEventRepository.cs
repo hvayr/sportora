@@ -28,14 +28,27 @@ namespace SportoraAPI.Repositories
 
         public async Task<IEnumerable<SportEvent>> GetSportEventsAsync()
         {
-            return await _context.SportEvents.ToListAsync();
+            return await _context.SportEvents
+                .Include(p => p.Admins).ThenInclude(p => p.User)
+                .Include(p => p.Participants).ThenInclude(p => p.User)
+                .ToListAsync();
         }
 
-        public async Task<SportEvent> GetSportEventById(int eventId) =>
-            await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
+        public async Task<SportEvent> GetSportEventById(int eventId)
+        {
+            return await _context.SportEvents
+                .Include(p => p.Admins).ThenInclude(p => p.User)
+                .Include(p => p.Participants).ThenInclude(p => p.User)
+                .FirstOrDefaultAsync(u => u.Id == eventId);
+        }
 
-        public async Task<SportEvent> GetSportEventByIdAsync(int eventId) =>
-            await _context.SportEvents.FirstOrDefaultAsync(u => u.Id == eventId);
+        public async Task<SportEvent> GetSportEventByIdAsync(int eventId)
+        {
+            return await _context.SportEvents
+                .Include(p => p.Admins).ThenInclude(p => p.User)
+                .Include(p => p.Participants).ThenInclude(p => p.User)
+                .FirstOrDefaultAsync(u => u.Id == eventId);
+        }
 
         public async Task<SportEvent> UpdateSportEvent(
             JsonPatchDocument<SportEvent> patchDocument, SportEvent sportEvent)

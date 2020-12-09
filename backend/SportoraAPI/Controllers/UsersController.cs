@@ -62,7 +62,7 @@ namespace SportoraAPI.Controllers
         [HttpGet("usergroups/{id}")]
         public IActionResult GetUserGroupsById(int id)
         {
-            List<Group> userGroups = _userRepository.GetUserGroupsById(id);
+            User userGroups = _userRepository.GetUserGroupsById(id);
 
             if (userGroups == null)
             {

@@ -11,15 +11,15 @@ namespace SportoraAPI.Models
         public int Id { get; set; }
 
         [Required]
+        [Newtonsoft.Json.JsonIgnore]
         /// <summary>
         /// Use AdminUsers property instead
         /// </summary>
         public virtual List<GroupAdmins> Admins { get; set; }
-        //[JsonIgnore]
-        ///// <summary>
-        ///// Returns the Admin.Users list directly
-        ///// </summary>
-        //public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
+        /// <summary>
+        /// Returns the Admin.Users list directly
+        /// </summary>
+        public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
 
         [Required]
         public string Name { get; set; }

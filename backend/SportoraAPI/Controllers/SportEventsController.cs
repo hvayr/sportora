@@ -128,7 +128,7 @@ namespace SportoraAPI.Controllers
                 return NotFound();
             }
 
-            _sportEventRepository.UpdateSportEvent(patchDocument, sportEventToUpdate);
+            await _sportEventRepository.UpdateSportEvent(patchDocument, sportEventToUpdate);
 
             return NoContent();
         }

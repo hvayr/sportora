@@ -35,11 +35,12 @@ namespace SportoraAPI
 
             modelBuilder.Entity<Group>().HasIndex(g => g.Name).IsUnique();
             modelBuilder.Entity<Group>().Property(p => p.Id).ValueGeneratedOnAdd();
-            //modelBuilder.Entity<Group>().Ignore(p => p.AdminUsers);
+            modelBuilder.Entity<Group>().Ignore(p => p.AdminUsers);
 
             modelBuilder.Entity<SportEvent>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<SportEvent>().Ignore(p => p.AdminUsers);
             modelBuilder.Entity<SportEvent>().Ignore(p => p.ParticipantUsers);
+            modelBuilder.Entity<SportEvent>().Ignore(p => p.NumParticipants);
 
             modelBuilder.Entity<GroupAdmins>().Property(p => p.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<UserGroups>().Property(p => p.Id).ValueGeneratedOnAdd();

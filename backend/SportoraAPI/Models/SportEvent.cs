@@ -15,11 +15,12 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Use AdminUsers property instead
         /// </summary>
-        [Required] 
+        [Required]
         public virtual List<SportEventAdmins> Admins { get; set; }
         /// <summary>
         /// Returns the Admins.Users list directly
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
 
         [Required]
@@ -34,7 +35,10 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Participants.Users list directly
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public List<User> ParticipantUsers => Participants.Select(r => r.User).ToList();
+
+        public int NumParticipants => ParticipantUsers.Count;
 
         public int MaxParticipants { get; set; }
         public bool ActiveStatus { get; set; }
