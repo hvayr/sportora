@@ -18,6 +18,7 @@ import EditProfile from '../profile/EditProfile';
 import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { saveUserIfNotExisting } from '../../api/saveUserIfNotExisting';
+import EventTesting from './event-testing';
 
 makeStyles({
   root: {
@@ -52,6 +53,7 @@ const MainView: React.FC = () => {
         await saveUserIfNotExisting(user);
         const token = await getAccessTokenSilently();
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem('sub', user.sub);
         console.log('Token saved ');
       }
       console.log('authenticated: ' + isAuthenticated);
@@ -115,6 +117,7 @@ const MainView: React.FC = () => {
                 </Grid>
               </Toolbar>
             </AppBar>
+            <EventTesting />
             <div>
               <Switch>
                 <Route path="/home" component={UserComponent} />

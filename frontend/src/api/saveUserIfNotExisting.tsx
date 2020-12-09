@@ -13,7 +13,7 @@ export const saveUserIfNotExisting = async (user: User): Promise<void> => {
       false,
       null,
       {
-        id: sub,
+        authId: sub,
         email: email,
         userName: name,
       },

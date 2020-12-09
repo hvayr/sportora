@@ -33,7 +33,6 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Use UserGroups property instead
         /// </summary>
-        [Required]
         [Newtonsoft.Json.JsonIgnore]
         public virtual List<UserGroups> Groups { get; set; }
 

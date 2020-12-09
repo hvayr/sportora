@@ -5,7 +5,7 @@ export const doFetch = async (
   path: Path,
   method: Method,
   authorize: boolean,
-  id?: string | null,
+  id?: string | number | null,
   body?: object,
 ) => {
   let fetchFrom = address + path;

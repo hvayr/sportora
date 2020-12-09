@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Git\Sportora\backend\SportoraAPI" t="IncludeRecursive">
+      <e p=".gitignore" t="Include" />
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
       <e p="Authorization" t="Include">
@@ -17,19 +18,34 @@
         <e p="UsersController.cs" t="Include" />
       </e>
       <e p="DatabaseContext.cs" t="Include" />
+      <e p="dbstring.conf" t="Include" />
       <e p="Migrations" t="Include">
-        <e p="20201123211240_new.cs" t="Include" />
-        <e p="20201123211240_new.Designer.cs" t="Include" />
+        <e p="20201126131215_User-Event-Test.cs" t="Include" />
+        <e p="20201126131215_User-Event-Test.Designer.cs" t="Include" />
+        <e p="20201126132301_User-Event-Test3.cs" t="Include" />
+        <e p="20201126132301_User-Event-Test3.Designer.cs" t="Include" />
+        <e p="20201201164036_ObjectReferences.cs" t="Include" />
+        <e p="20201201164036_ObjectReferences.Designer.cs" t="Include" />
+        <e p="20201201182902_FixUserGroups.cs" t="Include" />
+        <e p="20201201182902_FixUserGroups.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">
         <e p="AuthorizedUser.cs" t="Include" />
         <e p="Business.cs" t="Include" />
+        <e p="BusinessAdmins.cs" t="Include" />
+        <e p="BusinessGroups.cs" t="Include" />
         <e p="Club.cs" t="Include" />
+        <e p="ClubAdmins.cs" t="Include" />
+        <e p="ClubGroups.cs" t="Include" />
         <e p="Group.cs" t="Include" />
+        <e p="GroupAdmins.cs" t="Include" />
         <e p="SkillLevel.cs" t="Include" />
         <e p="SportEvent.cs" t="Include" />
+        <e p="SportEventAdmins.cs" t="Include" />
+        <e p="SportEventParticipants.cs" t="Include" />
         <e p="User.cs" t="Include" />
+        <e p="UserGroups.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive">
         <e p="Debug" t="Include">
@@ -58,6 +74,9 @@
       <e p="SportoraAPI.csproj" t="IncludeRecursive" />
       <e p="SportoraAPI.sln" t="IncludeFlat" />
       <e p="Startup.cs" t="Include" />
+      <e p="Utils" t="Include">
+        <e p="DBConnectionHelper.cs" t="Include" />
+      </e>
       <e p="Validation" t="Include">
         <e p="UserEmailUniqueAttribute.cs" t="Include" />
         <e p="UsernameUniqueAttribute.cs" t="Include" />
