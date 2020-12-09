@@ -62,7 +62,7 @@ namespace SportoraAPI.Models
             get
             {
                 if (ParticipantUsers is null)
-                    return 1;
+                    return 0;
 
                 return ParticipantUsers.Count;
             }
