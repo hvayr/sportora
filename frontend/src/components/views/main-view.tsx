@@ -5,7 +5,6 @@ import {
   makeStyles,
   ThemeProvider,
 } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
 import 'fontsource-roboto';
 import Typography from '@material-ui/core/Typography';
 import { AppBar, Grid, Tab, Tabs, Toolbar } from '@material-ui/core';
@@ -19,6 +18,8 @@ import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { saveUserIfNotExisting } from '../../api/saveUserIfNotExisting';
 import EventTesting from './event-testing';
+import Header from './Header';
+import TestHeader from './TestHeader';
 
 makeStyles({
   root: {
@@ -30,6 +31,9 @@ makeStyles({
   },
 });
 
+const orange = '#eba059';
+const white = '#E5E5E5';
+
 const theme = createMuiTheme({
   typography: {
     h2: {
@@ -39,7 +43,10 @@ const theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: orange[500],
+      main: `${white}`,
+    },
+    secondary: {
+      main: `${orange}`,
     },
   },
 });
@@ -61,73 +68,15 @@ const MainView: React.FC = () => {
     save();
   }, [isAuthenticated]);
 
-  const routes = ['/home', '/browse', '/events', '/profile'];
   return (
     <div>
       <ThemeProvider theme={theme}>
         <div className="App">
-          <Typography variant="h2" component="div">
-            Sportora
-          </Typography>
-          <BrowserRouter>
-            <AppBar position="static">
-              <Toolbar>
-                <Route
-                  path="/"
-                  render={(history) => (
-                    <div>
-                      <Tabs
-                        value={
-                          history.location.pathname !== '/'
-                            ? history.location.pathname
-                            : false
-                        }
-                      >
-                        <Tab
-                          value={routes[0]}
-                          label="Home"
-                          component={Link}
-                          to={routes[0]}
-                        />
-                        <Tab
-                          value={routes[1]}
-                          label="Browse"
-                          component={Link}
-                          to={routes[1]}
-                        />
-                        <Tab
-                          value={routes[2]}
-                          label="Events"
-                          component={Link}
-                          to={routes[2]}
-                        />
-                      </Tabs>
-                    </div>
-                  )}
-                />
-                <Grid
-                  container
-                  direction="row"
-                  justify="flex-end"
-                  alignItems="flex-start"
-                >
-                  <div>
-                    {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
-                  </div>
-                </Grid>
-              </Toolbar>
-            </AppBar>
-            <EventTesting />
-            <div>
-              <Switch>
-                <Route path="/home" component={UserComponent} />
-                <Route path="/browse" component={UserSearch} />
-                <Route path="/events" component={EventTable} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/editProfile" component={EditProfile} />
-              </Switch>
-            </div>
-          </BrowserRouter>
+          <Header />
+          <TestHeader />
+          <Header></Header>
+          <TestHeader></TestHeader>
+          <ProfileMenu></ProfileMenu>
         </div>
       </ThemeProvider>
     </div>

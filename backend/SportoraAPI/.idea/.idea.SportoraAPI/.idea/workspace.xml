@@ -32,12 +32,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/SportEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SportEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbstring.conf.dist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/saveUserIfNotExisting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/saveUserIfNotExisting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Authorization/MustBeEventAdminHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Authorization/MustBeEventAdminHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/archived stuff" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/archived stuff" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,6 +132,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.SportoraAPI: IIS Express">
     <configuration name="SportoraAPI" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
@@ -189,12 +193,15 @@
       <workItem from="1606482299317" duration="1464000" />
       <workItem from="1606741912611" duration="3961000" />
       <workItem from="1607515103280" duration="5244000" />
+      <workItem from="1607720666608" duration="579000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>

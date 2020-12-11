@@ -480,3 +480,66 @@ export function handleErrors(res) {
 }
 
 
+TABS
+
+const routes = ['/home', '/browse', '/events', '/profile'];
+
+<BrowserRouter>
+            <AppBar position="static">
+              <Toolbar>
+                <Route
+                  path="/"
+                  render={(history) => (
+                    <div>
+                      <Tabs
+                        value={
+                          history.location.pathname !== '/'
+                            ? history.location.pathname
+                            : false
+                        }
+                      >
+                        <Tab
+                          value={routes[0]}
+                          label="Home"
+                          component={Link}
+                          to={routes[0]}
+                        />
+                        <Tab
+                          value={routes[1]}
+                          label="Browse"
+                          component={Link}
+                          to={routes[1]}
+                        />
+                        <Tab
+                          value={routes[2]}
+                          label="Events"
+                          component={Link}
+                          to={routes[2]}
+                        />
+                      </Tabs>
+                    </div>
+                  )}
+                />
+                <Grid
+                  container
+                  direction="row"
+                  justify="flex-end"
+                  alignItems="flex-start"
+                >
+                  <div>
+                    {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
+                  </div>
+                </Grid>
+              </Toolbar>
+            </AppBar>
+            <EventTesting />
+            <div>
+              <Switch>
+                <Route path="/home" component={UserComponent} />
+                <Route path="/browse" component={UserSearch} />
+                <Route path="/events" component={EventTable} />
+                <Route path="/profile" component={Profile} />
+                <Route path="/editProfile" component={EditProfile} />
+              </Switch>
+            </div>
+          </BrowserRouter>

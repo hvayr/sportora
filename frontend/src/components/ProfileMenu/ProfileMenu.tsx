@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function ProfileMenu() {
@@ -17,7 +18,7 @@ export function ProfileMenu() {
 
   return (
     <div>
-      <IconButton onClick={handleClick} color="inherit"></IconButton>
+      <IconButton onClick={handleClick} color={'secondary'} />
       <Menu
         anchorEl={anchorEl}
         keepMounted
