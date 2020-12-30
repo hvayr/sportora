@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
 using System.Text.Json;
+using System.Collections.Generic;
 
 namespace SportoraAPI.Controllers
 {
@@ -60,7 +61,7 @@ namespace SportoraAPI.Controllers
 
             return Ok(result);
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetSportEvents()
         {
@@ -69,7 +70,16 @@ namespace SportoraAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("id/{id}")]
+        // TODO: Paging
+        [HttpGet("search&{location}&{type}&{date}&{page}")]
+        public async Task<IActionResult> SearchSportEvents(string location, string type, DateTime dateTime, int page)
+        {
+            var result = await _sportEventRepository.SearchSportEventsAsync(location, type, dateTime, page);
+
+            return Ok(result);
+        }
+
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetSportEventById(int id)
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventByIdAsync(id);
@@ -82,6 +92,7 @@ namespace SportoraAPI.Controllers
             return Ok(sportEvent);
         }
 
+        [Authorize(Policy = "MustBeLoggedIn")]
         [HttpPost]
         public async Task<IActionResult> AddSportEvent([FromBody] SportEvent sportEvent)
         {
@@ -91,19 +102,20 @@ namespace SportoraAPI.Controllers
             }
 
             SportEvent sportEventToAdd = sportEvent;
+            var authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            User loggedInUser = await _sportEventRepository.GetUserFromAuthId(authId);
 
-            /*var value = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            int valueToInt = Int32.Parse(value);
-            sportEventToAdd.AdminIds = new[] {valueToInt};
-            sportEventToAdd.Author = await GetUserName();*/
+            sportEventToAdd.Admins = new List<SportEventAdmins>();
+            sportEventToAdd.Admins.Add(new SportEventAdmins { User = loggedInUser });
 
             _sportEventRepository.AddSportEvent(sportEventToAdd);
 
             return Created(Request.Path, sportEvent);
         }
 
-        [HttpDelete("id/{id}")]
-        public async Task<IActionResult> DeleteSportEvent(int id)
+        [Authorize(Policy = "MustBeEventAdmin")]
+        [HttpGet("setactive/{id}/{activeState}")]
+        public async Task<IActionResult> SetSportEventActiveState(int id, bool activeState)
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
             if (sportEvent == null)
@@ -111,10 +123,26 @@ namespace SportoraAPI.Controllers
                 return NotFound();
             }
 
+            await _sportEventRepository.SetEventActiveStatusAsync(id, activeState);
+            return Ok(sportEvent);
+        }
+
+        [Authorize(Policy = "MustBeEventAdmin")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSportEvent(int id)
+        {
+            SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
+
+            if (sportEvent.NumParticipants != 0)
+            {
+                return Forbid();
+            }
+
             _sportEventRepository.RemoveSportEvent(id);
             return Ok(sportEvent);
         }
 
+        [Authorize(Policy = "MustBeEventAdmin")]
         [HttpPatch("id/{id}")]
         public async Task<IActionResult> UpdateSportEvent(int id,
             [FromBody] JsonPatchDocument<SportEvent> patchDocument)
