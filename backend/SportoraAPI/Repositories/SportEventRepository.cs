@@ -84,7 +84,7 @@ namespace SportoraAPI.Repositories
         {
             IQueryable<SportEvent> outEvents = from e in _context.SportEvents select e;
 
-            if (!String.IsNullOrEmpty(location))
+            if (!String.IsNullOrEmpty(location) && location != "null")
                 outEvents = outEvents.Where(l => l.Location.ToLower().Contains(location.ToLower()));
 
             if (!String.IsNullOrEmpty(type) && type != "null")
@@ -98,6 +98,38 @@ namespace SportoraAPI.Repositories
                     .Include(p => p.Participants).ThenInclude(p => p.User)
                     .OrderBy(p => p.EventStartTime)
                     .ToListAsync();
+        }
+
+        public async Task<IEnumerable<SportEvent>> GetUserParticipatingEvents(string authId)
+        {
+            User user = await GetUserFromAuthId(authId);
+
+            if (user is null)
+                return null;
+
+            IEnumerable<SportEvent> events = await _context.SportEvents
+                                            .Include(p => p.Admins).ThenInclude(p => p.User)
+                                            .Include(p => p.Participants).ThenInclude(p => p.User)
+                                            .ToListAsync();
+
+            return events.Where(p => p.ParticipantUsers.Contains(user));
+
+            //return _context.SportEvents.Where(p => p.ParticipantUsers.Where(p => p.AuthId == authId).Any());
+        }
+
+        public async Task<IEnumerable<SportEvent>> GetUserAdminEvents(string authId)
+        {
+            User user = await GetUserFromAuthId(authId);
+
+            if (user is null)
+                return null;
+
+            IEnumerable<SportEvent> events = await _context.SportEvents
+                                            .Include(p => p.Admins).ThenInclude(p => p.User)
+                                            .Include(p => p.Participants).ThenInclude(p => p.User)
+                                            .ToListAsync();
+
+            return events.Where(p => p.AdminUsers.Contains(user));
         }
     }
 }
