@@ -93,6 +93,28 @@ namespace SportoraAPI.Controllers
         }
 
         [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpGet("participatingevents")]
+        public async Task<IActionResult> GetUserParticipatingEvents()
+        {
+            var authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            IEnumerable<SportEvent> participatingEvents = await _sportEventRepository.GetUserParticipatingEvents(authId);
+
+            return Ok(participatingEvents);
+        }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpGet("adminevents")]
+        public async Task<IActionResult> GetUserAdminEvents()
+        {
+            var authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            IEnumerable<SportEvent> adminEvents = await _sportEventRepository.GetUserAdminEvents(authId);
+
+            return Ok(adminEvents);
+        }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
         [HttpPost]
         public async Task<IActionResult> AddSportEvent([FromBody] SportEvent sportEvent)
         {

@@ -20,5 +20,7 @@ namespace SportoraAPI.Repositories
         void RemoveSportEvent(int eventId);
         public Task<User> GetUserFromAuthId(string authId);
         Task SetEventActiveStatusAsync(int id, bool activeState);
+        Task<IEnumerable<SportEvent>> GetUserParticipatingEvents(string authId);
+        Task<IEnumerable<SportEvent>> GetUserAdminEvents(string authId);
     }
 }
