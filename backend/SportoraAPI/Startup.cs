@@ -54,9 +54,15 @@ namespace SportoraAPI
                 options.Audience = Configuration["Auth0:Audience"];
             });
             services.AddHttpClient();
+
             services.AddAuthorization(options => options.AddPolicy("MustBeEventAdmin",
                 policy => policy.Requirements.Add(new MustBeEventAdminRequirement())));
             services.AddScoped<IAuthorizationHandler, MustBeEventAdminHandler>();
+
+            services.AddAuthorization(options => options.AddPolicy("MustBeLoggedIn",
+                policy => policy.Requirements.Add(new MustBeLoggedInRequirement())));
+            services.AddScoped<IAuthorizationHandler, MustBeLoggedInHandler>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             
             

@@ -45,7 +45,7 @@ namespace SportoraAPI.Authorization
                 return;
             }
 
-            if (!(sportEvent.Admins.FirstOrDefault(a => a.User.AuthId == userId) is null))
+            if (sportEvent.Admins.FirstOrDefault(a => a.User.AuthId == userId) is null)
             {
                 context.Fail();
                 return;

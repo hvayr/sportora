@@ -11,7 +11,6 @@ namespace SportoraAPI.Models
         public int Id { get; set; }
 
         [Required]
-        [Newtonsoft.Json.JsonIgnore]
         /// <summary>
         /// Use AdminUsers property instead
         /// </summary>
@@ -19,7 +18,8 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Admin.Users list directly
         /// </summary>
-        public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
+        [Newtonsoft.Json.JsonIgnore]
+        public List<User> AdminUsers => Admins.Select(r => r.User)?.ToList();
 
         [Required]
         public string Name { get; set; }

@@ -12,61 +12,28 @@ namespace SportoraAPI.Models
         public int Id { get; set; }
         public string Author { get; set; }
 
-        /// <summary>
-        /// Use AdminUsers property instead
-        /// </summary>
         public virtual List<SportEventAdmins> Admins { get; set; }
         /// <summary>
         /// Returns the Admins.Users list directly
         /// </summary>
         [Newtonsoft.Json.JsonIgnore]
-        public List<User> AdminUsers {
-
-            get
-            {
-                if (Admins is null)
-                    return null;
-
-                return Admins.Select(r => r.User).ToList();
-            }
-        }
+        public List<User> AdminUsers => Admins?.Select(r => r.User)?.ToList();
 
         [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
 
-        /// <summary>
-        /// Use ParticipantUsers property instead
-        /// </summary>
+
         public virtual List<SportEventParticipants> Participants { get; set; }
 
         /// <summary>
         /// Returns the Participants.Users list directly
         /// </summary>
         [Newtonsoft.Json.JsonIgnore]
-        public List<User> ParticipantUsers
-        {
-            get
-            {
-                if (Participants is null)
-                    return null;
+        public List<User> ParticipantUsers => Participants?.Select(r => r.User)?.ToList();
 
-                return Participants.Select(r => r.User).ToList();
-                
-            }
-        }
-
-        public int NumParticipants
-        {
-            get
-            {
-                if (ParticipantUsers is null)
-                    return 0;
-
-                return ParticipantUsers.Count;
-            }
-        }
+        public int NumParticipants => ParticipantUsers?.Count ?? 0;
 
         public int MaxParticipants { get; set; }
         public bool ActiveStatus { get; set; }
