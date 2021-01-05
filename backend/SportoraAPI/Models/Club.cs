@@ -17,7 +17,8 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Admin.Users list directly
         /// </summary>
-        public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
+        [Newtonsoft.Json.JsonIgnore]
+        public List<User> AdminUsers => Admins.Select(r => r.User)?.ToList();
 
         [Required]
         public string Name { get; set; }
@@ -29,7 +30,8 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Groups.Groups list directly
         /// </summary>
-        public List<Group> GroupsGroups => Groups.Select(r => r.Group).ToList();
+        [Newtonsoft.Json.JsonIgnore]
+        public List<Group> GroupsGroups => Groups.Select(r => r.Group)?.ToList();
 
         public SkillLevel SkillLevel { get; set; }
     }

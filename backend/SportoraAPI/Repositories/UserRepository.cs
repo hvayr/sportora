@@ -18,6 +18,7 @@ namespace SportoraAPI.Repositories
 
         public void AddUser(User user)
         {
+            user.Id = 0; // Allow the DB provider to generate the ID on add
             _context.Add(user);
             _context.SaveChanges();
         }

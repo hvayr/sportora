@@ -18,6 +18,7 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Admins.Users list directly
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public List<User> AdminUsers => Admins.Select(r => r.User).ToList();
 
         [Required]
@@ -40,6 +41,7 @@ namespace SportoraAPI.Models
         /// <summary>
         /// Returns the Groups.Groups list directly
         /// </summary>
+        [Newtonsoft.Json.JsonIgnore]
         public List<Group> GroupsGroups => Groups.Select(r => r.Group).ToList();
         public string Location { get; set; }
         public string[] Premises { get; set; }
