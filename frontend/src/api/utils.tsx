@@ -50,7 +50,7 @@ export enum Path {
   EMAIL = '/users/email', //not implemented yet
 }
 
-export const address = `https://localhost:44348/`;
+export const address = `https://localhost:44348`;
 
 export enum Method {
   GET = 'GET',

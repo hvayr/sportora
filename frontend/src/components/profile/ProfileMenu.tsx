@@ -6,11 +6,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+      color: theme.palette.primary.main,
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -42,6 +44,7 @@ export default function ProfileMenu() {
       {isAuthenticated && (
         <div>
           <IconButton onClick={handleMenu} color="inherit">
+            <Typography>{useAuth0().user.name}</Typography>
             <AccountCircle />
           </IconButton>
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

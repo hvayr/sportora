@@ -534,12 +534,125 @@ const routes = ['/home', '/browse', '/events', '/profile'];
             </AppBar>
             <EventTesting />
             <div>
-              <Switch>
+              <SwitchComponent>
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
-                <Route path="/events" component={EventTable} />
+                <Route path="/events" component={EventView} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/editProfile" component={EditProfile} />
-              </Switch>
+              </SwitchComponent>
             </div>
           </BrowserRouter>
+
+
+          EVENT TABLE
+
+          import React, { useEffect, useState } from 'react';
+          import { Button } from '@material-ui/core';
+          import { address, doFetch, Method, Path } from '../../api/utils';
+
+          function EventView() {
+            const [events, setEvents] = useState([]);
+
+            useEffect(() => {
+              console.log('fetching..');
+              const fetchData = async () => {
+                const result = await doFetch(address, Path.EVENTS, Method.GET, false);
+                console.log('Result' + result);
+
+                setEvents(result.content);
+              };
+              fetchData();
+            }, []);
+
+            async function onClickHandle() {
+              console.log('Handling..');
+
+              const patchedBody = [
+                {
+                  op: 'replace',
+                  path: '/Name',
+                  value: 'toimiiii!!!!',
+                },
+              ];
+
+              await doFetch(address, Path.EVENTS, Method.PATCH, false, 2, patchedBody);
+            }
+
+            return (
+              <div>
+                <h2>Events Data</h2>
+                <Button onClick={() => onClickHandle()}>Edit</Button>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Name</th>
+                      <th>Location</th>
+                      <th>Participants</th>
+                      <th>EventStartTime</th>
+                      <th>Description</th>
+                    </tr>
+                  </thead>
+                  <tbody style={{ borderTop: '15px solid white' }}>
+                    {events.map((event) => (
+                      <tr key={event.id}>
+                        <td>{event.id}</td>
+                        <td>{event.name}</td>
+                        <td>{event.location}</td>
+                        <td>{event.participants}</td>
+                        <td>{event.eventStartTime}</td>
+                        <td>{event.description}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          }
+
+          export default EventView;
+
+
+EVENT TABS
+
+import React from 'react';
+import Toolbar from '@material-ui/core/Toolbar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { AppBar, createStyles, Theme } from '@material-ui/core';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    tabContainer: {
+      margin: 'auto',
+    },
+    tab: {
+      border: '3px solid',
+      margin: '2px',
+      color: 'black',
+      backgroundColor: theme.palette.secondary.main,
+    },
+    appBar: {
+      marginTop: '0.5em',
+    },
+  }),
+);
+
+const EventTabs: React.FC = () => {
+  const classes = useStyles();
+  return (
+    <AppBar position="static" className={classes.appBar}>
+      <Toolbar>
+        <Tabs className={classes.tabContainer}>
+          <Tab className={classes.tab} label="Search events"></Tab>
+          <Tab className={classes.tab} label="Host event"></Tab>
+          <Tab className={classes.tab} label="My events"></Tab>
+        </Tabs>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default EventTabs;
