@@ -14,6 +14,8 @@ namespace SportoraAPI.Authorization
     {
         private readonly ISportEventRepository _repository;
         private readonly IHttpContextAccessor _contextAccessor;
+        
+                
 
         public MustBeEventAdminHandler(ISportEventRepository repository,
             IHttpContextAccessor contextAccessor)
