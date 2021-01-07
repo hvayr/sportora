@@ -6,6 +6,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import ProfileMenu from '../profile/ProfileMenu';
 import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme) =>
       height: '8em',
       marginRight: 'auto',
     },
-    button: {},
+    button: {
+      marginLeft: 'auto',
+    },
   }),
 );
 
@@ -40,7 +43,9 @@ export default function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
-          <img src={logo} alt="logo" className={classes.logo} />
+          <Link to="/">
+            <img src={logo} alt="logo" className={classes.logo} />
+          </Link>
           <div className={classes.button}>
             {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
           </div>
