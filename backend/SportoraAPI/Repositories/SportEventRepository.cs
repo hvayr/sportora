@@ -82,6 +82,8 @@ namespace SportoraAPI.Repositories
 
         public async Task<IEnumerable<SportEvent>> SearchSportEventsAsync(string location, string type, DateTime date, int page)
         {
+            const int PAGE_SIZE = 10;
+
             IQueryable<SportEvent> outEvents = from e in _context.SportEvents select e;
 
             if (!String.IsNullOrEmpty(location) && location != "null")
@@ -97,6 +99,8 @@ namespace SportoraAPI.Repositories
                     .Include(p => p.Admins).ThenInclude(p => p.User)
                     .Include(p => p.Participants).ThenInclude(p => p.User)
                     .OrderBy(p => p.EventStartTime)
+                    .Skip(page * PAGE_SIZE)
+                    .Take(PAGE_SIZE)
                     .ToListAsync();
         }
 
