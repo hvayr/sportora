@@ -48,6 +48,7 @@ export enum Path {
   EVENTS = '/sportevents',
   PROTECTEDEVENTS = '/sportevents/protected',
   EMAIL = '/users/email', //not implemented yet
+  PARTICIPATINGEVENTS = '/sportevents/participatingevents',
 }
 
 export const address = `https://localhost:44348`;
@@ -58,4 +59,10 @@ export enum Method {
   PATCH = 'PATCH',
   PUT = 'PUT',
   DELETE = 'DELETE',
+}
+
+export enum Sport {
+  HOCKEY,
+  FOOTBALL,
+  BASEBALL,
 }

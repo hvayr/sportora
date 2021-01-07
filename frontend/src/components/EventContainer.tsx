@@ -4,7 +4,7 @@ import Profile from './profile/Profile';
 import EditProfile from './profile/EditProfile';
 import { Grid, Theme } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import EventView from './views/event-view';
+import EventView from './views/event-view2';
 
 const useStyles = makeStyles((theme: Theme) => ({
   mainContainer: {},

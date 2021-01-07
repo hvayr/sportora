@@ -6,7 +6,7 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-function DateTimeSelect() {
+function DateSelect() {
   const [selectedDate, handleDateChange] = React.useState<Date | null>(
     new Date(Date()),
   );
@@ -20,15 +20,16 @@ function DateTimeSelect() {
       <KeyboardDateTimePicker
         variant="inline"
         ampm={false}
-        label="Event start time"
+        label="Date"
         value={selectedDate}
         onChange={handleDateChange}
         onError={console.log}
         disablePast
-        format="yyyy/MM/dd HH:mm"
+        format="yyyy/MM/dd"
+        color="secondary"
       />
     </MuiPickersUtilsProvider>
   );
 }
 
-export default DateTimeSelect;
+export default DateSelect;

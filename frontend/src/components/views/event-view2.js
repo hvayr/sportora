@@ -7,13 +7,12 @@ import GridList from '@material-ui/core/GridList';
 import { address, doFetch, Method, Path } from '../../api/utils';
 import GridListTile from '@material-ui/core/GridListTile';
 import { createStyles, Theme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import SportSelect from '../events/SportSelect';
 import DateSelect from '../events/DateSelect';
 import SwitchComponent from '../events/SwitchComponent';
 import CreateEvent from '../events/CreateEvent';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       marginTop: '0.5em',
@@ -70,7 +69,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const EventView: React.FC = (props) => {
+const EventView = (props) => {
   const [eventData, setEventData] = useState([]);
   const [location, setLocation] = useState('');
   const [myEventToggle, setMyEventToggle] = useState(false);
@@ -88,23 +87,35 @@ const EventView: React.FC = (props) => {
       setEventData(await result.content);
     };
     getData();
+    getMyEvents();
   }, []);
 
-  const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
 
   const filters = [
     {
-      predicateFn: (sportEvent: any) => sportEvent.maxParticipants > 10,
+      filterFull: (sportEvent) => sportEvent.maxParticipants > 1,
     },
   ];
 
-  function filteredEvents(filters: any) {
+  function filteredEvents(filters) {
     return eventData.filter((e) =>
-      filters.every((filter: any) => filter.predicateFn(e)),
+      filters.every((filter) => filter.filterFull(e)),
     );
   }
+
+  const getMyEvents = async () => {
+    const result = await doFetch(
+      address,
+      Path.PARTICIPATINGEVENTS,
+      Method.GET,
+      true,
+    );
+    console.log(result.status);
+    return await result.content;
+  };
 
   useEffect(() => {
     console.log(myEventToggle, hideFullToggle);

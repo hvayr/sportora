@@ -27,25 +27,32 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default function SimpleCard() {
+type EventProps = {
+  id: number;
+  sport: string;
+  participants: number;
+  description: string;
+};
+
+export default function EventCard(props: EventProps) {
   const classes = useStyles();
 
   return (
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          Baseball
+          {props.sport}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Participants: 3/7
+          {props.participants}
         </Typography>
         <Typography variant="body2" component="p">
-          Kovat pelit puistossa
+          {props.description}
           <br />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">JOIN</Button>
       </CardActions>
     </Card>
   );

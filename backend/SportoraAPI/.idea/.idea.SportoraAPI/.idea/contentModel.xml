@@ -8,6 +8,8 @@
       <e p="Authorization" t="Include">
         <e p="MustBeEventAdminHandler.cs" t="Include" />
         <e p="MustBeEventAdminRequirement.cs" t="Include" />
+        <e p="MustBeLoggedInHandler.cs" t="Include" />
+        <e p="MustBeLoggedInRequirement.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
       <e p="Controllers" t="Include">
@@ -19,6 +21,7 @@
       </e>
       <e p="DatabaseContext.cs" t="Include" />
       <e p="dbstring.conf" t="Include" />
+      <e p="dbstring.conf.dist" t="Include" />
       <e p="IISExpress" t="Include">
         <e p="config" t="Include">
           <e p="applicationhost.config" t="Include" />

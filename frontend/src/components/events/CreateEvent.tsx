@@ -69,19 +69,27 @@ const CreateEvent: React.FC<DialogProps> = (props: DialogProps) => {
   };
 
   const handleClickCreate = () => {
-    doFetch(address, Path.EVENTS, Method.POST, false, null, {
+    doFetch(address, Path.EVENTS, Method.POST, true, null, {
       author: user.sub,
       name: localStorage.getItem('sport'),
       description: description,
       location: location,
       maxParticipants: parseInt(maxParticipants),
       eventStartTime: localStorage.getItem('date'),
+      activeStatus: true,
     });
+    console.log('author ' + user.sub);
+    console.log('name ' + localStorage.getItem('sport'));
+    console.log('description ' + description);
+    console.log('location ' + location);
+    console.log('max ' + parseInt(maxParticipants));
+    console.log('start time ' + localStorage.getItem('date'));
   };
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
   };
+
   const handleMaxParticipantsChange = (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {

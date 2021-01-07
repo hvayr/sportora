@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SwitchClassKey,
   SwitchProps,
@@ -70,10 +70,12 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type SwitchLabelProps = {
   name: string;
+  toggle: any;
 };
 
 const SwitchComponent: React.FC<SwitchLabelProps> = ({
   name,
+  toggle,
 }: SwitchLabelProps) => {
   const [state, setState] = React.useState({
     checked: true,
@@ -82,6 +84,11 @@ const SwitchComponent: React.FC<SwitchLabelProps> = ({
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
+
+  useEffect(() => {
+    toggle(state);
+    console.log('state ' + state.checked);
+  }, [state]);
 
   const classes = useStyles();
 

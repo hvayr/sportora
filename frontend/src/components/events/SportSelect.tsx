@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-const sports = [
+export const sports = [
   {
     value: 'Hockey',
     label: 'Hockey',
@@ -56,6 +56,7 @@ const SportSelect: React.FC = () => {
         label="Sport"
         value={sport}
         onChange={handleChange}
+        color="secondary"
       >
         {sports.map((option) => (
           <MenuItem key={option.value} value={option.value}>

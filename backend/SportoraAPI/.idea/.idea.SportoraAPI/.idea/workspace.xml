@@ -32,41 +32,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IISExpress/config/applicationhost.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IISExpress/config/aspnet.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IISExpress/config/redirection.config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/20201211230958_new initial.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/20201211230958_new initial.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/AdContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/EventContainer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/LocationSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SwitchComponent.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/TimeSelect.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/test.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/Footer.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/Theme.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/test-view.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/archived stuff" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/archived stuff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ProfileMenu/ProfileMenu.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventTable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/ProfileMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/ProfileMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/TestHeader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/EventContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/EventContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/SwitchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SwitchComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/test.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +206,9 @@
       <workItem from="1608567736270" duration="638000" />
       <workItem from="1608568872705" duration="613000" />
       <workItem from="1609146473336" duration="2715000" />
-      <workItem from="1609344332498" duration="3435000" />
+      <workItem from="1609344332498" duration="6240000" />
+      <workItem from="1609928712202" duration="1238000" />
+      <workItem from="1610010674923" duration="1554000" />
     </task>
     <servers />
   </component>
@@ -289,8 +269,8 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="902" y="461" key="ANALYSIS_DLG_com.jetbrains.rider.actions.impl.cleanup.ChooseSilentCodeCleanupProfileDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1609148115707" />
-    <state width="1103" height="266" key="GridCell.Tab.0.bottom" timestamp="1609336097999">
-      <screen x="0" y="0" width="2560" height="1410" />
+    <state width="1408" height="215" key="GridCell.Tab.0.bottom" timestamp="1609946363837">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1347" height="266" key="GridCell.Tab.0.bottom/-1920.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1607795200158" />
     <state width="1424" height="241" key="GridCell.Tab.0.bottom/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
@@ -298,12 +278,13 @@
     <state width="1877" height="184" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1607528041984" />
     <state width="1188" height="184" key="GridCell.Tab.0.bottom/0.0.1920.1170/1920.0.1920.1050@1920.0.1920.1050" timestamp="1606487052724" />
     <state width="1347" height="266" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1607987639292" />
+    <state width="1408" height="215" key="GridCell.Tab.0.bottom/0.0.2560.1410/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1609946363837" />
     <state width="1103" height="266" key="GridCell.Tab.0.bottom/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1609160550753" />
     <state width="1103" height="266" key="GridCell.Tab.0.bottom/0.0.2560.1410@0.0.2560.1410" timestamp="1609336097999" />
     <state width="1340" height="184" key="GridCell.Tab.0.bottom/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1606207595639" />
     <state width="1877" height="192" key="GridCell.Tab.0.bottom/1920.0.1920.1050/0.0.1920.1170@1920.0.1920.1050" timestamp="1606221168509" />
-    <state width="1103" height="266" key="GridCell.Tab.0.center" timestamp="1609336097998">
-      <screen x="0" y="0" width="2560" height="1410" />
+    <state width="1408" height="215" key="GridCell.Tab.0.center" timestamp="1609946363836">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1347" height="266" key="GridCell.Tab.0.center/-1920.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1607795200158" />
     <state width="1424" height="241" key="GridCell.Tab.0.center/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
@@ -311,12 +292,13 @@
     <state width="1877" height="184" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1607528041984" />
     <state width="1188" height="184" key="GridCell.Tab.0.center/0.0.1920.1170/1920.0.1920.1050@1920.0.1920.1050" timestamp="1606487052724" />
     <state width="1347" height="266" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1607987639291" />
+    <state width="1408" height="215" key="GridCell.Tab.0.center/0.0.2560.1410/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1609946363836" />
     <state width="1103" height="266" key="GridCell.Tab.0.center/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1609160550753" />
     <state width="1103" height="266" key="GridCell.Tab.0.center/0.0.2560.1410@0.0.2560.1410" timestamp="1609336097998" />
     <state width="1340" height="184" key="GridCell.Tab.0.center/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1606207595639" />
     <state width="1877" height="192" key="GridCell.Tab.0.center/1920.0.1920.1050/0.0.1920.1170@1920.0.1920.1050" timestamp="1606221168509" />
-    <state width="1103" height="266" key="GridCell.Tab.0.left" timestamp="1609336097998">
-      <screen x="0" y="0" width="2560" height="1410" />
+    <state width="1408" height="215" key="GridCell.Tab.0.left" timestamp="1609946363836">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1347" height="266" key="GridCell.Tab.0.left/-1920.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1607795200158" />
     <state width="1424" height="241" key="GridCell.Tab.0.left/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233671" />
@@ -324,12 +306,13 @@
     <state width="1877" height="184" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1607528041984" />
     <state width="1188" height="184" key="GridCell.Tab.0.left/0.0.1920.1170/1920.0.1920.1050@1920.0.1920.1050" timestamp="1606487052724" />
     <state width="1347" height="266" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1607987639291" />
+    <state width="1408" height="215" key="GridCell.Tab.0.left/0.0.2560.1410/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1609946363836" />
     <state width="1103" height="266" key="GridCell.Tab.0.left/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1609160550752" />
     <state width="1103" height="266" key="GridCell.Tab.0.left/0.0.2560.1410@0.0.2560.1410" timestamp="1609336097998" />
     <state width="1340" height="184" key="GridCell.Tab.0.left/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1606207595639" />
     <state width="1877" height="192" key="GridCell.Tab.0.left/1920.0.1920.1050/0.0.1920.1170@1920.0.1920.1050" timestamp="1606221168509" />
-    <state width="1103" height="266" key="GridCell.Tab.0.right" timestamp="1609336097999">
-      <screen x="0" y="0" width="2560" height="1410" />
+    <state width="1408" height="215" key="GridCell.Tab.0.right" timestamp="1609946363837">
+      <screen x="-1920" y="0" width="1920" height="1050" />
     </state>
     <state width="1347" height="266" key="GridCell.Tab.0.right/-1920.0.1920.1040/0.0.2560.1400@0.0.2560.1400" timestamp="1607795200158" />
     <state width="1424" height="241" key="GridCell.Tab.0.right/-1920.0.1920.1050/0.0.2560.1410@-1920.0.1920.1050" timestamp="1605196233672" />
@@ -337,6 +320,7 @@
     <state width="1877" height="184" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1607528041984" />
     <state width="1188" height="184" key="GridCell.Tab.0.right/0.0.1920.1170/1920.0.1920.1050@1920.0.1920.1050" timestamp="1606487052724" />
     <state width="1347" height="266" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.0.1920.1040@0.0.2560.1400" timestamp="1607987639291" />
+    <state width="1408" height="215" key="GridCell.Tab.0.right/0.0.2560.1410/-1920.0.1920.1050@-1920.0.1920.1050" timestamp="1609946363837" />
     <state width="1103" height="266" key="GridCell.Tab.0.right/0.0.2560.1410/-1920.0.1920.1050@0.0.2560.1410" timestamp="1609160550753" />
     <state width="1103" height="266" key="GridCell.Tab.0.right/0.0.2560.1410@0.0.2560.1410" timestamp="1609336097999" />
     <state width="1340" height="184" key="GridCell.Tab.0.right/1920.0.1920.1050/0.0.1920.1170@0.0.1920.1170" timestamp="1606207595639" />
@@ -490,19 +474,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Controllers/SportEventsController.cs</url>
-          <line>52</line>
-          <properties documentPath="C:\Git\Sportora\backend\SportoraAPI\Controllers\SportEventsController.cs" initialLine="52">
-            <startOffsets>
-              <option value="1832" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1833" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
