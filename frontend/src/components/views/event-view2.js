@@ -87,23 +87,30 @@ const EventView = (props) => {
       setEventData(await result.content);
     };
     getData();
-    getMyEvents();
-  }, []);
+  }, [myEventToggle, hideFullToggle]);
 
   const handleLocationChange = (event) => {
     setLocation(event.target.value);
   };
 
-  const filters = [
-    {
-      filterFull: (sportEvent) => sportEvent.maxParticipants > 1,
-    },
-  ];
+  function filteredEvents() {
+    if (!sessionStorage.getItem('sub')) {
+      return eventData;
+    }
 
-  function filteredEvents(filters) {
-    return eventData.filter((e) =>
-      filters.every((filter) => filter.filterFull(e)),
-    );
+    let filteredData = eventData;
+
+    if (hideFullToggle.checked) {
+      filteredData = filteredData.filter(
+        (sportEvent) => sportEvent.maxParticipants > 20,
+      );
+    }
+    if (myEventToggle.checked) {
+      filteredData = filteredData.filter(
+        (sportEvent) => sportEvent.author === sessionStorage.getItem('sub'),
+      );
+    }
+    return filteredData;
   }
 
   const getMyEvents = async () => {
@@ -155,7 +162,7 @@ const EventView = (props) => {
                 </Button>
               </Grid>
               <Grid item container justify="flex-start" sm={9}>
-                <SwitchComponent name="My Events" toggle={setMyEventToggle} />
+                <SwitchComponent name="Hide Mine" toggle={setMyEventToggle} />
               </Grid>
               <Grid item container justify="flex-start" sm={9}>
                 <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />
@@ -166,19 +173,17 @@ const EventView = (props) => {
       </Grid>
       <Grid item className={classes.eventList}>
         <GridList cellHeight={120} className={classes.eventList} cols={1}>
-          {filteredEvents(filters).map(
-            ({ id, name, participants, description }) => (
-              <GridListTile key={id} cols={1}>
-                <EventCard
-                  id={id}
-                  sport={name}
-                  participants={participants}
-                  description={description}
-                />
-                ));
-              </GridListTile>
-            ),
-          )}
+          {filteredEvents().map(({ id, name, participants, description }) => (
+            <GridListTile key={id} cols={1}>
+              <EventCard
+                id={id}
+                sport={name}
+                participants={participants}
+                description={description}
+              />
+              ));
+            </GridListTile>
+          ))}
         </GridList>
       </Grid>
     </>

@@ -144,7 +144,7 @@ const EventView: React.FC = (props) => {
                 </Button>
               </Grid>
               <Grid item container justify="flex-start" sm={9}>
-                <SwitchComponent name="My Events" toggle={setMyEventToggle} />
+                <SwitchComponent name="Hide Mine" toggle={setMyEventToggle} />
               </Grid>
               <Grid item container justify="flex-start" sm={9}>
                 <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />

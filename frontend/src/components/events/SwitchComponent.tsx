@@ -78,7 +78,7 @@ const SwitchComponent: React.FC<SwitchLabelProps> = ({
   toggle,
 }: SwitchLabelProps) => {
   const [state, setState] = React.useState({
-    checked: true,
+    checked: false,
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
