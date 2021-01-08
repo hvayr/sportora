@@ -9,6 +9,7 @@ import {
   Grid,
   TextField,
   Typography,
+  Paper,
 } from '@material-ui/core';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,10 @@ type DialogProps = {
 
 const useStyles = makeStyles((theme) =>
   createStyles({
+    root: {
+      margin: theme.spacing(5),
+      padding: theme.spacing(3),
+    },
     button: {
       height: '2.8em',
     },
@@ -46,6 +51,13 @@ const useStyles = makeStyles((theme) =>
       marginLeft: '0.5em',
       '& .MuiInputBase-input': {
         textAlign: 'center',
+        marginLeft: '5px',
+      },
+    },
+    location: {
+      marginLeft: '0.5em',
+      '& .MuiInputBase-input': {
+        textAlign: 'left',
         marginLeft: '5px',
       },
     },
@@ -116,56 +128,59 @@ const CreateEvent: React.FC<DialogProps> = (props: DialogProps) => {
           HOST EVENT
         </Typography>
       </Button>
-      <Dialog open={open} onClose={handleClose} className={classes.dialog}>
-        <DialogTitle id="form-dialog-title">Create a new event</DialogTitle>
-        <DialogContent>
-          <form className={classes.dialog}>
-            <Grid container>
-              <Grid item>
-                <SportSelect />
-              </Grid>
-              <Grid item className={classes.date}>
-                <DateTimeSelect />
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Grid container spacing={2}>
-                <Grid item>
-                  <TextField
-                    className={classes.participants}
-                    label="Location"
-                    onChange={handleLocationChange}
-                  />
-                </Grid>
-                <Grid item>
-                  <TextField
-                    className={classes.participants}
-                    label="Max Participants"
-                    onChange={handleMaxParticipantsChange}
-                  />
-                </Grid>
-              </Grid>
-            </Grid>
-            <Grid item sm={12}>
+      <Paper>
+        <Dialog open={open} onClose={handleClose} className={classes.dialog}>
+          <DialogTitle id="form-dialog-title">Create a new event</DialogTitle>
+          <DialogContent>
+            <form className={classes.dialog}>
               <Grid container>
-                <TextField
-                  label="Describe the event here"
-                  className={classes.description}
-                  onChange={handleDescriptionChange}
-                  multiline
-                >
-                  Description
-                </TextField>
+                <Grid item>
+                  <SportSelect />
+                </Grid>
+                <Grid item className={classes.date}>
+                  <DateTimeSelect />
+                </Grid>
               </Grid>
-            </Grid>
-          </form>
-        </DialogContent>
-        <DialogActions>
-          <Button color="primary" onClick={handleClickCreate}>
-            Create
-          </Button>
-        </DialogActions>
-      </Dialog>
+              <Grid item>
+                <Grid container spacing={2}>
+                  <Grid item>
+                    <TextField
+                      className={classes.location}
+                      label="Location"
+                      variant="outlined"
+                      onChange={handleLocationChange}
+                    />
+                  </Grid>
+                  <Grid item>
+                    <TextField
+                      className={classes.participants}
+                      label="Max Participants"
+                      onChange={handleMaxParticipantsChange}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item sm={12}>
+                <Grid container>
+                  <TextField
+                    label="Describe the event here"
+                    className={classes.description}
+                    onChange={handleDescriptionChange}
+                    multiline
+                  >
+                    Description
+                  </TextField>
+                </Grid>
+              </Grid>
+            </form>
+          </DialogContent>
+          <DialogActions>
+            <Button color="primary" onClick={handleClickCreate}>
+              Create
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Paper>
     </div>
   );
 };

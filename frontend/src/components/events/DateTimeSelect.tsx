@@ -19,6 +19,7 @@ function DateTimeSelect() {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDateTimePicker
         variant="inline"
+        inputVariant="outlined"
         ampm={false}
         label="Event start time"
         value={selectedDate}

@@ -57,6 +57,7 @@ const SportSelect: React.FC = () => {
         value={sport}
         onChange={handleChange}
         color="secondary"
+        variant="outlined"
       >
         {sports.map((option) => (
           <MenuItem key={option.value} value={option.value}>

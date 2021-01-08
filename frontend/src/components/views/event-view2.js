@@ -11,6 +11,7 @@ import SportSelect from '../events/SportSelect';
 import DateSelect from '../events/DateSelect';
 import SwitchComponent from '../events/SwitchComponent';
 import CreateEvent from '../events/CreateEvent';
+import TestCreateEvent from '../events/TestCreateEvent';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -150,6 +151,7 @@ const EventView = (props) => {
                   label="Location"
                   onChange={handleLocationChange}
                   color="secondary"
+                  variant="outlined"
                 />
               </Grid>
             </Grid>
@@ -158,7 +160,7 @@ const EventView = (props) => {
             <Grid container justify="center">
               <Grid item sm={9}>
                 <Button variant="contained" className={classes.hostEvent}>
-                  <CreateEvent name="test" />
+                  <TestCreateEvent />
                 </Button>
               </Grid>
               <Grid item container justify="flex-start" sm={9}>
