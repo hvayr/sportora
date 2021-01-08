@@ -36,7 +36,7 @@ const MainView: React.FC = () => {
         const token = await getAccessTokenSilently();
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('sub', user.sub);
-        console.log('Token saved ');
+        console.log('Token: ' + sessionStorage.getItem('token'));
       }
       console.log('authenticated: ' + isAuthenticated);
     };

@@ -20,6 +20,8 @@ const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <KeyboardDatePicker
         variant="inline"
+        inputVariant="outlined"
+        ampm={false}
         label="Date"
         value={getDate}
         onChange={setDate}

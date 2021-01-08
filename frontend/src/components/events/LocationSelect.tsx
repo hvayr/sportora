@@ -55,6 +55,7 @@ const LocationSelect: React.FC = () => {
         label="Location"
         value={sport}
         onChange={handleChange}
+        variant="outlined"
       >
         {sports.map((option) => (
           <MenuItem key={option.value} value={option.value}>
