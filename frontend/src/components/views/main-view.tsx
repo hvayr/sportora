@@ -22,8 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
     eventContainer: {
       backgroundColor: theme.palette.secondary.main,
     },
-    tab: {},
-    root: {},
   }),
 );
 

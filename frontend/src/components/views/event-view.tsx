@@ -11,16 +11,9 @@ import SportSelect from '../events/SportSelect';
 import DateSelect from '../events/DateSelect';
 import SwitchComponent from '../events/SwitchComponent';
 import CreateEvent from '../events/CreateEvent';
-import { log } from 'util';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      marginTop: '0.5em',
-      display: 'flex',
-      flexWrap: 'wrap',
-      overflow: 'hidden',
-    },
     eventList: {
       height: 1050,
       marginTop: '5px',
@@ -153,54 +146,63 @@ const EventView = () => {
   return (
     <>
       <Grid container className={classes.mainContainer}>
-        <Grid container>
-          <Grid item sm={6}>
-            <Grid container>
-              <Grid item>
-                <SportSelect getSport={sport} setSport={setSport} />
-              </Grid>
-              <Grid item className={classes.dateMenu}>
-                <DateSelect getDate={selectedDate} setDate={handleDateChange} />
-              </Grid>
+        <Grid item sm={6}>
+          <Grid container style={{ border: '2px black' }}>
+            <Grid item>
+              <SportSelect getSport={sport} setSport={setSport} />
             </Grid>
-            <Grid container>
-              <Grid item sm={6}>
-                <TextField
-                  className={classes.locationMenu}
-                  label="Location"
-                  onChange={handleLocationChange}
-                  color="secondary"
-                />
-              </Grid>
+            <Grid item className={classes.dateMenu}>
+              <DateSelect getDate={selectedDate} setDate={handleDateChange} />
             </Grid>
           </Grid>
-          <Grid container sm={6}>
-            <Grid container justify="center">
-              <Grid item sm={9}>
-                <Button variant="contained" className={classes.hostEvent}>
-                  <CreateEvent name="test" />
-                </Button>
-              </Grid>
-              <Grid item container justify="flex-start" sm={9}>
-                <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />
-              </Grid>
+          <Grid container>
+            <Grid item sm={6}>
+              <TextField
+                className={classes.locationMenu}
+                label="Location"
+                onChange={handleLocationChange}
+                color="secondary"
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        <Grid container sm={6}>
+          <Grid container justify="center">
+            <Grid item sm={9}>
+              <Button variant="contained" className={classes.hostEvent}>
+                <CreateEvent name="test" />
+              </Button>
+            </Grid>
+            <Grid item container justify="flex-start" sm={9}>
+              <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />
             </Grid>
           </Grid>
         </Grid>
       </Grid>
       <Grid item className={classes.eventList}>
         <GridList cellHeight={120} className={classes.eventList} cols={1}>
-          {filteredEvents().map(({ id, name, participants, description }) => (
-            <GridListTile key={id} cols={1}>
-              <EventCard
-                id={id}
-                sport={name}
-                participants={participants}
-                description={description}
-              />
-              ));
-            </GridListTile>
-          ))}
+          {filteredEvents().map(
+            ({
+              id,
+              name,
+              participants,
+              maxParticipants,
+              description,
+              date,
+            }) => (
+              <GridListTile key={id} cols={1}>
+                <EventCard
+                  id={id}
+                  sport={name}
+                  participants={participants}
+                  maxParticipants={maxParticipants}
+                  description={description}
+                  date={date}
+                />
+                ));
+              </GridListTile>
+            ),
+          )}
         </GridList>
       </Grid>
     </>
