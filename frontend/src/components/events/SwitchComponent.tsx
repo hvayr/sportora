@@ -11,14 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import Switch from '@material-ui/core/Switch';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
-interface Styles extends Partial<Record<SwitchClassKey, string>> {
-  focusVisible?: string;
-}
-
-interface Props extends SwitchProps {
-  classes: Styles;
-}
-
 const AntSwitch = withStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -78,7 +70,7 @@ const SwitchComponent: React.FC<SwitchLabelProps> = ({
   toggle,
 }: SwitchLabelProps) => {
   const [state, setState] = React.useState({
-    checked: true,
+    checked: false,
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +79,6 @@ const SwitchComponent: React.FC<SwitchLabelProps> = ({
 
   useEffect(() => {
     toggle(state);
-    console.log('state ' + state.checked);
   }, [state]);
 
   const classes = useStyles();

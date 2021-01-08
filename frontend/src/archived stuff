@@ -537,7 +537,7 @@ const routes = ['/home', '/browse', '/events', '/profile'];
               <SwitchComponent>
                 <Route path="/home" component={UserComponent} />
                 <Route path="/browse" component={UserSearch} />
-                <Route path="/events" component={EventView} />
+                <Route path="/events" component={TestEventView} />
                 <Route path="/profile" component={Profile} />
                 <Route path="/editProfile" component={EditProfile} />
               </SwitchComponent>
@@ -551,7 +551,7 @@ const routes = ['/home', '/browse', '/events', '/profile'];
           import { Button } from '@material-ui/core';
           import { address, doFetch, Method, Path } from '../../api/utils';
 
-          function EventView() {
+          function TestEventView() {
             const [events, setEvents] = useState([]);
 
             useEffect(() => {
@@ -611,7 +611,7 @@ const routes = ['/home', '/browse', '/events', '/profile'];
             );
           }
 
-          export default EventView;
+          export default TestEventView;
 
 
 EVENT TABS

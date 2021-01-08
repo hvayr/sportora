@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const sports = [
+  { value: 'Any', label: 'Any' },
   {
     value: 'Hockey',
     label: 'Hockey',
@@ -39,9 +40,16 @@ export const sports = [
   },
 ];
 
-const SportSelect: React.FC = () => {
+type SwitchProps = {
+  getSport: any;
+  setSport: any;
+};
+
+const SportSelect: React.FC<SwitchProps> = ({
+  getSport,
+  setSport,
+}: SwitchProps) => {
   const classes = useStyles();
-  const [sport, setSport] = React.useState('Any');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSport(event.target.value);
@@ -54,7 +62,7 @@ const SportSelect: React.FC = () => {
         id="select-sport"
         select
         label="Sport"
-        value={sport}
+        value={getSport}
         onChange={handleChange}
         color="secondary"
       >

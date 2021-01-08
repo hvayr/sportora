@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) =>
 const CreateEvent: React.FC<DialogProps> = (props: DialogProps) => {
   const [open, setOpen] = React.useState(false);
   const { user } = useAuth0();
-
+  const [sport, setSport] = React.useState('Any');
   const [location, setLocation] = React.useState('');
   const [maxParticipants, setMaxParticipants] = React.useState('');
   const [description, setDescription] = React.useState('');
@@ -122,7 +122,7 @@ const CreateEvent: React.FC<DialogProps> = (props: DialogProps) => {
           <form className={classes.dialog}>
             <Grid container>
               <Grid item>
-                <SportSelect />
+                <SportSelect getSport={sport} setSport={setSport} />
               </Grid>
               <Grid item className={classes.date}>
                 <DateTimeSelect />

@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import {
   DateTimePicker,
-  KeyboardDateTimePicker,
+  KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-function DateSelect() {
-  const [selectedDate, handleDateChange] = React.useState<Date | null>(
-    new Date(Date()),
-  );
+type DateProps = {
+  getDate: any;
+  setDate: any;
+};
 
-  useEffect(() => {
-    localStorage.setItem('date', selectedDate ? selectedDate.toJSON() : '');
-  }, [selectedDate]);
+const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
+  // useEffect(() => {
+  //   localStorage.setItem('date', selectedDate ? selectedDate.toJSON() : '');
+  // }, [selectedDate]);
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <KeyboardDateTimePicker
+      <KeyboardDatePicker
         variant="inline"
-        ampm={false}
         label="Date"
-        value={selectedDate}
-        onChange={handleDateChange}
+        value={getDate}
+        onChange={setDate}
         onError={console.log}
-        disablePast
+        autoOk={true}
         format="yyyy/MM/dd"
         color="secondary"
       />
     </MuiPickersUtilsProvider>
   );
-}
+};
 
 export default DateSelect;
