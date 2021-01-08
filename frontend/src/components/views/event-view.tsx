@@ -123,10 +123,10 @@ const EventView = () => {
     }
 
     if (location.toString() !== '') {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) =>
-          s.location.toLocaleLowerCase() ===
-          location.toString().toLocaleLowerCase(),
+      filteredData = filteredData.filter((s: ISportEvent) =>
+        s.location
+          .toLocaleLowerCase()
+          .includes(location.toString().toLocaleLowerCase()),
       );
     }
 
