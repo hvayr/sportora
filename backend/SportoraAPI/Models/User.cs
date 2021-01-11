@@ -26,6 +26,8 @@ namespace SportoraAPI.Models
         [UsernameUnique]
         public string UserName { get; set; }
 
+        public string NickName { get; set; }
+
         public string Gender { get; set; }
         //public int[] GroupIds { get; set; }
         //public virtual List<Group> Groups { get; set; }
