@@ -50,6 +50,13 @@ const useStyles = makeStyles((theme) =>
         marginLeft: '5px',
       },
     },
+    location: {
+      marginLeft: '0.5em',
+      '& .MuiInputBase-input': {
+        textAlign: 'center',
+        marginLeft: '5px',
+      },
+    },
   }),
 );
 
@@ -124,7 +131,7 @@ const CreateEvent: React.FC<DialogProps> = (props: DialogProps) => {
             <form className={classes.dialog}>
               <Grid container>
                 <Grid item>
-                  <SportSelect />
+                  <SportSelect getSport={sport} setSport={setSport} />
                 </Grid>
                 <Grid item className={classes.date}>
                   <DateTimeSelect />

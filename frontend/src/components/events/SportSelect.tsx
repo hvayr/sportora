@@ -2,6 +2,7 @@ import React from 'react';
 import { createStyles, MenuItem } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import { sports } from '../../api/sports';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,26 +20,6 @@ const useStyles = makeStyles((theme) =>
     },
   }),
 );
-
-export const sports = [
-  { value: 'Any', label: 'Any' },
-  {
-    value: 'Hockey',
-    label: 'Hockey',
-  },
-  {
-    value: 'Football',
-    label: 'Football',
-  },
-  {
-    value: 'Badminton',
-    label: 'Badminton',
-  },
-  {
-    value: 'Tennis',
-    label: 'Tennis',
-  },
-];
 
 type SwitchProps = {
   getSport: any;

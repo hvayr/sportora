@@ -6,10 +6,10 @@ import {
 } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 
-type DateProps = {
+interface DateProps {
   getDate: any;
   setDate: any;
-};
+}
 
 const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
   // useEffect(() => {
@@ -21,7 +21,6 @@ const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
       <KeyboardDatePicker
         variant="inline"
         inputVariant="outlined"
-        ampm={false}
         label="Date"
         value={getDate}
         onChange={setDate}

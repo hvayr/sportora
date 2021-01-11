@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, TextField } from '@material-ui/core';
+import { Dialog, Grid, Paper, TextField, Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventCard from '../events/EventCard';
 import Button from '@material-ui/core/Button';
@@ -11,6 +11,8 @@ import SportSelect from '../events/SportSelect';
 import DateSelect from '../events/DateSelect';
 import SwitchComponent from '../events/SwitchComponent';
 import CreateEvent from '../events/CreateEvent';
+import TestCreateEventForm from '../events/TestCreateEventForm';
+import ControlPointIcon from '@material-ui/icons/ControlPoint';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -60,6 +62,16 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '1.5rem',
       color: 'rgba(0, 0, 0, 0.54)',
     },
+    dialog: {
+      '& .MuiDialog-paperWidthSm': {
+        backgroundColor: theme.palette.primary.main,
+      },
+    },
+    createForm: {
+      margin: theme.spacing(1),
+      padding: theme.spacing(3),
+      backgroundColor: theme.palette.secondary.main,
+    },
   }),
 );
 
@@ -69,6 +81,7 @@ const EventView = () => {
   const [location, setLocation] = useState('');
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
   const [hideFullToggle, setHideFullToggle] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -141,6 +154,14 @@ const EventView = () => {
     return filteredData;
   }
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const classes = useStyles();
 
   return (
@@ -169,8 +190,25 @@ const EventView = () => {
         <Grid container sm={6}>
           <Grid container justify="center">
             <Grid item sm={9}>
-              <Button variant="contained" className={classes.hostEvent}>
-                <CreateEvent name="test" />
+              <Button
+                variant="contained"
+                className={classes.hostEvent}
+                color="primary"
+                onClick={handleClickOpen}
+              >
+                <ControlPointIcon fontSize="large" />
+                <Typography variant="h4" style={{ color: 'black' }}>
+                  HOST EVENT
+                </Typography>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  className={classes.dialog}
+                >
+                  <Paper className={classes.createForm}>
+                    <TestCreateEventForm />
+                  </Paper>
+                </Dialog>
               </Button>
             </Grid>
             <Grid item container justify="flex-start" sm={9}>
