@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-types,react/prop-types,@typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/ban-types,react/prop-types,@typescript-eslint/ban-ts-comment,@typescript-eslint/explicit-module-boundary-types */
 import React from 'react';
 import { Form, Formik } from 'formik';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,15 +7,12 @@ import { createStyles } from '@material-ui/core';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      '& .MuiFormControl-root': {
-        width: '80%',
-        margin: theme.spacing(1),
-      },
+      // '& .MuiFormControl-root': {
+      //   width: '80%',
+      //   margin: theme.spacing(1),
+      // },
     },
-    location: {
-      width: '50em',
-    },
-    selectSport: {
+    box: {
       margin: 'auto',
     },
   }),
@@ -23,7 +20,6 @@ const useStyles = makeStyles((theme) =>
 
 const useForm = (initialValues: object) => {
   const [values, setValues] = React.useState(initialValues);
-  const classes = useStyles();
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
@@ -41,18 +37,11 @@ const useForm = (initialValues: object) => {
   };
 };
 
-interface FormikProps {
-  initialValues: object;
-  onSubmit: object;
-}
-
 // @ts-ignore
-export const FormikForm = (props) => {
-  return (
-    <Formik initialValues={props.initialValues} onSubmit={props.onSubmit}>
-      <Form>{props.children}</Form>
-    </Formik>
-  );
+export const CustomForm = (props) => {
+  const classes = useStyles();
+
+  return <Form className={classes.root}>{props.children}</Form>;
 };
 
 export default useForm;

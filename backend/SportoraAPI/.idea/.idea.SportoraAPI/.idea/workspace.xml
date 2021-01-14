@@ -32,14 +32,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/TestCreateEventForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/api/saveUser.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/sportLogos.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/refactoring/CreateEventRefactoring.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/isAvailable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/isAvailable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/saveUserIfNotExisting.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/AdContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/AdContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/EventContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Fetch/isAvailable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Formik/FormikField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/forms/FormikField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Formik/FormikSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/forms/FormikSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Formik/useForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/forms/useForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEvent.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/LocationSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/LocationSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/TestCreateEvent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/SwitchComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SwitchComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/TestCreateEventForm.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/TimeSelect.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/EditProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/EditProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/users/UserComponent.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/users/UserSearch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/assets/Theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/event-testing.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +82,11 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAdminRequirement.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="1j6xawqIDFX5q1wkpbCoZ9jzKb9" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -159,6 +190,10 @@
       <workItem from="1610010674923" duration="1554000" />
       <workItem from="1610198644750" duration="1570000" />
       <workItem from="1610286069307" duration="623000" />
+      <workItem from="1610448502865" duration="3663000" />
+      <workItem from="1610545668206" duration="1554000" />
+      <workItem from="1610639463872" duration="611000" />
+      <workItem from="1610640321699" duration="1236000" />
     </task>
     <servers />
   </component>

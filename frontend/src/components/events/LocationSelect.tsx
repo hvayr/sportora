@@ -59,7 +59,7 @@ const LocationSelect: React.FC = () => {
       >
         {sports.map((option) => (
           <MenuItem key={option.value} value={option.value}>
-            {option.label}
+            {option.value}
           </MenuItem>
         ))}
       </TextField>

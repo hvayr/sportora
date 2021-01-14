@@ -1,7 +1,7 @@
 import React from 'react';
 import MainView from './components/views/main-view';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './components/views/Theme';
+import theme from './assets/Theme';
 import { CssBaseline } from '@material-ui/core';
 
 const App: React.FC = () => {

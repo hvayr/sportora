@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Dialog, Grid, Paper, TextField, Typography } from '@material-ui/core';
+import {
+  Dialog,
+  Grid,
+  Paper,
+  Snackbar,
+  TextField,
+  Typography,
+} from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventCard from '../events/EventCard';
 import Button from '@material-ui/core/Button';
@@ -10,15 +17,16 @@ import { createStyles, Theme } from '@material-ui/core/styles';
 import SportSelect from '../events/SportSelect';
 import DateSelect from '../events/DateSelect';
 import SwitchComponent from '../events/SwitchComponent';
-import CreateEvent from '../events/CreateEvent';
-import TestCreateEventForm from '../events/TestCreateEventForm';
+import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     eventList: {
       height: 1050,
       marginTop: '5px',
+      display: 'block',
     },
     mainContainer: {
       backgroundColor: theme.palette.primary.main,
@@ -26,22 +34,22 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: '10px',
     },
     locationMenu: {
-      marginLeft: '0.5em',
+      marginLeft: '-2em',
+      marginTop: '-1em',
       height: '1em',
-      width: '11.25em',
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
         width: '20ch',
       },
       '& .MuiFormLabel-root': {
-        fontSize: '1.5rem',
+        fontSize: '2rem',
       },
       '& .MuiInput-root': {
         marginTop: '1.5em',
       },
     },
     dateMenu: {
-      marginLeft: '3em',
+      marginLeft: '-6.5em',
       marginTop: '0.6em',
       '& label + .MuiInput-formControl': {
         marginTop: '1.75em',
@@ -75,13 +83,18 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+function Alert(props: AlertProps) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const EventView = () => {
   const [eventData, setEventData] = useState([]);
   const [sport, setSport] = useState(['Any']);
   const [location, setLocation] = useState('');
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
   const [hideFullToggle, setHideFullToggle] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -95,7 +108,7 @@ const EventView = () => {
       setEventData(await result.content);
     };
     getData();
-  }, []);
+  }, [openDialog, setOpenDialog]);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
@@ -123,7 +136,7 @@ const EventView = () => {
     // @ts-ignore
     if (hideFullToggle.checked) {
       filteredData = filteredData.filter(
-        (s: ISportEvent) => s.participants.length >= s.maxParticipants,
+        (s: ISportEvent) => s.numParticipants <= s.maxParticipants,
       );
     }
 
@@ -132,7 +145,6 @@ const EventView = () => {
         (s: ISportEvent) =>
           s.name.toLocaleLowerCase() === sport.toString().toLocaleLowerCase(),
       );
-      console.log('testi ' + filteredData);
     }
 
     if (location.toString() !== '') {
@@ -154,94 +166,126 @@ const EventView = () => {
     return filteredData;
   }
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleClickOpenDialog = () => {
+    setOpenDialog(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleCloseSnackbar = (
+    event?: React.SyntheticEvent,
+    reason?: string,
+  ) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
   };
 
   const classes = useStyles();
 
   return (
     <>
-      <Grid container className={classes.mainContainer}>
-        <Grid item sm={6}>
-          <Grid container style={{ border: '2px black' }}>
-            <Grid item>
-              <SportSelect getSport={sport} setSport={setSport} />
-            </Grid>
-            <Grid item className={classes.dateMenu}>
-              <DateSelect getDate={selectedDate} setDate={handleDateChange} />
-            </Grid>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert onClose={handleCloseSnackbar} severity="success">
+          Event created succesfully!
+        </Alert>
+      </Snackbar>
+      <Grid
+        container
+        className={classes.mainContainer}
+        spacing={1}
+        justify="center"
+      >
+        <Grid item container alignItems="center" justify="center">
+          <Grid item>
+            <SportSelect getSport={sport} setSport={setSport} />
           </Grid>
-          <Grid container>
-            <Grid item sm={6}>
-              <TextField
-                className={classes.locationMenu}
-                label="Location"
-                onChange={handleLocationChange}
-                color="secondary"
-              />
-            </Grid>
+          <Grid item className={classes.dateMenu}>
+            <DateSelect getDate={selectedDate} setDate={handleDateChange} />
+          </Grid>
+          <Grid item>
+            <TextField
+              className={classes.locationMenu}
+              label="Location"
+              variant="outlined"
+              onChange={handleLocationChange}
+              color="secondary"
+            />
           </Grid>
         </Grid>
-        <Grid container sm={6}>
-          <Grid container justify="center">
-            <Grid item sm={9}>
-              <Button
-                variant="contained"
-                className={classes.hostEvent}
-                color="primary"
-                onClick={handleClickOpen}
+        <Grid item container justify="center">
+          <Grid item>
+            <Button
+              variant="contained"
+              className={classes.hostEvent}
+              color="primary"
+              onClick={handleClickOpenDialog}
+            >
+              <ControlPointIcon fontSize="large" />
+              <Typography variant="h4" style={{ color: 'black' }}>
+                HOST EVENT
+              </Typography>
+              <Dialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+                className={classes.dialog}
               >
-                <ControlPointIcon fontSize="large" />
-                <Typography variant="h4" style={{ color: 'black' }}>
-                  HOST EVENT
-                </Typography>
-                <Dialog
-                  open={open}
-                  onClose={handleClose}
-                  className={classes.dialog}
-                >
-                  <Paper className={classes.createForm}>
-                    <TestCreateEventForm />
-                  </Paper>
-                </Dialog>
-              </Button>
-            </Grid>
-            <Grid item container justify="flex-start" sm={9}>
-              <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />
-            </Grid>
+                <Paper className={classes.createForm}>
+                  <CreateEventForm
+                    setOpenDialog={setOpenDialog}
+                    setOpenEventViewSnackbar={setOpenSnackbar}
+                  />
+                </Paper>
+              </Dialog>
+            </Button>
+          </Grid>
+          <Grid item style={{ marginTop: '20px', marginLeft: '20px' }}>
+            <SwitchComponent name="Hide Full" toggle={setHideFullToggle} />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={classes.eventList}>
-        <GridList cellHeight={120} className={classes.eventList} cols={1}>
-          {filteredEvents().map(
-            ({
-              id,
-              name,
-              participants,
-              maxParticipants,
-              description,
-              date,
-            }) => (
-              <GridListTile key={id} cols={1}>
-                <EventCard
-                  id={id}
-                  sport={name}
-                  participants={participants}
-                  maxParticipants={maxParticipants}
-                  description={description}
-                  date={date}
-                />
-                ));
-              </GridListTile>
-            ),
-          )}
-        </GridList>
+      <Grid container className={classes.eventList}>
+        <Grid item>
+          <GridList cellHeight="auto" className={classes.eventList} cols={1}>
+            {filteredEvents().map(
+              ({
+                id,
+                name,
+                participants,
+                maxParticipants,
+                numParticipants,
+                description,
+                date,
+                author,
+              }) => (
+                <Grid container key={id} justify="center">
+                  <Grid item>
+                    <GridListTile key={id} cols={1}>
+                      <EventCard
+                        id={id}
+                        sport={name}
+                        participants={participants}
+                        maxParticipants={maxParticipants}
+                        numParticipants={numParticipants}
+                        description={description}
+                        date={date}
+                        author={author}
+                      />
+                      ));
+                    </GridListTile>
+                  </Grid>
+                </Grid>
+              ),
+            )}
+          </GridList>
+        </Grid>
       </Grid>
     </>
   );

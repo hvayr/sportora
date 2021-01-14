@@ -1,12 +1,14 @@
 import React from 'react';
-import { createStyles, MenuItem } from '@material-ui/core';
+import { createStyles } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { sports } from '../../api/sports';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
+    sport: {
+      width: '70%',
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
         width: '20ch',
@@ -21,10 +23,10 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-type SwitchProps = {
+interface SwitchProps {
   getSport: any;
   setSport: any;
-};
+}
 
 const SportSelect: React.FC<SwitchProps> = ({
   getSport,
@@ -32,28 +34,31 @@ const SportSelect: React.FC<SwitchProps> = ({
 }: SwitchProps) => {
   const classes = useStyles();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSport(event.target.value);
-    localStorage.setItem('sport', event.target.value.toString());
-  };
+  // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setSport(event.target.value);
+  //   localStorage.setItem('sport', event.target.value.toString());
+  // };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <TextField
-        id="select-sport"
-        select
-        label="Sport"
-        value={getSport}
-        onChange={handleChange}
-        color="secondary"
-        variant="outlined"
-      >
-        {sports.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
+    <form noValidate autoComplete="off">
+      <Autocomplete
+        options={sports}
+        getOptionLabel={(option) => option.value}
+        style={{ width: 300 }}
+        onChange={(e, value) => {
+          setSport(value !== null ? value.value : 'Any');
+        }}
+        renderInput={(params) => (
+          <TextField
+            margin="normal"
+            name="sport"
+            label="Sport"
+            variant="outlined"
+            {...params}
+            className={classes.sport}
+          />
+        )}
+      />
     </form>
   );
 };

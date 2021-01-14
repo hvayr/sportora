@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { createStyles, Theme } from '@material-ui/core/styles';
 import 'fontsource-roboto';
 import { useAuth0 } from '@auth0/auth0-react';
-import { saveUserIfNotExisting } from '../../api/saveUserIfNotExisting';
+import saveUserIfNotExisting from '../../api/saveUser';
 import Header from './Header';
 import { Grid } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import EventContainer from '../EventContainer';
+import EventContainer from '../events/EventContainer';
 import Footer from './Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -56,8 +56,8 @@ const MainView: React.FC = () => {
             <AdContainer />
           </Grid>
         </Grid>*/}
+        <Footer />
       </Grid>
-      <Footer />
     </div>
   );
 };

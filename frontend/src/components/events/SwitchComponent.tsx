@@ -60,10 +60,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-type SwitchLabelProps = {
+interface SwitchLabelProps {
   name: string;
   toggle: any;
-};
+}
 
 const SwitchComponent: React.FC<SwitchLabelProps> = ({
   name,

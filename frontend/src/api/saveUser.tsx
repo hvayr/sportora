@@ -1,4 +1,5 @@
 import { address, doFetch, Method, Path } from './utils';
+import { User } from '@auth0/auth0-react/dist/auth-state';
 
 export async function isAvailable(
   searchFrom: string,
@@ -26,3 +27,29 @@ export async function isAvailable(
   console.log(isSearchedPropertyAvailable ? 'available' : 'not available');
   return isSearchedPropertyAvailable;
 }
+
+const saveUserIfNotExisting = async (user: User): Promise<void> => {
+  const { sub, email, name } = user;
+  console.log('Checking availability...');
+  if (await isAvailable('id', sub)) {
+    const saveUser = await doFetch(
+      address,
+      Path.USERS,
+      Method.POST,
+      false,
+      null,
+      {
+        authId: sub,
+        email: email,
+        userName: name,
+      },
+    );
+    console.log(
+      saveUser.status === 201
+        ? 'User saved to database'
+        : 'User' + ' not saved to database',
+    );
+  }
+};
+
+export default saveUserIfNotExisting;

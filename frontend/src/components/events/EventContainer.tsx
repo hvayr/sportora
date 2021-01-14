@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Profile from './profile/Profile';
-import EditProfile from './profile/EditProfile';
-import EventView from './views/event-view';
+import Profile from '../profile/Profile';
+import EditProfile from '../profile/EditProfile';
+import EventView from '../views/event-view';
 
 const EventContainer: React.FC = () => {
   return (

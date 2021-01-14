@@ -30,29 +30,6 @@ namespace SportoraAPI.Controllers
             _auth0UserInfo = $"{configuration["Auth0:Authority"]}userinfo";
         }
 
-        private async Task<string> GetUserName()
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, _auth0UserInfo);
-            request.Headers.Add("Authorization",
-                Request.Headers["Authorization"].First());
-
-            var client = _clientFactory.CreateClient();
-
-            var response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonContent = await response.Content.ReadAsStringAsync();
-                var user = JsonSerializer.Deserialize<AuthorizedUser>(jsonContent,
-                    new JsonSerializerOptions {PropertyNameCaseInsensitive = true});
-                return user.Name;
-            }
-            else
-            {
-                return "";
-            }
-        }
-
         [Authorize]
         [HttpGet("protected")]
         public async Task<IActionResult> GetProtectedSportEvents()

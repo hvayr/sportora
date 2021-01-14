@@ -9,8 +9,8 @@ import {
 import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import FormikField from '../Formik/FormikField';
-import FormikSelect, { FormikSelectItem } from '../Formik/FormikSelect';
+import FormikField from '../forms/FormikField';
+import FormikSelect, { FormikSelectItem } from '../forms/FormikSelect';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  DateTimePicker,
   KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
@@ -21,6 +20,7 @@ function DateTimeSelect() {
         variant="inline"
         inputVariant="outlined"
         ampm={false}
+        autoOk={true}
         label="Event start time"
         value={selectedDate}
         onChange={handleDateChange}

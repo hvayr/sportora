@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
-  DateTimePicker,
   KeyboardDatePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
@@ -28,6 +27,7 @@ const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
         autoOk={true}
         format="yyyy/MM/dd"
         color="secondary"
+        style={{ width: '90%' }}
       />
     </MuiPickersUtilsProvider>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import logo from '../../assets/logo.png';
-import { AppBar, createStyles, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, createStyles, Toolbar } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ProfileMenu from '../profile/ProfileMenu';
 import LoginButton from '../../auth/login-button';
@@ -11,7 +11,11 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      flexGrow: 1,
+      // flexGrow: 1,
+      '& .MuiAppBar-colorPrimary': {
+        backgroundColor: '#fff',
+      },
+      borderRadius: '10px',
     },
     toolbar: {
       minHeight: 128,
@@ -19,6 +23,13 @@ const useStyles = makeStyles((theme) =>
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(2),
       backgroundColor: 'white',
+      borderRadius: '10px',
+      '& .MuiAppBar-colorPrimary': {
+        borderRadius: '10px',
+      },
+      '& .MuiToolBar-regular': {
+        borderRadius: '10px',
+      },
     },
     title: {
       flexGrow: 1,
@@ -34,15 +45,15 @@ const useStyles = makeStyles((theme) =>
   }),
 );
 
-export default function Header() {
+const Header: React.FC = () => {
   const { isAuthenticated } = useAuth0();
 
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
+    <div>
+      <AppBar position="static" className={classes.root}>
+        <Toolbar classes={{ root: classes.toolbar }}>
           <Link to="/">
             <img src={logo} alt="logo" className={classes.logo} />
           </Link>
@@ -53,4 +64,6 @@ export default function Header() {
       </AppBar>
     </div>
   );
-}
+};
+
+export default Header;
