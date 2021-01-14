@@ -5,6 +5,8 @@ using SportoraAPI.Models;
 using SportoraAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 
 namespace SportoraAPI.Controllers
 {
@@ -97,6 +99,7 @@ namespace SportoraAPI.Controllers
             return Ok(user);
         }
 
+
         [HttpPatch("id/{id}")]
         public IActionResult UpdateUser(string id, [FromBody] JsonPatchDocument<User> patchDocument)
         {
@@ -106,9 +109,33 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-            
+
             _userRepository.UpdateUser(id, patchDocument);
-            
+
+
+            return NoContent();
+        }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpPatch]
+        public IActionResult UpdateAuthorizedUser([FromBody] JsonPatchDocument<User> patchDocument)
+        {
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (authId is null)
+            {
+                return Problem(detail: "AuthId not found");
+            }
+
+            User userToUpdate = _userRepository.GetUserById(authId);
+
+            if (userToUpdate == null)
+            {
+                return NotFound();
+            }
+
+            _userRepository.UpdateUser(authId, patchDocument);
+
 
             return NoContent();
         }
