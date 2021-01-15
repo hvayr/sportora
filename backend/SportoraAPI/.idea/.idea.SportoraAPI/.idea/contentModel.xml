@@ -40,6 +40,8 @@
         <e p="20201201182902_FixUserGroups.Designer.cs" t="Include" />
         <e p="20201211230958_new initial.cs" t="Include" />
         <e p="20201211230958_new initial.Designer.cs" t="Include" />
+        <e p="20210111122331_NickName.cs" t="Include" />
+        <e p="20210111122331_NickName.Designer.cs" t="Include" />
         <e p="DatabaseContextModelSnapshot.cs" t="Include" />
       </e>
       <e p="Models" t="Include">

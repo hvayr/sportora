@@ -3,8 +3,9 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import { sports } from '../../api/sports';
+import { address, doFetch, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -53,12 +54,10 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     }
   });
 
-  console.log(getIcon);
-
   return (
     <Grid container>
       <Grid item>
-        <Card className={classes.root} variant="outlined" raised style={{ props. }}>
+        <Card className={classes.root} variant="outlined">
           <CardContent>
             <Grid container>
               <Grid item xs={1}>

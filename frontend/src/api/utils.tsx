@@ -49,6 +49,7 @@ export enum Path {
   PROTECTEDEVENTS = '/sportevents/protected',
   EMAIL = '/users/email', //not implemented yet
   PARTICIPATINGEVENTS = '/sportevents/participatingevents',
+  ADMINEVENTS = '/sportevents/adminevents',
 }
 
 export const address = `https://localhost:44348`;

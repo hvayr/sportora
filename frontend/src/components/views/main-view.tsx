@@ -3,11 +3,11 @@ import { createStyles, Theme } from '@material-ui/core/styles';
 import 'fontsource-roboto';
 import { useAuth0 } from '@auth0/auth0-react';
 import saveUserIfNotExisting from '../../api/saveUser';
-import Header from './Header';
+import Header from '../ui/Header';
 import { Grid } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventContainer from '../events/EventContainer';
-import Footer from './Footer';
+import Footer from '../ui/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
