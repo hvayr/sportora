@@ -267,8 +267,9 @@ const EventView = () => {
                 maxParticipants,
                 numParticipants,
                 description,
-                date,
+                eventStartTime,
                 author,
+                location,
               }) => (
                 <Grid container key={id} justify="center">
                   <Grid item>
@@ -280,8 +281,9 @@ const EventView = () => {
                         maxParticipants={maxParticipants}
                         numParticipants={numParticipants}
                         description={description}
-                        date={date}
+                        eventStartTime={eventStartTime}
                         author={author}
+                        location={location}
                       />
                       ));
                     </GridListTile>

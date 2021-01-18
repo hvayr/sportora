@@ -3,16 +3,35 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Button, Grid } from '@material-ui/core';
+import {
+  Button,
+  Collapse,
+  Dialog,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemText,
+} from '@material-ui/core';
 import { sports } from '../../api/sports';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import moment from 'moment';
+
+const dummyParticipants = [
+  {
+    nickname: 'antero',
+  },
+
+  {
+    nickname: 'jorma',
+  },
+];
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      minWidth: 700,
-      maxWidth: 800,
+      width: 700,
       margin: '2px',
-      height: '220px',
       backgroundColor: theme.palette.primary.main,
       borderRadius: '10px',
       transition: 'background-color',
@@ -24,22 +43,22 @@ const useStyles = makeStyles((theme: Theme) =>
         transitionDuration: '500ms',
         transitionTimingFunction: 'ease-out',
       },
-      '&::after, &::before': {
-        position: 'absolute',
-        content: '""',
-        width: '150px',
-        height: '10px',
-        background: theme.palette.secondary.main,
-        bottom: '17.2em',
-      },
-      '&::before': {
-        right: '50%',
-        transform: 'skew(0, 20deg)',
-      },
-      '&::after': {
-        left: '50%',
-        transform: 'skew(0, -20deg)',
-      },
+      // '&::after, &::before': {
+      //   position: 'absolute',
+      //   content: '""',
+      //   width: '150px',
+      //   height: '10px',
+      //   background: theme.palette.secondary.main,
+      //   bottom: '17.2em',
+      // },
+      // '&::before': {
+      //   right: '50%',
+      //   transform: 'skew(0, 20deg)',
+      // },
+      // '&::after': {
+      //   left: '50%',
+      //   transform: 'skew(0, -20deg)',
+      // },
     },
     bullet: {
       display: 'inline-block',
@@ -57,25 +76,43 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     descriptionContainer: {
       height: '100px',
+      marginTop: '30px',
     },
     participantContainer: {
       height: '130px',
     },
+    participantText: {
+      marginLeft: '40px',
+    },
+    expandIcon: {
+      marginTop: '-8px',
+    },
   }),
 );
 
-type EventProps = {
+interface EventProps {
   id: number;
   sport: string;
   participants: string[];
   numParticipants: number;
   maxParticipants: number;
   description: string;
-  date: string;
+  eventStartTime: string;
   author: string;
-};
+  location: string;
+}
 
-const EventCard: React.FC<EventProps> = (props: EventProps) => {
+export interface DialogProps {
+  open: boolean;
+  setOpen: (value: boolean) => void;
+}
+
+const EventCard: React.FC<EventProps> = (
+  props: EventProps,
+  dialogProps: DialogProps,
+) => {
+  const [open, setOpen] = React.useState<boolean>(false);
+  const [expanded, setExpanded] = React.useState(false);
   const classes = useStyles();
 
   const getIcon = sports.map((s) => {
@@ -84,19 +121,54 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     }
   });
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+
+  const nameList: any = () => {
+    let list = [];
+    list = dummyParticipants.map((p) => p.nickname);
+    console.log('List: ' + list);
+    console.log();
+    return list.join(', ');
+  };
+
   return (
     <Grid container>
       <Grid item>
-        <Card className={classes.root}>
+        <Card
+          className={classes.root}
+          style={
+            expanded ? { height: 250 + dummyParticipants.length * 10 } : {}
+          }
+        >
           <CardContent>
             <Grid container>
               <Grid item xs={1}>
                 {getIcon}
               </Grid>
-              <Grid item xs={3}>
-                <Typography variant="h5" component="h1">
-                  {props.sport}
-                </Typography>
+              <Grid item container direction="column" xs={3}>
+                <Grid item>
+                  <Typography variant="h5" component="h1">
+                    {props.sport}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography>
+                    {moment(props.eventStartTime).format('MMMM Do, h:mm')}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography>{props.location}</Typography>
+                </Grid>
               </Grid>
               <Grid item xs={2} />
               <Grid
@@ -130,7 +202,8 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                 className={classes.descriptionContainer}
               >
                 <Grid item>
-                  <Typography component="p">{props.description}</Typography>
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  <Typography component="p">"{props.description}"</Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -146,8 +219,35 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   justify="flex-start"
                   alignItems="center"
                 >
+                  <Grid item container justify="center">
+                    <Typography
+                      className={classes.participantText}
+                      variant="h6"
+                    >
+                      PARTICIPANTS
+                    </Typography>
+                    <Grid item>
+                      <IconButton
+                        className={classes.expandIcon}
+                        onClick={handleExpandClick}
+                      >
+                        <ExpandMoreIcon />
+                        {/*<Dialog open={open} onClose={handleClose}>
+                          <List>
+                            {dummyParticipants.map((p) => (
+                              <ListItem key={p.nickname}>p.nickname</ListItem>
+                            ))}
+                          </List>
+                        </Dialog>*/}
+                      </IconButton>
+                    </Grid>
+                  </Grid>
                   <Grid item>
-                    <Typography variant="h6">PARTICIPANTS</Typography>
+                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                      <CardContent>
+                        <Typography>{nameList()}</Typography>
+                      </CardContent>
+                    </Collapse>
                   </Grid>
                   <Grid item container justify="center">
                     <Typography variant="h6">
