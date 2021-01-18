@@ -166,7 +166,7 @@ const EventView = () => {
     return filteredData;
   }
 
-  const handleClickOpenDialog = () => {
+  const handleOpenDialog = () => {
     setOpenDialog(true);
   };
 
@@ -184,6 +184,11 @@ const EventView = () => {
     setOpenSnackbar(false);
   };
 
+  const handleClick = () => {
+    sessionStorage.getItem('sub')
+      ? handleOpenDialog()
+      : alert('You need to be logged in to' + ' host an event.');
+  };
   const classes = useStyles();
 
   return (
@@ -226,7 +231,7 @@ const EventView = () => {
               variant="contained"
               className={classes.hostEvent}
               color="primary"
-              onClick={handleClickOpenDialog}
+              onClick={handleClick}
             >
               <ControlPointIcon fontSize="large" />
               <Typography variant="h4" style={{ color: 'black' }}>

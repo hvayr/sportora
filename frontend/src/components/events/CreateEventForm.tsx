@@ -10,13 +10,10 @@ import {
 import TextField from '@material-ui/core/TextField';
 import { sports } from '../../api/sports';
 import Grid from '@material-ui/core/Grid';
-import { useAuth0 } from '@auth0/auth0-react';
 import { User } from '@auth0/auth0-react/dist/auth-state';
 import { makeStyles } from '@material-ui/core/styles';
-import { Formik } from 'formik';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { useFormik } from 'formik';
-import useForm from '../forms/useForm';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   KeyboardDateTimePicker,
@@ -117,10 +114,9 @@ const CreateEventForm: React.FC<IProps> = ({
   const classes = useStyles();
 
   const onSubmit = async (values: object, user: User) => {
-    const { sub, email, name } = user;
+    const { email, name } = user;
     // @ts-ignore
     const { sport, description, date, location, maxParticipants } = values;
-    // console.log('Date ', date.toJSON());
 
     try {
       const response = await doFetch(
@@ -130,7 +126,7 @@ const CreateEventForm: React.FC<IProps> = ({
         true,
         null,
         {
-          author: sub,
+          author: sessionStorage.getItem('sub'),
           name: sport,
           email: email,
           userName: name,
