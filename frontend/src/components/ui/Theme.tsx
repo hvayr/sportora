@@ -2,8 +2,8 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import orange from '@material-ui/core/colors/orange';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 
-const color1 = '#EF6C00';
-const color2 = orange[200];
+const color1 = '#000000';
+const color2 = '#FFFFFF';
 
 export default createMuiTheme({
   typography: {
@@ -24,3 +24,7 @@ export default createMuiTheme({
     },
   },
 });
+
+export const colors = {
+  color1: '#1E88E5',
+};

@@ -7,6 +7,7 @@ import { Button, Collapse, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
+import { colors } from '../ui/Theme';
 
 const dummyParticipants = [
   {
@@ -33,14 +34,16 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: 700,
       margin: '2px',
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.main,
+      border: '10px solid',
+      color: theme.palette.primary.main,
       borderRadius: '10px',
       transition: 'background-color',
       '& .MuiCard-root': {
         overflow: 'visible',
       },
       '&:hover': {
-        backgroundColor: '#BF360C',
+        backgroundColor: colors.color1,
         transitionDuration: '500ms',
         transitionTimingFunction: 'ease-out',
       },

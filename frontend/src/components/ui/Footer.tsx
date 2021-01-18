@@ -12,11 +12,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Footer: React.FC = () => {
   const classes = useStyles();
-  return (
-    <div className={classes.root}>
-      <Typography variant="h1">Footer</Typography>
-    </div>
-  );
+  return <div className={classes.root}></div>;
 };
 
 export default Footer;

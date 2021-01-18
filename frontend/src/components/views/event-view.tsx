@@ -27,9 +27,16 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 1050,
       marginTop: '5px',
       display: 'block',
+      '&::-webkit-scrollbar': {
+        width: '1em',
+      },
+      '&::-webkit-scrollbar-thumb': {
+        background: `linear-gradient(transparent, ${theme.palette.primary.main})`,
+        borderRadius: '6px',
+      },
     },
     mainContainer: {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: '#FFFFFF',
       height: '11em',
       borderRadius: '10px',
     },
@@ -95,6 +102,7 @@ const EventView = () => {
   const [hideFullToggle, setHideFullToggle] = useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [newEventOnTop, setNewEventOnTop] = React.useState('');
 
   useEffect(() => {
     const getData = async () => {

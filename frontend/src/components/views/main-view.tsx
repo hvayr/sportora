@@ -11,9 +11,14 @@ import Footer from '../ui/Footer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      // background: `repeating-linear-gradient(#101010, #424242)`,
+      background: '#FFFFFF',
+      height: '1500px',
+    },
     app: {
-      maxWidth: '1000px',
       margin: 'auto',
+      maxWidth: '1000px',
     },
     mainContainer: {
       marginTop: '0.5em',
@@ -44,20 +49,21 @@ const MainView: React.FC = () => {
   }, [isAuthenticated]);
 
   return (
-    <div className={classes.app}>
+    <div className={classes.root}>
       <Header />
-      <Grid container className={classes.mainContainer}>
-        <Grid item className={classes.eventContainer} sm={12}>
-          <EventContainer />
-        </Grid>
-        {/*<Grid container sm={4}>
+      <div className={classes.app}>
+        <Grid container className={classes.mainContainer}>
+          <Grid item className={classes.eventContainer} sm={12}>
+            <EventContainer />
+          </Grid>
+          {/*<Grid container sm={4}>
           <Grid sm={1} />
           <Grid container className={classes.root} direction="column" sm={11}>
             <AdContainer />
           </Grid>
         </Grid>*/}
-        <Footer />
-      </Grid>
+        </Grid>
+      </div>
     </div>
   );
 };
