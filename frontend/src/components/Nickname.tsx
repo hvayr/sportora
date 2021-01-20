@@ -108,6 +108,20 @@ export const FirstTimeLoginNickName: React.FC = () => {
     setOpen(false);
   };
 
+  // const nickname = async () => {
+  //   const results = await doFetch(
+  //     address,
+  //     Path.CHECKNICKNAME,
+  //     Method.GET,
+  //     true,
+  //   );
+  //   if (results.content === false) {
+  //     alert('change nickname');
+  //   }
+  //   console.log('nick ' + results.content + results.status);
+  // };
+  // nickname();
+
   const onSubmit = () => {
     const fetchData = async () => {
       const patchedBody = [

@@ -42,17 +42,6 @@ const MainView: React.FC = () => {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('sub', user.sub);
         console.log('Token: ' + sessionStorage.getItem('token'));
-
-        // const nickname = async () => {
-        //   const results = await doFetch(
-        //     address,
-        //     Path.GETNICKNAME,
-        //     Method.GET,
-        //     true,
-        //   );
-        //   console.log('nick ' + (await results.content) + results.status);
-        // };
-        // nickname();
       }
       console.log('authenticated: ' + isAuthenticated);
     };

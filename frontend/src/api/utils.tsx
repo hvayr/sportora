@@ -50,7 +50,7 @@ export enum Path {
   EMAIL = '/users/email', //not implemented yet
   PARTICIPATINGEVENTS = '/sportevents/participatingevents',
   ADMINEVENTS = '/sportevents/adminevents',
-  GETNICKNAME = '/users/getNickName',
+  CHECKNICKNAME = '/users/checkNickName',
 }
 
 export const address = `https://localhost:44348`;

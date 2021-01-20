@@ -150,8 +150,8 @@ namespace SportoraAPI.Controllers
         }
 
         [Authorize(Policy = "MustBeLoggedIn")]
-        [HttpGet("getNickName")]
-        public IActionResult GetNickName()
+        [HttpGet("checkNickName")]
+        public IActionResult CheckIfNickNameIsSet()
         {
             string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
@@ -167,7 +167,14 @@ namespace SportoraAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(_userRepository.GetUserNickName(authId));
+            string nickName = _userRepository.GetUserNickName(authId);
+            
+            if (nickName is null)
+            {
+                return Ok(false);
+            }
+
+            return Ok(true);
         }
     }
 }
