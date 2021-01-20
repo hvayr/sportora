@@ -20,7 +20,6 @@ import SwitchComponent from '../events/SwitchComponent';
 import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-import { NickName } from '../Nickname';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -259,7 +258,6 @@ const EventView = () => {
         </Grid>
       </Grid>
       <Grid container className={classes.eventList}>
-        <NickName />
         <Grid item>
           <GridList cellHeight="auto" className={classes.eventList} cols={1}>
             {filteredEvents().map(
