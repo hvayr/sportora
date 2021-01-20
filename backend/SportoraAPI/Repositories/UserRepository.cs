@@ -54,13 +54,13 @@ namespace SportoraAPI.Repositories
             return await _context.Users.Where(u => u.Email.Equals(email)).ToListAsync();
         }
 
-        public void RemoveUser(string userId)
-            {
-                User userToDelete =
-                    _context.Users.FirstOrDefault(u => u.Id.Equals(userId));
-                _context.Users.Remove(userToDelete);
-                _context.SaveChanges();
-            }
+        public void RemoveUser(string authId)
+        {
+            User userToDelete =
+                _context.Users.FirstOrDefault(u => u.AuthId == authId);
+            _context.Users.Remove(userToDelete);
+            _context.SaveChanges();
+        }
 
         public User GetUserGroupsById(int id)
         {
@@ -72,6 +72,16 @@ namespace SportoraAPI.Repositories
                 return null;
 
             return user;
+        }
+
+        public string GetUserNickName(string authId)
+        {
+            User user = _context.Users.FirstOrDefault(u => u.AuthId == authId);
+
+            if (user is null)
+                return null;
+
+            return user.NickName;
         }
     }
 }

@@ -5,18 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '20ch',
-      },
-      '& .MuiFormLabel-root': {
-        fontSize: '2rem',
-      },
-      '& .MuiSelect-select.MuiSelect-select': {
-        paddingTop: '18px',
-      },
-    },
+    root: {},
   }),
 );
 

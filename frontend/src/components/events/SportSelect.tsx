@@ -8,18 +8,37 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 const useStyles = makeStyles((theme) =>
   createStyles({
     sport: {
+      ...theme.select,
       width: '70%',
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '20ch',
+      '& .MuiFormControl-marginNormal': {
+        marginRight: '8px',
       },
-      '& .MuiFormLabel-root': {
-        fontSize: '2rem',
-      },
-      '& .MuiSelect-select.MuiSelect-select': {
-        paddingTop: '18px',
+      '& .MuiAutocomplete-inputRoot': {
+        borderWidth: '10px',
       },
     },
+    root: {
+      marginRight: '1px',
+    },
+    //   cssLabel: {
+    //     color: 'red',
+    //   },
+    //
+    //   cssOutlinedInput: {
+    //     '&$cssFocused $notchedOutline': {
+    //       borderWidth: '3px',
+    //       boxShadow: '3px 3px 3px',
+    //       borderColor: `${theme.palette.custom.color3} !important`,
+    //     },
+    //   },
+    //
+    //   cssFocused: {},
+    //   notchedOutline: {
+    //     borderWidth: '3px',
+    //     boxShadow: '2px 2px 2px',
+    //     borderColor: `${theme.palette.primary.main} !important`,
+    //   },
+    // }),
   }),
 );
 
@@ -40,7 +59,7 @@ const SportSelect: React.FC<SwitchProps> = ({
   // };
 
   return (
-    <form noValidate autoComplete="off">
+    <form noValidate autoComplete="off" className={classes.root}>
       <Autocomplete
         options={sports}
         getOptionLabel={(option) => option.value}
@@ -56,6 +75,13 @@ const SportSelect: React.FC<SwitchProps> = ({
             variant="outlined"
             {...params}
             className={classes.sport}
+            /*InputProps={{
+              classes: {
+                root: classes.cssOutlinedInput,
+                focused: classes.cssFocused,
+                notchedOutline: classes.notchedOutline,
+              },
+            }}*/
           />
         )}
       />

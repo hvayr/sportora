@@ -20,6 +20,7 @@ import SwitchComponent from '../events/SwitchComponent';
 import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import { NickName } from '../Nickname';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
         width: '1em',
       },
       '&::-webkit-scrollbar-thumb': {
-        background: `linear-gradient(transparent, ${theme.palette.primary.main})`,
+        background: `linear-gradient(${theme.palette.custom.color1}, ${theme.palette.primary.main})`,
         borderRadius: '6px',
       },
     },
@@ -41,19 +42,10 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: '10px',
     },
     locationMenu: {
-      marginLeft: '-2em',
+      ...theme.select,
+      marginLeft: '-30.5px',
       marginTop: '-1em',
       height: '1em',
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '20ch',
-      },
-      '& .MuiFormLabel-root': {
-        fontSize: '2rem',
-      },
-      '& .MuiInput-root': {
-        marginTop: '1.5em',
-      },
     },
     dateMenu: {
       marginLeft: '-6.5em',
@@ -67,8 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
     hostEvent: {
-      marginTop: '2px',
-      backgroundColor: theme.palette.secondary.main,
+      marginTop: '7px',
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.custom.color2,
+      '& .MuiTypography-h4': {
+        fontWeight: 600,
+      },
     },
     locationText: {
       marginTop: '0.8em',
@@ -242,9 +238,7 @@ const EventView = () => {
               onClick={handleClick}
             >
               <ControlPointIcon fontSize="large" />
-              <Typography variant="h4" style={{ color: 'black' }}>
-                HOST EVENT
-              </Typography>
+              <Typography variant="h4">HOST EVENT</Typography>
               <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
@@ -265,6 +259,7 @@ const EventView = () => {
         </Grid>
       </Grid>
       <Grid container className={classes.eventList}>
+        <NickName />
         <Grid item>
           <GridList cellHeight="auto" className={classes.eventList} cols={1}>
             {filteredEvents().map(

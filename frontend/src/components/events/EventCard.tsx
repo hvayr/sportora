@@ -7,7 +7,7 @@ import { Button, Collapse, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
-import { colors } from '../ui/Theme';
+import { colors } from '../ui/ThemeTypescript';
 
 const dummyParticipants = [
   {
@@ -33,9 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 700,
-      margin: '2px',
+      margin: '1px',
       backgroundColor: theme.palette.secondary.main,
-      border: '10px solid',
+      boxShadow: 'inset 1px 1px 10px',
+      // boxShadow: 'inset 0 5px 10px 0px rgba(0,0,0,.5)',
       color: theme.palette.primary.main,
       borderRadius: '10px',
       transition: 'background-color',
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) =>
         overflow: 'visible',
       },
       '&:hover': {
-        backgroundColor: colors.color1,
+        backgroundColor: theme.palette.custom.color2,
         transitionDuration: '500ms',
         transitionTimingFunction: 'ease-out',
       },
@@ -72,11 +73,14 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       fontSize: 14,
     },
+    sportName: {
+      fontWeight: 600,
+      textTransform: 'uppercase',
+      // backgroundColor: theme.palette.primary.main,
+      // padding: '5px',
+    },
     pos: {
       marginBottom: 12,
-    },
-    sportName: {
-      height: '100px',
     },
     descriptionContainer: {
       height: '100px',
@@ -90,6 +94,17 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     expandIcon: {
       marginTop: '-8px',
+    },
+    joinButton: {
+      color: theme.palette.custom.color2,
+      backgroundColor: theme.palette.primary.main,
+      '& .MuiTypography-h5': {
+        fontWeight: 600,
+      },
+    },
+    nickname: {
+      color: theme.palette.custom.color3,
+      fontWeight: 600,
     },
   }),
 );
@@ -106,16 +121,7 @@ interface EventProps {
   location: string;
 }
 
-export interface DialogProps {
-  open: boolean;
-  setOpen: (value: boolean) => void;
-}
-
-const EventCard: React.FC<EventProps> = (
-  props: EventProps,
-  dialogProps: DialogProps,
-) => {
-  const [open, setOpen] = React.useState<boolean>(false);
+const EventCard: React.FC<EventProps> = (props: EventProps) => {
   const [expanded, setExpanded] = React.useState(false);
   const classes = useStyles();
 
@@ -124,14 +130,6 @@ const EventCard: React.FC<EventProps> = (
       return s.icon;
     }
   });
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -151,7 +149,7 @@ const EventCard: React.FC<EventProps> = (
         <Card
           className={classes.root}
           style={
-            expanded ? { height: 250 + dummyParticipants.length * 10 } : {}
+            expanded ? { height: 260 + dummyParticipants.length * 10 } : {}
           }
         >
           <CardContent>
@@ -161,7 +159,11 @@ const EventCard: React.FC<EventProps> = (
               </Grid>
               <Grid item container direction="column" xs={3}>
                 <Grid item>
-                  <Typography variant="h5" component="h1">
+                  <Typography
+                    variant="h4"
+                    component="h1"
+                    className={classes.sportName}
+                  >
                     {props.sport}
                   </Typography>
                 </Grid>
@@ -171,7 +173,7 @@ const EventCard: React.FC<EventProps> = (
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography>{props.location}</Typography>
+                  <Typography variant="h6">{props.location}</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={2} />
@@ -191,10 +193,12 @@ const EventCard: React.FC<EventProps> = (
                   direction="column"
                 >
                   <Grid item>
-                    <Typography variant="h6">HOST</Typography>
+                    <Typography>HOST</Typography>
                   </Grid>
                   <Grid item>
-                    <Typography>Nickname</Typography>
+                    <Typography variant="h5" className={classes.nickname}>
+                      Nickname
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -207,7 +211,7 @@ const EventCard: React.FC<EventProps> = (
               >
                 <Grid item>
                   {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  <Typography component="p">"{props.description}"</Typography>
+                  <Typography component="h4">"{props.description}"</Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -266,8 +270,12 @@ const EventCard: React.FC<EventProps> = (
                   alignItems="flex-end"
                 >
                   <Grid item>
-                    <Button size="large">
-                      <Typography variant="h6">JOIN</Typography>
+                    <Button
+                      size="small"
+                      className={classes.joinButton}
+                      variant="contained"
+                    >
+                      <Typography variant="h5">JOIN</Typography>
                     </Button>
                   </Grid>
                 </Grid>

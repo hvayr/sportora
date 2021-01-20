@@ -7,7 +7,7 @@ import Header from '../ui/Header';
 import { Grid } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventContainer from '../events/EventContainer';
-import Footer from '../ui/Footer';
+import { address, doFetch, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,6 +42,17 @@ const MainView: React.FC = () => {
         sessionStorage.setItem('token', token);
         sessionStorage.setItem('sub', user.sub);
         console.log('Token: ' + sessionStorage.getItem('token'));
+
+        // const nickname = async () => {
+        //   const results = await doFetch(
+        //     address,
+        //     Path.GETNICKNAME,
+        //     Method.GET,
+        //     true,
+        //   );
+        //   console.log('nick ' + (await results.content) + results.status);
+        // };
+        // nickname();
       }
       console.log('authenticated: ' + isAuthenticated);
     };

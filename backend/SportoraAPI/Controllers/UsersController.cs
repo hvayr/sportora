@@ -41,7 +41,7 @@ namespace SportoraAPI.Controllers
         public async Task<IActionResult> GetUsersWhereUsernameContains(string search)
         {
             var result = await _userRepository.GetUsersWhereUsernameContains(search);
-            
+
             return Ok(result);
         }
 
@@ -49,7 +49,7 @@ namespace SportoraAPI.Controllers
         public async Task<IActionResult> GetUsersByExactName(string search)
         {
             var result = await _userRepository.GetUsersByExactUsername(search);
-            
+
             return Ok(result);
         }
 
@@ -57,7 +57,7 @@ namespace SportoraAPI.Controllers
         public async Task<IActionResult> GetUsersByExactEmail(string search)
         {
             var result = await _userRepository.GetUsersByExactEmail(search);
-            
+
             return Ok(result);
         }
 
@@ -86,17 +86,26 @@ namespace SportoraAPI.Controllers
             return Created(Request.Path, user);
         }
 
-        [HttpDelete("id/{id}")]
-        public IActionResult DeleteUser(string id)
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpDelete]
+        public IActionResult DeleteUser()
         {
-            User user = _userRepository.GetUserById(id);
-            if (user == null)
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (authId is null)
+            {
+                return Problem(detail: "AuthId not found");
+            }
+
+            User userToDelete = _userRepository.GetUserById(authId);
+
+            if (userToDelete == null)
             {
                 return NotFound();
             }
 
-            _userRepository.RemoveUser(id);
-            return Ok(user);
+            _userRepository.RemoveUser(authId);
+            return Ok(userToDelete);
         }
 
 
@@ -138,6 +147,27 @@ namespace SportoraAPI.Controllers
 
 
             return NoContent();
+        }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpGet("getNickName")]
+        public IActionResult GetNickName()
+        {
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (authId is null)
+            {
+                return Problem(detail: "AuthId not found");
+            }
+
+            User user = _userRepository.GetUserById(authId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(_userRepository.GetUserNickName(authId));
         }
     }
 }

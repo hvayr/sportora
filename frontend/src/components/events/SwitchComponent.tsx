@@ -27,7 +27,7 @@ const AntSwitch = withStyles((theme: Theme) =>
         color: '#EEEEEE',
 
         '& + $track': {
-          backgroundColor: theme.palette.secondary.main,
+          backgroundColor: theme.palette.custom.color2,
           opacity: 1,
           border: 'none',
         },
@@ -44,7 +44,7 @@ const AntSwitch = withStyles((theme: Theme) =>
     track: {
       borderRadius: 26 / 2,
       border: `1px solid ${theme.palette.grey[400]}`,
-      backgroundColor: '#BDBDBD',
+      backgroundColor: 'grey',
       opacity: 1,
       transition: theme.transitions.create(['background-color', 'border']),
     },

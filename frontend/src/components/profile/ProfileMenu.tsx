@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    userName: {
+      color: theme.palette.custom.color2,
+    },
   }),
 );
 
@@ -44,7 +47,9 @@ export default function ProfileMenu() {
       {isAuthenticated && (
         <div>
           <IconButton onClick={handleMenu} color="inherit">
-            <Typography>{useAuth0().user.name}</Typography>
+            <Typography className={classes.userName}>
+              {useAuth0().user.name}
+            </Typography>
             <AccountCircle />
           </IconButton>
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
