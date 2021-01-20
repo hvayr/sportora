@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function ProfileMenu() {
   const { isAuthenticated, logout } = useAuth0();
-  const routes = ['/profile', '/editProfile'];
+  const routes = ['/profile'];
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -55,9 +55,6 @@ export default function ProfileMenu() {
           <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
             <MenuItem component={Link} to={routes[0]} onClick={handleClose}>
               Profile
-            </MenuItem>
-            <MenuItem component={Link} to={routes[1]} onClick={handleClose}>
-              Edit Profile
             </MenuItem>
             <MenuItem
               onClick={() => {

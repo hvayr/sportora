@@ -11,7 +11,9 @@ import {
 } from '@material-ui/core';
 import { createStyles } from '@material-ui/core';
 import DeleteProfile from './DeleteProfile';
-import { JoinedEvents, MyEvents } from './TestEvents';
+import { NickName } from '../Nickname';
+import MyEvents from './MyEvents';
+import JoinedEvents from './JoinedEvents';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -55,6 +57,11 @@ const Profile: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid container>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <NickName />
+          </Paper>
+        </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <AppBar position="static">

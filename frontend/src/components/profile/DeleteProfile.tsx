@@ -10,6 +10,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import React from 'react';
+import { address, doFetch, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,6 +40,15 @@ const DeleteProfile: React.FC = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDelete = () => {
+    const deleteProfile = async () => {
+      await doFetch(address, Path.USERS, Method.DELETE, true);
+    };
+    deleteProfile();
+    sessionStorage.clear();
+    setOpen(false);
+  };
   return (
     <div className={classes.root}>
       <Button className={classes.red} onClick={handleClickOpen}>
@@ -52,7 +62,7 @@ const DeleteProfile: React.FC = () => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} className={classes.green}>
+          <Button onClick={handleDelete} className={classes.green}>
             Yes
           </Button>
           <Button onClick={handleClose} className={classes.red} autoFocus>
