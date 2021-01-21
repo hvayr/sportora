@@ -128,9 +128,14 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
 
   const handleJoin = async () => {
     const results = await doFetch(
+      // address,
+      // Path.ADDUSERTOEVENT,
+      // Method.POST,
+      // true,
+      // props.id,
       address,
-      Path.ADDUSERTOEVENT,
-      Method.POST,
+      Path.USERS,
+      Method.DELETE,
       true,
       props.id,
     );

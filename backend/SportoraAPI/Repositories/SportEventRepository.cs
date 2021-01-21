@@ -158,13 +158,11 @@ namespace SportoraAPI.Repositories
             SportEvent sportEvent = _context.SportEvents.FirstOrDefault(s => s.Id == eventId);
             User userToRemove = _context.Users.FirstOrDefault(u => u.AuthId == authId);
 
-            SportEventParticipants sportEventParticipants = new SportEventParticipants {User = userToRemove};
-
             var foundUser = sportEvent.Participants.FirstOrDefault(u => u.User.AuthId == authId);
 
             if (!(foundUser is null))
             {
-                sportEvent.Participants.Remove(sportEventParticipants);
+                sportEvent.Participants.Remove(foundUser);
                 _context.SaveChanges();
             }
         }
