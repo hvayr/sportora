@@ -40,13 +40,13 @@ export const NickName: React.FC = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = () => {
     const fetchData = async () => {
       const patchedBody = [
         {
           op: 'replace',
-          path: '/nickName',
-          value: values.nickName,
+          path: '/Name',
+          value: 'palloseura',
         },
       ];
       const results = await doFetch(
@@ -96,77 +96,5 @@ export const NickName: React.FC = () => {
         </Formik>
       </CardContent>
     </Card>
-  );
-};
-
-export const FirstTimeLoginNickName: React.FC = () => {
-  const classes = useStyles();
-  const [data, setData] = useState([]);
-
-  const onSubmit = (values: FormValues) => {
-    const fetchData = async () => {
-      const patchedBody = [
-        {
-          op: 'replace',
-          path: '/nickName',
-          value: values.nickName,
-        },
-      ];
-      const results = await doFetch(
-        address,
-        Path.USERS,
-        Method.PATCH,
-        true,
-        null,
-        patchedBody,
-      );
-      console.log(results.status);
-      setData(results.status === 200 ? results.content : results.status);
-    };
-
-    try {
-      fetchData();
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{'Set Nickname'}</DialogTitle>
-      <DialogContent>
-        <Card>
-          <CardContent>
-            <Typography variant="h4">Set Nickname</Typography>
-
-            <Formik
-              initialValues={initialValues}
-              onSubmit={onSubmit}
-              validationSchema={NickNameSchema}
-            >
-              {({ dirty, isValid }) => (
-                <Form className={classes.root}>
-                  <FormGroup>
-                    <FormikField name="nickName" label="Nickname" />
-                  </FormGroup>
-                  <Button
-                    variant="contained"
-                    disabled={!dirty || !isValid}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              )}
-            </Formik>
-          </CardContent>
-        </Card>
-      </DialogContent>
-    </Dialog>
   );
 };

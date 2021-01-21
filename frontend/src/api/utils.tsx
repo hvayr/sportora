@@ -51,6 +51,7 @@ export enum Path {
   PARTICIPATINGEVENTS = '/sportevents/participatingevents',
   ADMINEVENTS = '/sportevents/adminevents',
   CHECKNICKNAME = '/users/checkNickName',
+  ADDUSERTOEVENT = '/sportevents/addUser',
 }
 
 export const address = `https://localhost:44348`;

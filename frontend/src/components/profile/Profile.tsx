@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { createStyles } from '@material-ui/core';
 import DeleteProfile from './DeleteProfile';
-import { NickName } from '../Nickname';
+import { NickName } from './NickName';
 import MyEvents from './MyEvents';
 import JoinedEvents from './JoinedEvents';
 

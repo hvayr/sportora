@@ -33,8 +33,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/main-view.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Nickname.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/Profile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,20 +60,24 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F47558AC-9E80-42DE-A6FC-4617611749BC/5/ConfigureNamedOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F47558AC-9E80-42DE-A6FC-4617611749BC/A/OptionsFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F47558AC-9E80-42DE-A6FC-4617611749BC/56/5b184a4a/OptionsManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/41/ba6b0e5f/SZGenericArrayEnumerator`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAdminRequirement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/01/2a7eb13e/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AF8A5A31-B5B9-4E76-A380-0B82CF56BD45/5/AuthorizationOptions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26B8D1E2-4F44-4EA5-B82B-160B88995F25/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
-      <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
       <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
-      <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
       <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
+      <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+      <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
+      <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
+      <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
+      <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1j6xawqIDFX5q1wkpbCoZ9jzKb9" />
@@ -77,7 +90,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.24054706" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.24063009" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -248,6 +261,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Controllers/SportEventsController.cs</url>
+          <line>164</line>
+          <properties documentPath="C:\Git\sportora\backend\SportoraAPI\Controllers\SportEventsController.cs" initialLine="164" containingFunctionPresentation="method 'AddUserToEvent'">
+            <startOffsets>
+              <option value="5613" />
+            </startOffsets>
+            <endOffsets>
+              <option value="5704" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

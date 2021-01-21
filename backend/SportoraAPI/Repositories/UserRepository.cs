@@ -83,5 +83,6 @@ namespace SportoraAPI.Repositories
 
             return user.NickName;
         }
+        
     }
 }

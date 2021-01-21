@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -8,26 +9,7 @@ import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
 import { colors } from '../ui/ThemeTypescript';
-
-const dummyParticipants = [
-  {
-    nickname: 'testimies1',
-  },
-
-  {
-    nickname: 'testimies2',
-  },
-  {
-    nickname: 'testimies3',
-  },
-
-  {
-    nickname: 'testimies4',
-  },
-  {
-    nickname: 'testimies5',
-  },
-];
+import { address, doFetch, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -112,7 +94,7 @@ const useStyles = makeStyles((theme: Theme) =>
 interface EventProps {
   id: number;
   sport: string;
-  participants: string[];
+  participants: object[];
   numParticipants: number;
   maxParticipants: number;
   description: string;
@@ -135,22 +117,42 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     setExpanded(!expanded);
   };
 
-  const nameList: any = () => {
-    let list = [];
-    list = dummyParticipants.map((p) => p.nickname);
-    console.log('List: ' + list);
-    console.log();
-    return list.join(', ');
+  const joined = props.participants.map(
+    (participant) =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      participant.user.authId === sessionStorage.getItem('sub'),
+  );
+
+  console.log('joined ', joined.includes(true));
+
+  const handleJoin = async () => {
+    const results = await doFetch(
+      address,
+      Path.ADDUSERTOEVENT,
+      Method.POST,
+      true,
+      props.id,
+    );
+    console.log('content: ' + results.content + 'status: ' + results.status);
   };
+
+  // const nameList: any = () => {
+  //   let list = [];
+  //   list = dummyParticipants.map((p) => p.nickname);
+  //   console.log('List: ' + list);
+  //   console.log();
+  //   return list.join(', ');
+  // };
 
   return (
     <Grid container>
       <Grid item>
         <Card
           className={classes.root}
-          style={
-            expanded ? { height: 260 + dummyParticipants.length * 10 } : {}
-          }
+          // style={
+          //   expanded ? { height: 260 + dummyParticipants.length * 10 } : {}
+          // }
         >
           <CardContent>
             <Grid container>
@@ -253,7 +255,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   <Grid item>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                       <CardContent>
-                        <Typography>{nameList()}</Typography>
+                        {/*<Typography>{nameList()}</Typography>*/}
                       </CardContent>
                     </Collapse>
                   </Grid>
@@ -274,6 +276,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                       size="small"
                       className={classes.joinButton}
                       variant="contained"
+                      onClick={handleJoin}
                     >
                       <Typography variant="h5">JOIN</Typography>
                     </Button>

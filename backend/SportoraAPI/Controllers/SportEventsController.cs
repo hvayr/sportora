@@ -157,5 +157,39 @@ namespace SportoraAPI.Controllers
 
             return NoContent();
         }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpPost("addUser/id/{eventId}")]
+        public async Task<IActionResult> AddUserToEvent(int eventId)
+        {
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            SportEvent sportEvent = await _sportEventRepository.GetSportEventById(eventId);
+
+            if ((authId == null) || (sportEvent == null))
+            {
+                return NotFound();
+            }
+            
+            _sportEventRepository.AddUserToEvent(eventId, authId);
+
+            return Ok(sportEvent);
+        }
+        
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpPost("addUser/id/{eventId}")]
+        public async Task<IActionResult> RemoveUserFromEvent(int eventId)
+        {
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+            SportEvent sportEvent = await _sportEventRepository.GetSportEventById(eventId);
+
+            if ((authId == null) || (sportEvent == null))
+            {
+                return NotFound();
+            }
+            
+            _sportEventRepository.RemoveUserFromEvent(eventId, authId);
+
+            return Ok(sportEvent);
+        }
     }
 }

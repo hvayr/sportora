@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { address, doFetch, Method, Path } from '../../api/utils';
-import { DataGrid, ColDef } from '@material-ui/data-grid';
+import {
+  DataGrid,
+  ColDef,
+  CellParams,
+  GridApi,
+  ValueFormatterParams,
+} from '@material-ui/data-grid';
 import { createStyles } from '@material-ui/core/styles';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import { Button } from '@material-ui/core';
+import moment from 'moment';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -16,13 +24,40 @@ const useStyles = makeStyles(() =>
 
 const myEventColums: ColDef[] = [
   { field: 'name', headerName: 'Event category', width: 150 },
+
   {
-    field: 'location',
-    headerName: 'Location',
-    type: 'string',
-    width: 130,
+    field: 'eventStartTime',
+    headerName: 'Date',
+    valueFormatter: (params: ValueFormatterParams) =>
+      moment(params.value as Date).format('MMM Do YY'),
+    width: 150,
   },
-  { field: 'description', headerName: 'Description', width: 600 },
+  { field: 'numParticipants', headerName: 'Participants', width: 150 },
+
+  {
+    field: '',
+    headerName: 'Action',
+    disableClickEventBubbling: true,
+    // eslint-disable-next-line react/display-name
+    renderCell: (params: CellParams) => {
+      const onClick = () => {
+        const api: GridApi = params.api;
+        const fields = api
+          .getAllColumns()
+          .map((c) => c.field)
+          .filter((c) => c !== '__check__' && !!c);
+        const thisRow: any = {};
+
+        fields.forEach((f) => {
+          thisRow[f] = params.getValue(f);
+        });
+
+        return alert(JSON.stringify(thisRow, null, 4));
+      };
+
+      return <Button onClick={onClick}>Click</Button>;
+    },
+  },
 ];
 
 const MyEvents: React.FC = () => {
@@ -56,6 +91,8 @@ const MyEvents: React.FC = () => {
         columns={myEventColums}
         pageSize={5}
         className={classes.test}
+        disableColumnMenu
+        hideFooterSelectedRowCount
       />
     </div>
   );
