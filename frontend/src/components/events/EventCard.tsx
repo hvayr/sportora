@@ -8,7 +8,6 @@ import { Button, Collapse, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
-import { colors } from '../ui/ThemeTypescript';
 import { address, doFetch, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -91,16 +90,31 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+interface IUser {
+  id: number;
+  authId: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  userName: string;
+  nickName: string | null;
+  gender: null;
+  groups: null;
+  imageUrl: null;
+}
+
 interface EventProps {
   id: number;
   sport: string;
-  participants: object[];
+  participants: IUser[];
   numParticipants: number;
   maxParticipants: number;
   description: string;
   eventStartTime: string;
   author: string;
   location: string;
+  setRenderCard: any;
+  userName: string;
 }
 
 const EventCard: React.FC<EventProps> = (props: EventProps) => {
@@ -117,14 +131,14 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     setExpanded(!expanded);
   };
 
-  const joined = props.participants.map(
-    (participant) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      participant.user.authId === sessionStorage.getItem('sub'),
-  );
-
-  console.log('joined ', joined.includes(true));
+  const joined = props.participants
+    .map(
+      (participant) =>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        participant.user.authId === sessionStorage.getItem('sub'),
+    )
+    .includes(true);
 
   const handleJoin = async () => {
     const results = await doFetch(
@@ -134,15 +148,38 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
       true,
       props.id,
     );
-    console.log('content: ' + results.content + 'status: ' + results.status);
+    props.setRenderCard(true);
   };
 
-  // const nameList: any = () => {
-  //   let list = [];
-  //   list = dummyParticipants.map((p) => p.nickname);
-  //   console.log('List: ' + list);
-  //   console.log();
-  //   return list.join(', ');
+  const handleLeave = async () => {
+    const results = await doFetch(
+      address,
+      Path.REMOVEUSERFROMEVENT,
+      Method.DELETE,
+      true,
+      props.id,
+    );
+    props.setRenderCard(true);
+  };
+
+  const nameList = () => {
+    let list = [];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    list = props.participants.map((p) => p.user.userName);
+    console.log();
+    return list.join(', ');
+  };
+
+  const isEventFull = () => {
+    return props.numParticipants >= props.maxParticipants;
+  };
+
+  // const authorUserName = () => {
+  //   // eslint-disable-next-line react/prop-types,@typescript-eslint/ban-ts-comment
+  //   // @ts-ignore
+  //   // eslint-disable-next-line react/prop-types
+  //   return props.admins.user[0]?.userName;
   // };
 
   return (
@@ -150,9 +187,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
       <Grid item>
         <Card
           className={classes.root}
-          // style={
-          //   expanded ? { height: 260 + dummyParticipants.length * 10 } : {}
-          // }
+          style={expanded ? { height: 260 + nameList().length * 3 } : {}}
         >
           <CardContent>
             <Grid container>
@@ -199,7 +234,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   </Grid>
                   <Grid item>
                     <Typography variant="h5" className={classes.nickname}>
-                      Nickname
+                      {/*{authorUserName()}*/}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -242,20 +277,13 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                         onClick={handleExpandClick}
                       >
                         <ExpandMoreIcon />
-                        {/*<Dialog open={open} onClose={handleClose}>
-                          <List>
-                            {dummyParticipants.map((p) => (
-                              <ListItem key={p.nickname}>p.nickname</ListItem>
-                            ))}
-                          </List>
-                        </Dialog>*/}
                       </IconButton>
                     </Grid>
                   </Grid>
                   <Grid item>
                     <Collapse in={expanded} timeout="auto" unmountOnExit>
                       <CardContent>
-                        {/*<Typography>{nameList()}</Typography>*/}
+                        <Typography>{nameList()}</Typography>
                       </CardContent>
                     </Collapse>
                   </Grid>
@@ -276,9 +304,12 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                       size="small"
                       className={classes.joinButton}
                       variant="contained"
-                      onClick={handleJoin}
+                      onClick={joined ? handleLeave : handleJoin}
+                      disabled={isEventFull() && !joined}
                     >
-                      <Typography variant="h5">JOIN</Typography>
+                      <Typography variant="h5">
+                        {joined ? 'LEAVE' : 'JOIN'}
+                      </Typography>
                     </Button>
                   </Grid>
                 </Grid>

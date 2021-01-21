@@ -36,15 +36,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const checkNicknameAndSave: React.FC = () => {
-  const checkNickname = async () => {
-    const results = await doFetch(address, Path.USERS, Method.GET, true);
+export const checkIfNickNameIsSet = () => {
+  let set = false;
+  const results = async () => {
+    const response = await doFetch(
+      address,
+      Path.CHECKNICKNAME,
+      Method.GET,
+      true,
+    );
+    if (response.content === true) {
+      set = true;
+    }
   };
-  return <div></div>;
+  return set;
 };
+
 export const FirstTimeLoginNickName: React.FC = () => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [data, setData] = useState([]);
 
   const handleClose = () => {
@@ -70,8 +80,8 @@ export const FirstTimeLoginNickName: React.FC = () => {
       const patchedBody = [
         {
           op: 'replace',
-          path: '/Name',
-          value: 'palloseura',
+          path: '/nickName',
+          value: 'test',
         },
       ];
       const results = await doFetch(
@@ -93,6 +103,8 @@ export const FirstTimeLoginNickName: React.FC = () => {
       console.log(e);
     }
   };
+
+  console.log('data ' + data);
 
   return (
     <Dialog open={open} onClose={handleClose}>
@@ -128,5 +140,3 @@ export const FirstTimeLoginNickName: React.FC = () => {
     </Dialog>
   );
 };
-
-export default checkNicknameAndSave;

@@ -45,8 +45,8 @@ export const NickName: React.FC = () => {
       const patchedBody = [
         {
           op: 'replace',
-          path: '/Name',
-          value: 'palloseura',
+          path: '/nickName',
+          value: values.nickName,
         },
       ];
       const results = await doFetch(

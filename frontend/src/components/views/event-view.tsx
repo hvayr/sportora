@@ -98,6 +98,7 @@ const EventView = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [newEventOnTop, setNewEventOnTop] = React.useState('');
+  const [renderCard, setRenderCard] = React.useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -109,9 +110,10 @@ const EventView = () => {
         null,
       );
       setEventData(await result.content);
+      setRenderCard(false);
     };
     getData();
-  }, [openDialog, setOpenDialog]);
+  }, [openDialog, setOpenDialog, renderCard]);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
@@ -271,6 +273,7 @@ const EventView = () => {
                 eventStartTime,
                 author,
                 location,
+                userName,
               }) => (
                 <Grid container key={id} justify="center">
                   <Grid item>
@@ -285,6 +288,8 @@ const EventView = () => {
                         eventStartTime={eventStartTime}
                         author={author}
                         location={location}
+                        userName={userName}
+                        setRenderCard={setRenderCard}
                       />
                       ));
                     </GridListTile>

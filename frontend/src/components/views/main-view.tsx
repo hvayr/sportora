@@ -8,6 +8,10 @@ import { Grid } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventContainer from '../events/EventContainer';
 import { address, doFetch, Method, Path } from '../../api/utils';
+import {
+  checkIfNickNameIsSet,
+  FirstTimeLoginNickName,
+} from '../profile/checkNicknameAndSave';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -34,6 +38,8 @@ const MainView: React.FC = () => {
   const { isAuthenticated, user, getAccessTokenSilently } = useAuth0();
   const classes = useStyles();
 
+  console.log('nickset: ' + checkIfNickNameIsSet());
+
   useEffect(() => {
     const save = async () => {
       if (isAuthenticated) {
@@ -51,6 +57,7 @@ const MainView: React.FC = () => {
   return (
     <div className={classes.root}>
       <Header />
+      {!checkIfNickNameIsSet() && isAuthenticated && <FirstTimeLoginNickName />}
       <div className={classes.app}>
         <Grid container className={classes.mainContainer}>
           <Grid item className={classes.eventContainer} sm={12}>

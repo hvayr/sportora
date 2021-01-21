@@ -33,10 +33,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +70,8 @@
       <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
       <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
       <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
-      <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
       <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
+      <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1j6xawqIDFX5q1wkpbCoZ9jzKb9" />
@@ -240,24 +240,5 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Controllers/UsersController.cs</url>
-          <line>99</line>
-          <properties documentPath="C:\Git\sportora\backend\SportoraAPI\Controllers\UsersController.cs" initialLine="99" containingFunctionPresentation="method 'DeleteUser'">
-            <startOffsets>
-              <option value="2728" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2784" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

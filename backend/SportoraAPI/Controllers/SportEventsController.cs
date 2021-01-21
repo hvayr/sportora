@@ -106,6 +106,8 @@ namespace SportoraAPI.Controllers
 
             sportEventToAdd.Admins = new List<SportEventAdmins>();
             sportEventToAdd.Admins.Add(new SportEventAdmins { User = loggedInUser });
+            sportEventToAdd.Participants.Add(new SportEventParticipants {User = loggedInUser});
+            
 
             _sportEventRepository.AddSportEvent(sportEventToAdd);
 
@@ -132,7 +134,7 @@ namespace SportoraAPI.Controllers
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
 
-            if (sportEvent.NumParticipants != 0)
+            if (sportEvent.NumParticipants != 1)
             {
                 return Forbid();
             }
