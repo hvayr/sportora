@@ -176,7 +176,7 @@ namespace SportoraAPI.Controllers
         }
         
         [Authorize(Policy = "MustBeLoggedIn")]
-        [HttpPost("addUser/id/{eventId}")]
+        [HttpDelete("removeUser/id/{eventId}")]
         public async Task<IActionResult> RemoveUserFromEvent(int eventId)
         {
             string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
