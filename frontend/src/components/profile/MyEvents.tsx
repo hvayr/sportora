@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { address, doFetch, Method, Path } from '../../api/utils';
 import {
   DataGrid,
@@ -27,9 +27,11 @@ const openDialog: React.FC = () => {
   const [data, setData] = useState([]);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [eventId, setEventId] = React.useState(0);
 
   const myEventColums: ColDef[] = [
     { field: 'name', headerName: 'Event category', width: 150 },
+    { field: 'id', width: 150 },
 
     {
       field: 'eventStartTime',
@@ -56,14 +58,31 @@ const openDialog: React.FC = () => {
 
           fields.forEach((f) => {
             thisRow[f] = params.getValue(f);
+            console.log('params ' + params.getValue('id'));
+
+            const eventIdFromParams: any = params.getValue('id');
+
+            setEventId(eventIdFromParams);
           });
-          return setOpen(true);
+          console.log('set open');
+          console.log('state: ' + open);
+          setOpen(true);
         };
 
         return <Button onClick={onClick}>Click</Button>;
       },
     },
   ];
+
+  useEffect(() => {
+    if (open) {
+      handleDialogOpen();
+    }
+  }, [open]);
+
+  const handleDialogOpen = () => {
+    setOpen(true);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -86,7 +105,7 @@ const openDialog: React.FC = () => {
 
   return (
     <div>
-      <EditEvent open={open} setOpen={setOpen} />
+      <EditEvent open={open} setOpen={setOpen} eventId={eventId} />
       <div style={{ height: 400, width: '100%' }} className={classes.test}>
         <DataGrid
           rows={data}

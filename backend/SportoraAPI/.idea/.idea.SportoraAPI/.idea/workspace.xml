@@ -33,17 +33,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/Nickname.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/Profile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/Profile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/MyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/MyEvents.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,19 +251,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Controllers/SportEventsController.cs</url>
-          <line>164</line>
-          <properties documentPath="C:\Git\sportora\backend\SportoraAPI\Controllers\SportEventsController.cs" initialLine="164" containingFunctionPresentation="method 'AddUserToEvent'">
-            <startOffsets>
-              <option value="5613" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5704" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -31,6 +31,7 @@ interface FormValues {
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  eventId: number;
 }
 
 const initialValues: FormValues = {
@@ -41,32 +42,33 @@ const SignupSchema = Yup.object().shape({
   description: Yup.string().min(2, 'Too short!').max(20, 'Too long!'),
 });
 
-const EditEvent: React.FC<Props> = (values: any, { open, setOpen }: Props) => {
+const EditEvent: React.FC<Props> = ({ open, setOpen, eventId }: Props) => {
   const classes = useStyles();
-  const onSubmit = async () => {
-    const description = values;
+  const onSubmit = async (values: any) => {
+    console.log('eventId ' + eventId);
+    const description = values.description;
     const results = await doFetch(
       address,
-      Path.ADMINEVENTS,
+      Path.EVENTS,
       Method.PATCH,
       true,
-      null,
-      {
-        description: description,
-      },
+      eventId,
+      [
+        {
+          op: 'replace',
+          path: '/description',
+          value: description,
+        },
+      ],
     );
     console.log(results.status);
   };
 
-  try {
-    onSubmit();
-  } catch (e) {
-    console.log(e);
-  }
-
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log('Edit event open: ' + open);
 
   return (
     <Dialog open={open} onClose={handleClose}>
