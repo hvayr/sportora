@@ -33,9 +33,15 @@
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/IUserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/IUserRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -64,14 +70,14 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
-      <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
-      <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
       <option value="$PROJECT_DIR$/Models/SportEvent.cs" />
-      <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
       <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
-      <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
       <option value="$PROJECT_DIR$/Controllers/SportEventsController.cs" />
+      <option value="$PROJECT_DIR$/Repositories/SportEventRepository.cs" />
+      <option value="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" />
+      <option value="$PROJECT_DIR$/Repositories/IUserRepository.cs" />
+      <option value="$PROJECT_DIR$/Repositories/UserRepository.cs" />
+      <option value="$PROJECT_DIR$/Controllers/UsersController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1j6xawqIDFX5q1wkpbCoZ9jzKb9" />

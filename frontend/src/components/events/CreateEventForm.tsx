@@ -54,6 +54,7 @@ const initialValues = {
   sport: '',
   location: '',
   date: new Date(Date()),
+  numParticipants: '0',
   maxParticipants: '2',
   description: '',
 };
@@ -61,9 +62,19 @@ const initialValues = {
 interface IInitialValues {
   sport: string;
   location: string;
-  date: Date;
-  maxParticipants: string;
   description: string;
+  date: Date;
+  numParticipants: string;
+  maxParticipants: string;
+}
+
+interface Values {
+  sport: string;
+  location: string;
+  description: string;
+  date: Date;
+  numParticipants: string;
+  maxParticipants: string;
 }
 
 const validate = (values: IInitialValues) => {
@@ -113,10 +124,16 @@ const CreateEventForm: React.FC<IProps> = ({
 
   const classes = useStyles();
 
-  const onSubmit = async (values: object, user: User) => {
+  const onSubmit = async (values: Values, user: User) => {
     const { email, name } = user;
-    // @ts-ignore
-    const { sport, description, date, location, maxParticipants } = values;
+    const {
+      sport,
+      description,
+      date,
+      location,
+      numParticipants,
+      maxParticipants,
+    } = values;
 
     try {
       const response = await doFetch(
@@ -126,7 +143,7 @@ const CreateEventForm: React.FC<IProps> = ({
         true,
         null,
         {
-          author: sessionStorage.getItem('sub'),
+          author: localStorage.getItem('sub'),
           name: sport,
           email: email,
           userName: name,
@@ -134,7 +151,7 @@ const CreateEventForm: React.FC<IProps> = ({
           eventStartTime: date,
           location: location,
           maxParticipants: maxParticipants,
-          numParticipants: 2,
+          numParticipants: numParticipants,
           activeStatus: true,
         },
       );
@@ -160,14 +177,6 @@ const CreateEventForm: React.FC<IProps> = ({
     onSubmit,
     validate,
   });
-
-  // interface Values {
-  //   sport: string;
-  //   location: string;
-  //   date: string;
-  //   maxParticipants: string;
-  //   description: string;
-  // }
 
   const handleCloseSnackbar = (
     event?: React.SyntheticEvent,

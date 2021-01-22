@@ -26,7 +26,7 @@ export const doFetch = async (
         headers: {
           'Content-Type': 'application/json',
           Authorization: authorize
-            ? `Bearer ${sessionStorage.getItem('token')}`
+            ? `Bearer ${localStorage.getItem('token')}`
             : '',
         },
       },

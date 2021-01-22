@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   FormGroup,
+  Grid,
   makeStyles,
   Typography,
 } from '@material-ui/core';
@@ -27,61 +28,78 @@ const NickNameSchema = Yup.object().shape({
   nickName: Yup.string().min(2, 'Too short!').max(20, 'Too long!'),
 });
 
+
+interface Props {
+  open: boolean,
+  setOpen:
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .MuiFormControl-root': {
-      margin: theme.spacing(1),
-      width: '80%',
+      marginTop: '10px',
+      backgroundColor: '#FFECB3',
+    },
+  },
+  dialog: {
+    '& .MuiDialog-paperWidthSm': {
+      maxWidth: '470px',
+      padding: '1px',
+      border: '8px solid',
+      borderColor: 'black',
+      backgroundColor: theme.palette.custom.color1,
+    },
+    '& .MuiDialogContent-root': {
+      padding: '8px 8px',
     },
   },
 }));
 
-export const checkIfNickNameIsSet = () => {
-  let set = false;
-  const results = async () => {
-    const response = await doFetch(
-      address,
-      Path.CHECKNICKNAME,
-      Method.GET,
-      true,
-    );
-    if (response.content === true) {
-      set = true;
-    }
-  };
-  return set;
-};
+export async function saveNickToLocalStorage() {
+  const response = await doFetch(address, Path.CHECKNICKNAME, Method.GET, true);
+  if (response.content === true) {
+    localStorage.setItem('nickSet', 'true');
+  } else {
+    localStorage.setItem('nickSet', 'false');
+  }
+  console.log('nick is set: ' + localStorage.getItem('nickSet'));
+}
 
-export const FirstTimeLoginNickName: React.FC = () => {
+const openDialog: React.FC = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const myEventColums
+
+  const myEvents
+
+}
+
+interface Props {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const EditEvent: React.FC<Props> = (values: any, {open, setOpen}: Props) => {}
+
+export const FirstTimeLoginNickName: React.FC<Props> = ({
+  open,
+  setOpen,
+}: Props) => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-  const [data, setData] = useState([]);
 
   const handleClose = () => {
-    setOpen(false);
+    if (localStorage.getItem('nickSet') === 'true') {
+      setOpen(false);
+    }
   };
 
-  // const nickname = async () => {
-  //   const results = await doFetch(
-  //     address,
-  //     Path.CHECKNICKNAME,
-  //     Method.GET,
-  //     true,
-  //   );
-  //   if (results.content === false) {
-  //     alert('change nickname');
-  //   }
-  //   console.log('nick ' + results.content + results.status);
-  // };
-  // nickname();
-
-  const onSubmit = () => {
+  const onSubmit = async (values: any) => {
     const fetchData = async () => {
       const patchedBody = [
         {
           op: 'replace',
           path: '/nickName',
-          value: 'test',
+          value: values.nickName,
         },
       ];
       const results = await doFetch(
@@ -93,47 +111,57 @@ export const FirstTimeLoginNickName: React.FC = () => {
         patchedBody,
       );
       console.log(results.status);
-      setData(results.status === 200 ? results.content : results.status);
+      if (results.status === 204) {
+        await saveNickToLocalStorage();
+        handleClose();
+      } else {
+        alert('Something went wrong');
+      }
     };
-
-    try {
-      fetchData();
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
+    await fetchData();
   };
 
-  console.log('data ' + data);
-
   return (
-    <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>{'Set Nickname'}</DialogTitle>
+    <Dialog open={open} onClose={handleClose} className={classes.dialog}>
       <DialogContent>
         <Card>
           <CardContent>
-            <Typography variant="h4">Set Nickname</Typography>
-
-            <Formik
-              initialValues={initialValues}
-              onSubmit={onSubmit}
-              validationSchema={NickNameSchema}
-            >
-              {({ dirty, isValid }) => (
-                <Form className={classes.root}>
-                  <FormGroup>
-                    <FormikField name="nickName" label="Nickname" />
-                  </FormGroup>
-                  <Button
-                    variant="contained"
-                    disabled={!dirty || !isValid}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              )}
-            </Formik>
+            <Grid container justify="center">
+              <Grid item>
+                <Typography variant="h4">Welcome to Sportora!</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h6" style={{ marginTop: '20px' }}>
+                  Please set up your nickname:
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Formik
+                  initialValues={initialValues}
+                  onSubmit={onSubmit}
+                  validationSchema={NickNameSchema}
+                >
+                  {({ dirty, isValid }) => (
+                    <Form className={classes.root}>
+                      <FormGroup>
+                        <FormikField name="nickName" label="Nickname" />
+                      </FormGroup>
+                      <Grid container justify="center">
+                        <Grid item style={{ marginTop: '10px' }}>
+                          <Button
+                            variant="contained"
+                            disabled={!dirty || !isValid}
+                            type="submit"
+                          >
+                            Submit
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Form>
+                  )}
+                </Formik>
+              </Grid>
+            </Grid>
           </CardContent>
         </Card>
       </DialogContent>

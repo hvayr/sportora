@@ -16,7 +16,7 @@ export async function isAvailable(
     }
 
     const response = await doFetch(address, url, Method.GET, false, searchFor);
-    console.log('Status ' + response.status);
+    console.log('isAvailable Status ' + response.status);
     if (response.status !== 200) {
       isSearchedPropertyAvailable = true;
     }

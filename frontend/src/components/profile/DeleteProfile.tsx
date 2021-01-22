@@ -46,7 +46,7 @@ const DeleteProfile: React.FC = () => {
       await doFetch(address, Path.USERS, Method.DELETE, true);
     };
     deleteProfile();
-    sessionStorage.clear();
+    localStorage.clear();
     setOpen(false);
   };
   return (

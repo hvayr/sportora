@@ -136,7 +136,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
       (participant) =>
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        participant.user.authId === sessionStorage.getItem('sub'),
+        participant.user.authId === localStorage.getItem('sub'),
     )
     .includes(true);
 

@@ -10,6 +10,7 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const scope = process.env.REACT_APP_AUTH0_SCOPE;
 
   const onRedirectCallback = (appState) => {
+    localStorage.setItem('loggedIn', 'true')
     history.push(appState?.returnTo || window.location.pathname);
   };
 

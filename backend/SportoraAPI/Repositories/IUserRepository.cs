@@ -16,7 +16,7 @@ namespace SportoraAPI.Repositories
         Task<List<User>> GetUsersByExactUsername(string name);
         Task<List<User>> GetUsersByExactEmail(string email);
         User GetUserGroupsById(int id);
-        string GetUserNickName(string authId);
+        Task<string> GetNickName(string authId);
 
     }
 }

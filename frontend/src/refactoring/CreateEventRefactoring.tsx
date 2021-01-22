@@ -110,7 +110,7 @@ const TestCreateEventForm: React.FC<IProps> = (props: IProps) => {
       true,
       null,
       {
-        author: sessionStorage.getItem('sub'),
+        author: localStorage.getItem('sub'),
         name: sport,
         email: email,
         userName: name,

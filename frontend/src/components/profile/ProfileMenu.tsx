@@ -48,7 +48,7 @@ export default function ProfileMenu() {
         <div>
           <IconButton onClick={handleMenu} color="inherit">
             <Typography className={classes.userName}>
-              {useAuth0().user.name}
+              {localStorage.getItem('')}
             </Typography>
             <AccountCircle />
           </IconButton>
@@ -61,7 +61,7 @@ export default function ProfileMenu() {
                 logout({
                   returnTo: window.location.origin,
                 });
-                sessionStorage.clear();
+                localStorage.clear();
               }}
             >
               Logout

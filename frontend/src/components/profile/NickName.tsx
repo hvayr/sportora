@@ -40,7 +40,7 @@ export const NickName: React.FC = () => {
   const classes = useStyles();
   const [data, setData] = useState([]);
 
-  const onSubmit = () => {
+  const onSubmit = async (values: any) => {
     const fetchData = async () => {
       const patchedBody = [
         {
@@ -62,7 +62,7 @@ export const NickName: React.FC = () => {
     };
 
     try {
-      fetchData();
+      await fetchData();
       console.log(data);
     } catch (e) {
       console.log(e);

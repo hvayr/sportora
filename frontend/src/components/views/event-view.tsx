@@ -190,7 +190,7 @@ const EventView = () => {
   };
 
   const handleClick = () => {
-    sessionStorage.getItem('sub')
+    localStorage.getItem('sub')
       ? handleOpenDialog()
       : alert('You need to be logged in to' + ' host an event.');
   };
