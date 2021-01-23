@@ -10,7 +10,7 @@ import {
   Theme,
 } from '@material-ui/core';
 import React from 'react';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,7 +43,7 @@ const DeleteProfile: React.FC = () => {
 
   const handleDelete = () => {
     const deleteProfile = async () => {
-      await doFetch(address, Path.USERS, Method.DELETE, true);
+      await doFetch(address, Path.Users, Method.DELETE, FetchMethod.JSON, true);
     };
     deleteProfile();
     localStorage.clear();

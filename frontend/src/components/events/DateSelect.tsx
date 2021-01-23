@@ -6,6 +6,7 @@ import {
 import DateFnsUtils from '@date-io/date-fns';
 import { makeStyles } from '@material-ui/core/styles';
 import { createStyles } from '@material-ui/core';
+import { colors } from '../ui/Theme';
 
 interface DateProps {
   getDate: any;
@@ -14,8 +15,11 @@ interface DateProps {
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    select: {
+    root: {
       ...theme.select,
+    },
+    cssLabel: {
+      color: 'red',
     },
   }),
 );
@@ -39,7 +43,7 @@ const DateSelect: React.FC<DateProps> = ({ getDate, setDate }: DateProps) => {
         format="yyyy/MM/dd"
         color="secondary"
         style={{ width: '90%' }}
-        className={classes.select}
+        className={classes.root}
       />
     </MuiPickersUtilsProvider>
   );

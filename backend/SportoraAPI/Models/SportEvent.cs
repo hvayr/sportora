@@ -40,6 +40,10 @@ namespace SportoraAPI.Models
         public DateTime EventStartTime { get; set; }
         public DateTime EventCreatedTime { get; set; }
         public int[] AutoInvite { get; set; } // What is this?
-        
+
+      
     }
+    
+    
+    
 }

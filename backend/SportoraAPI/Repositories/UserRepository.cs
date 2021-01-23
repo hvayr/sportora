@@ -77,7 +77,7 @@ namespace SportoraAPI.Repositories
         public async Task<string> GetNickName(string authId)
         {
             User user =
-                _context.Users.FirstOrDefault(u => u.AuthId == authId);
+                await _context.Users.FirstOrDefaultAsync(u => u.AuthId == authId);
 
             if (user is null)
                 return null;

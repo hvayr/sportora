@@ -10,7 +10,7 @@ export const colors = {
   blue: '#FB8C00',
   darkBlue: '#E65100',
   white: '#FFFFFF',
-  black: '#000000',
+  black: '#101010',
 };
 
 export default createMuiTheme({
@@ -50,6 +50,19 @@ export default createMuiTheme({
       '& .MuiSelect-select.MuiSelect-select, & .MuiInput-root': {
         paddingTop: '1.5em',
       },
+    '& .MuiInputLabel-root': {
+      color: 'black',
+    },
+
+    '& .MuiOutlinedInput-root': {
+      '& .Mui-focused, .MuiOutlinedInput-notchedOutline': {
+        borderWidth: '3px',
+        boxShadow: '2px 2px 2px #F57C00',
+        borderColor: `${colors.black} !important`,
+      },
+    },
+    '& .Mui-focused': {
+    },
     }
   /*'& .MuiTextField-root': {
     margin: '10px',

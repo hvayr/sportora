@@ -8,14 +8,17 @@ import { Button, Collapse, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
+import { getNickName } from '../../api/getNickName';
+import CountdownTimer from './CountdownTimer';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 700,
       margin: '1px',
-      backgroundColor: theme.palette.secondary.main,
+      // backgroundColor: theme.palette.secondary.main,
+      backgroundColor: '#FFE0B2',
       boxShadow: 'inset 1px 1px 10px',
       // boxShadow: 'inset 0 5px 10px 0px rgba(0,0,0,.5)',
       color: theme.palette.primary.main,
@@ -73,6 +76,9 @@ const useStyles = makeStyles((theme: Theme) =>
     participantText: {
       marginLeft: '40px',
     },
+    participantList: {
+      marginTop: '-20px',
+    },
     expandIcon: {
       marginTop: '-8px',
     },
@@ -113,8 +119,10 @@ interface EventProps {
   eventStartTime: string;
   author: string;
   location: string;
-  setRenderCard: any;
+  setRenderCard: React.Dispatch<React.SetStateAction<boolean>>;
   userName: string;
+  nickName: string;
+  activeStatus: boolean;
 }
 
 const EventCard: React.FC<EventProps> = (props: EventProps) => {
@@ -143,8 +151,9 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
   const handleJoin = async () => {
     const results = await doFetch(
       address,
-      Path.ADDUSERTOEVENT,
+      Path.AddUserToEvent,
       Method.POST,
+      FetchMethod.JSON,
       true,
       props.id,
     );
@@ -154,8 +163,9 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
   const handleLeave = async () => {
     const results = await doFetch(
       address,
-      Path.REMOVEUSERFROMEVENT,
+      Path.RemoveUserFromEvent,
       Method.DELETE,
+      FetchMethod.JSON,
       true,
       props.id,
     );
@@ -166,7 +176,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     let list = [];
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    list = props.participants.map((p) => p.user.userName);
+    list = props.participants.map((p) => p.user.nickName);
     console.log();
     return list.join(', ');
   };
@@ -175,19 +185,31 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     return props.numParticipants >= props.maxParticipants;
   };
 
-  // const authorUserName = () => {
-  //   // eslint-disable-next-line react/prop-types,@typescript-eslint/ban-ts-comment
-  //   // @ts-ignore
-  //   // eslint-disable-next-line react/prop-types
-  //   return props.admins.user[0]?.userName;
-  // };
+  const path = Path.NickNameByAuthId;
+
+  const authorNickName = () => {
+    return getNickName(path, props.author);
+  };
+
+  console.log('active: ' + props.activeStatus);
+
+  const disableJoin = () => {
+    if (isEventFull() && !joined) {
+      return true;
+    }
+    return !localStorage.getItem('sub');
+  };
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const ipsumText = true + props.activeStatus;
 
   return (
     <Grid container>
       <Grid item>
         <Card
           className={classes.root}
-          style={expanded ? { height: 260 + nameList().length * 3 } : {}}
+          style={expanded ? { height: 260 + nameList().length * 4 } : {}}
         >
           <CardContent>
             <Grid container>
@@ -208,6 +230,9 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   <Typography>
                     {moment(props.eventStartTime).format('MMMM Do, h:mm')}
                   </Typography>
+                </Grid>
+                <Grid item>
+                  <CountdownTimer props={props.eventStartTime} />
                 </Grid>
                 <Grid item>
                   <Typography variant="h6">{props.location}</Typography>
@@ -234,7 +259,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   </Grid>
                   <Grid item>
                     <Typography variant="h5" className={classes.nickname}>
-                      {/*{authorUserName()}*/}
+                      {authorNickName()}
                     </Typography>
                   </Grid>
                 </Grid>
@@ -247,8 +272,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                 className={classes.descriptionContainer}
               >
                 <Grid item>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  <Typography component="h4">"{props.description}"</Typography>
+                  <Typography component="h4">{props.description}</Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -281,9 +305,16 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                     </Grid>
                   </Grid>
                   <Grid item>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <Collapse
+                      in={expanded}
+                      timeout="auto"
+                      unmountOnExit
+                      className={classes.participantList}
+                    >
                       <CardContent>
-                        <Typography>{nameList()}</Typography>
+                        <Typography style={{ color: '#E65100' }}>
+                          {nameList()}
+                        </Typography>
                       </CardContent>
                     </Collapse>
                   </Grid>
@@ -305,7 +336,7 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                       className={classes.joinButton}
                       variant="contained"
                       onClick={joined ? handleLeave : handleJoin}
-                      disabled={isEventFull() && !joined}
+                      disabled={disableJoin()}
                     >
                       <Typography variant="h5">
                         {joined ? 'LEAVE' : 'JOIN'}

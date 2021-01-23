@@ -11,7 +11,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventCard from '../events/EventCard';
 import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
 import GridListTile from '@material-ui/core/GridListTile';
 import { createStyles, Theme } from '@material-ui/core/styles';
 import SportSelect from '../events/SportSelect';
@@ -20,12 +20,13 @@ import SwitchComponent from '../events/SwitchComponent';
 import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import { getNickName } from '../../api/getNickName';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     eventList: {
       height: 1050,
-      marginTop: '5px',
+      marginTop: '15px',
       display: 'block',
       '&::-webkit-scrollbar': {
         width: '1em',
@@ -97,23 +98,32 @@ const EventView = () => {
   const [hideFullToggle, setHideFullToggle] = useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
-  const [newEventOnTop, setNewEventOnTop] = React.useState('');
   const [renderCard, setRenderCard] = React.useState(false);
 
   useEffect(() => {
     const getData = async () => {
+      const checkActiveState = await doFetch(
+        address,
+        Path.CheckActiveState,
+        Method.POST,
+        FetchMethod.Text,
+        false,
+      );
+
       const result = await doFetch(
         address,
-        Path.EVENTS,
+        Path.Events,
         Method.GET,
+        FetchMethod.JSON,
         false,
         null,
       );
+      await checkActiveState;
       setEventData(await result.content);
       setRenderCard(false);
     };
     getData();
-  }, [openDialog, setOpenDialog, renderCard]);
+  }, [openDialog, renderCard, hideFullToggle]);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
@@ -137,11 +147,14 @@ const EventView = () => {
 
   function filteredEvents() {
     let filteredData = eventData;
+
+    filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     if (hideFullToggle.checked) {
       filteredData = filteredData.filter(
-        (s: ISportEvent) => s.numParticipants <= s.maxParticipants,
+        (s: ISportEvent) => s.numParticipants < s.maxParticipants,
       );
     }
 
@@ -195,6 +208,8 @@ const EventView = () => {
       : alert('You need to be logged in to' + ' host an event.');
   };
   const classes = useStyles();
+
+  console.log('getnick: ' + getNickName(Path.LoggedUserNickName));
 
   return (
     <>
@@ -274,6 +289,8 @@ const EventView = () => {
                 author,
                 location,
                 userName,
+                nickName,
+                activeStatus,
               }) => (
                 <Grid container key={id} justify="center">
                   <Grid item>
@@ -289,6 +306,8 @@ const EventView = () => {
                         author={author}
                         location={location}
                         userName={userName}
+                        nickName={nickName}
+                        activeStatus={activeStatus}
                         setRenderCard={setRenderCard}
                       />
                       ));

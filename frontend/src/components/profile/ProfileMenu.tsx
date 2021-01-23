@@ -7,6 +7,8 @@ import Menu from '@material-ui/core/Menu';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
+import { getNickName } from '../../api/getNickName';
+import { Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -48,7 +50,7 @@ export default function ProfileMenu() {
         <div>
           <IconButton onClick={handleMenu} color="inherit">
             <Typography className={classes.userName}>
-              {localStorage.getItem('')}
+              {getNickName(Path.LoggedUserNickName)}
             </Typography>
             <AccountCircle />
           </IconButton>

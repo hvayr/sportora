@@ -12,7 +12,7 @@ import {
 import { Form, Formik } from 'formik';
 import React from 'react';
 import * as Yup from 'yup';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, Method, Path, FetchMethod } from '../../api/utils';
 import FormikField from '../forms/FormikField';
 
 const useStyles = makeStyles((theme) => ({
@@ -49,8 +49,9 @@ const EditEvent: React.FC<Props> = ({ open, setOpen, eventId }: Props) => {
     const description = values.description;
     const results = await doFetch(
       address,
-      Path.EVENTS,
+      Path.Events,
       Method.PATCH,
+      FetchMethod.JSON,
       true,
       eventId,
       [

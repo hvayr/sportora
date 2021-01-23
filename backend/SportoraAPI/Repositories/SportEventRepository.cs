@@ -167,6 +167,19 @@ namespace SportoraAPI.Repositories
             }
         }
 
-        
+        public async Task CheckActiveStateOfAllEvents()
+        {
+            await _context.SportEvents.ForEachAsync(s => SetActiveState(s));
+            _context.SaveChanges();
+        }
+
+        public void SetActiveState(SportEvent s)
+        {
+            if (s.EventStartTime < DateTime.Now)
+            {
+                s.ActiveStatus = false;
+            }
+        }
+
     }
 }

@@ -178,7 +178,7 @@ namespace SportoraAPI.Controllers
         }
 
         [Authorize(Policy = "MustBeLoggedIn")]
-        [HttpGet("getNickName")]
+        [HttpGet("loggedUserNickName")]
         public async Task<IActionResult> GetNickName()
         {
             string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
@@ -191,6 +191,21 @@ namespace SportoraAPI.Controllers
             string nickName = await _userRepository.GetNickName(authId);
 
             return Ok(nickName);
+        }
+        
+        [HttpGet("nickNameByAuthId/id/{authId}")]
+        public async Task<IActionResult> GetAuthorNickNameByAuthId(string authId)
+        {
+
+            string nickName = await _userRepository.GetNickName(authId);
+
+            if (nickName is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(nickName);
+            
         }
     }
 }

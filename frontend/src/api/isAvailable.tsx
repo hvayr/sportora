@@ -1,4 +1,4 @@
-import { address, doFetch, Method, Path } from './utils';
+import { address, doFetch, FetchMethod, Method, Path } from './utils';
 
 export async function isAvailable(
   searchFrom: string,
@@ -9,12 +9,19 @@ export async function isAvailable(
   try {
     let url;
     if (searchFrom === 'name') {
-      url = Path.USERNAME;
+      url = Path.UserName;
     } else {
-      url = searchFrom === 'email' ? Path.EMAIL : Path.USERS;
+      url = searchFrom === 'email' ? Path.Email : Path.Users;
     }
 
-    const response = await doFetch(address, url, Method.GET, false, searchFor);
+    const response = await doFetch(
+      address,
+      url,
+      Method.GET,
+      FetchMethod.JSON,
+      false,
+      searchFor,
+    );
     console.log('Status ' + response.status);
     if (response.status !== 200) {
       isSearchedPropertyAvailable = true;

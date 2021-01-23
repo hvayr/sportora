@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import React from 'react';
+import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
 import {
   Button,
   Card,
   CardContent,
   Dialog,
   DialogContent,
-  DialogTitle,
   FormGroup,
   Grid,
   makeStyles,
@@ -27,12 +26,6 @@ const initialValues: FormValues = {
 const NickNameSchema = Yup.object().shape({
   nickName: Yup.string().min(2, 'Too short!').max(20, 'Too long!'),
 });
-
-
-interface Props {
-  open: boolean,
-  setOpen:
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +49,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export async function saveNickToLocalStorage() {
-  const response = await doFetch(address, Path.CHECKNICKNAME, Method.GET, true);
+  const response = await doFetch(
+    address,
+    Path.CheckNickName,
+    Method.GET,
+    FetchMethod.JSON,
+    true,
+  );
   if (response.content === true) {
     localStorage.setItem('nickSet', 'true');
   } else {
@@ -65,21 +64,10 @@ export async function saveNickToLocalStorage() {
   console.log('nick is set: ' + localStorage.getItem('nickSet'));
 }
 
-const openDialog: React.FC = () => {
-  const [open, setOpen] = React.useState(false);
-
-  const myEventColums
-
-  const myEvents
-
-}
-
 interface Props {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-const EditEvent: React.FC<Props> = (values: any, {open, setOpen}: Props) => {}
 
 export const FirstTimeLoginNickName: React.FC<Props> = ({
   open,
@@ -104,8 +92,9 @@ export const FirstTimeLoginNickName: React.FC<Props> = ({
       ];
       const results = await doFetch(
         address,
-        Path.USERS,
+        Path.Users,
         Method.PATCH,
+        FetchMethod.JSON,
         true,
         null,
         patchedBody,

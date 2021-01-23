@@ -1,5 +1,5 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, Method, Path, FetchMethod } from '../../api/utils';
 import {
   DataGrid,
   ColDef,
@@ -88,8 +88,9 @@ const openDialog: React.FC = () => {
     const fetchData = async () => {
       const results = await doFetch(
         address,
-        Path.ADMINEVENTS,
+        Path.AdminEvents,
         Method.GET,
+        FetchMethod.JSON,
         true,
       );
       console.log(results.status);

@@ -19,7 +19,7 @@ import {
   KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
-import { address, doFetch, Path, Method } from '../../api/utils';
+import { address, doFetch, Path, Method, FetchMethod } from '../../api/utils';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) =>
@@ -138,8 +138,9 @@ const CreateEventForm: React.FC<IProps> = ({
     try {
       const response = await doFetch(
         address,
-        Path.EVENTS,
+        Path.Events,
         Method.POST,
+        FetchMethod.JSON,
         true,
         null,
         {

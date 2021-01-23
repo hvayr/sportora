@@ -5,14 +5,11 @@ import {
   Button,
   Card,
   CardContent,
-  Dialog,
-  DialogContent,
-  DialogTitle,
   FormGroup,
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
 import FormikField from '../forms/FormikField';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,8 +48,9 @@ export const NickName: React.FC = () => {
       ];
       const results = await doFetch(
         address,
-        Path.USERS,
+        Path.Users,
         Method.PATCH,
+        FetchMethod.JSON,
         true,
         null,
         patchedBody,

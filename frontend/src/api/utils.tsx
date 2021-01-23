@@ -2,11 +2,12 @@
 
 export const doFetch = async (
   address: string,
-  path: Path,
+  path: Path | string,
   method: Method,
+  fetchMethod: FetchMethod = FetchMethod.JSON,
   authorize: boolean,
-  id?: string | number | null,
-  body?: object,
+  id: string | number | null = null,
+  body: object = {},
 ) => {
   let fetchFrom = address + path;
 
@@ -34,25 +35,28 @@ export const doFetch = async (
     ),
   );
 
-  console.log('status ' + response.status);
-
   const content =
-    response.status === 200 ? await response.json() : await response.text();
+    response.status === 200
+      ? await response[fetchMethod]()
+      : await response.text();
 
   return { status: response.status, content: content };
 };
 
 export enum Path {
-  USERS = '/users',
-  USERNAME = '/users/exactName',
-  EVENTS = '/sportevents',
-  PROTECTEDEVENTS = '/sportevents/protected',
-  EMAIL = '/users/email', //not implemented yet
-  PARTICIPATINGEVENTS = '/sportevents/participatingevents',
-  ADMINEVENTS = '/sportevents/adminevents',
-  CHECKNICKNAME = '/users/checkNickName',
-  ADDUSERTOEVENT = '/sportevents/addUser',
-  REMOVEUSERFROMEVENT = '/sportevents/removeUser',
+  Users = '/users',
+  UserName = '/users/exactName',
+  Events = '/sportevents',
+  ProtectedEvents = '/sportevents/protected',
+  Email = '/users/email', //not implemented yet
+  ParticipatingEvents = '/sportevents/participatingevents',
+  AdminEvents = '/sportevents/adminevents',
+  CheckNickName = '/users/checkNickName',
+  AddUserToEvent = '/sportevents/addUser',
+  RemoveUserFromEvent = '/sportevents/removeUser',
+  LoggedUserNickName = '/users/loggedUserNickName',
+  NickNameByAuthId = '/users/nickNameByAuthId',
+  CheckActiveState = '/sportevents/checkActiveState',
 }
 
 export const address = `https://localhost:44348`;
@@ -63,6 +67,11 @@ export enum Method {
   PATCH = 'PATCH',
   PUT = 'PUT',
   DELETE = 'DELETE',
+}
+
+export enum FetchMethod {
+  JSON = 'json',
+  Text = 'text',
 }
 
 export enum Sport {
