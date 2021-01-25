@@ -32,52 +32,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Migrations/20210123123228_new initial.Designer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Migrations/20210123123228_new initial.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/api/getNickName.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/old_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CountdownTimer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CountdownTimerJS.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/ParticipantPopOver.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/UsersController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UsersController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201126131215_User-Event-Test.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201126131215_User-Event-Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201126132301_User-Event-Test3.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201126132301_User-Event-Test3.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201201164036_ObjectReferences.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201201164036_ObjectReferences.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201201182902_FixUserGroups.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201201182902_FixUserGroups.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201211230958_new initial.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20201211230958_new initial.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20210111122331_NickName.Designer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20210111122331_NickName.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/SportEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/SportEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/UserRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/UserRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SportoraAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/SportoraAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/isAvailable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/isAvailable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/saveUser.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/saveUser.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/getNickName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/getNickName.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/archived stuff" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/archived stuff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/assets/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/assets/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/auth/login-button.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/auth/login-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CountdownTimer.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateTimeSelect.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/SportSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/DeleteProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/DeleteProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/EditEvent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/EditEvent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/JoinedEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/JoinedEvents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/MyEvents.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/MyEvents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/NickName.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/ProfileMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/ProfileMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/profile/checkNicknameAndSave.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/refactoring/CreateEventRefactoring.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/refactoring/CreateEventRefactoring.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +208,7 @@
       <workItem from="1611215830977" duration="1109000" />
       <workItem from="1611339047733" duration="2191000" />
       <workItem from="1611402021252" duration="54000" />
-      <workItem from="1611402353799" duration="8460000" />
+      <workItem from="1611402353799" duration="10422000" />
     </task>
     <servers />
   </component>
@@ -303,6 +275,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Controllers/UsersController.cs</url>
+          <line>92</line>
+          <properties documentPath="C:\Git\sportora\backend\SportoraAPI\Controllers\UsersController.cs" initialLine="92" containingFunctionPresentation="method 'DeleteUser'">
+            <startOffsets>
+              <option value="2502" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2593" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

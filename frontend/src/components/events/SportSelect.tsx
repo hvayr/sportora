@@ -10,19 +10,16 @@ const useStyles = makeStyles((theme) =>
   createStyles({
     sport: {
       ...theme.select,
-      width: '70%',
+      width: '75%',
       '& .MuiFormControl-marginNormal': {
-        marginRight: '8px',
+        marginRight: '20px',
       },
       '& .MuiAutocomplete-inputRoot': {
         borderWidth: '10px',
       },
     },
     root: {
-      marginRight: '1px',
-    },
-    cssLabel: {
-      color: 'red',
+      marginRight: '17.5px',
     },
 
     // cssOutlinedInput: {

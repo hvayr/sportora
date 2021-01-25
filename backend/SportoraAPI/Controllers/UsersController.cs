@@ -70,7 +70,7 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
+           
             return Ok(userGroups);
         }
 

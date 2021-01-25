@@ -21,6 +21,7 @@ import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { getNickName } from '../../api/getNickName';
+import { colors } from '../ui/Theme';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,7 +44,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     locationMenu: {
       ...theme.select,
-      marginLeft: '-30.5px',
+      '& .MuiInputBase-input': {
+        backgroundColor: theme.palette.custom.color2,
+      },
+      marginLeft: '-75px',
       marginTop: '-1em',
       height: '1em',
     },
@@ -181,6 +185,14 @@ const EventView = () => {
       );
     }
 
+    filteredData.sort(function (a, b): any {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return new Date(a.eventStartTime) - new Date(b.eventStartTime);
+    });
+
+    console.log('filteredData ' + filteredData.map((e: any) => e.activeStatus));
+
     return filteredData;
   }
 
@@ -202,11 +214,12 @@ const EventView = () => {
     setOpenSnackbar(false);
   };
 
-  const handleClick = () => {
+  const handleClickOpenDialog = () => {
     localStorage.getItem('sub')
       ? handleOpenDialog()
       : alert('You need to be logged in to' + ' host an event.');
   };
+
   const classes = useStyles();
 
   console.log('getnick: ' + getNickName(Path.LoggedUserNickName));
@@ -233,7 +246,7 @@ const EventView = () => {
             <SportSelect getSport={sport} setSport={setSport} />
           </Grid>
           <Grid item className={classes.dateMenu}>
-            <DateSelect getDate={selectedDate} setDate={handleDateChange} />
+            <DateSelect date={selectedDate} setDate={handleDateChange} />
           </Grid>
           <Grid item>
             <TextField
@@ -251,7 +264,7 @@ const EventView = () => {
               variant="contained"
               className={classes.hostEvent}
               color="primary"
-              onClick={handleClick}
+              onClick={handleClickOpenDialog}
             >
               <ControlPointIcon fontSize="large" />
               <Typography variant="h4">HOST EVENT</Typography>

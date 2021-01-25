@@ -51,6 +51,12 @@ const useStyles = makeStyles((theme) =>
     },
     button: {
       marginLeft: 'auto',
+      marginBottom: '10px',
+      backgroundColor: theme.palette.custom.color1,
+    },
+    loginButton: {
+      marginBottom: '10px',
+      backgroundColor: theme.palette.custom.color1,
     },
     buttonContainer: {
       margin: 'auto',
@@ -96,8 +102,14 @@ const Header: React.FC = () => {
               xs={6}
               className={classes.buttonContainer}
             >
-              <div className={classes.button}>
-                {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
+              <div>
+                {isAuthenticated ? (
+                  <ProfileMenu />
+                ) : (
+                  <div className={classes.loginButton}>
+                    <LoginButton />
+                  </div>
+                )}
               </div>
             </Grid>
           </Grid>

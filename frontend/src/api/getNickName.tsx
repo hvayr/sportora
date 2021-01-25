@@ -18,7 +18,7 @@ export const getNickName = (path: Path, id?: string | number) => {
       setNick(response.content);
     }
 
-    setNick(response.content);
+    console.log('getnick status ' + response.status);
   };
   fetch();
 

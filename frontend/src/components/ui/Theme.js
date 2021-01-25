@@ -37,8 +37,9 @@ export default createMuiTheme({
     },
   },
   select: {
+    background: colors.lightBlue,
       '& .MuiFormLabel-root': {
-        fontSize: '2rem',
+        fontSize: '1.5em',
         marginBottom: '1em',
         textTransform: 'uppercase',
         fontWeight: '700',
@@ -59,6 +60,7 @@ export default createMuiTheme({
         borderWidth: '3px',
         boxShadow: '2px 2px 2px #F57C00',
         borderColor: `${colors.black} !important`,
+        textAlign: 'center',
       },
     },
     '& .Mui-focused': {

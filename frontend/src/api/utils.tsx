@@ -79,3 +79,21 @@ export enum Sport {
   FOOTBALL,
   BASEBALL,
 }
+
+export interface IUser {
+  id: number;
+  authId: string;
+  email: string;
+  firstName: string | null;
+  lastName: string | null;
+  userName: string;
+  nickName: string | null;
+  gender: null;
+  groups: null;
+  imageUrl: null;
+}
+
+export interface IParticipants {
+  id: number;
+  users: IUser[];
+}

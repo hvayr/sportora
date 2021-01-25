@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export async function saveNickToLocalStorage() {
+  console.log('saving...');
   const response = await doFetch(
     address,
     Path.CheckNickName,
@@ -56,6 +57,7 @@ export async function saveNickToLocalStorage() {
     FetchMethod.JSON,
     true,
   );
+  console.log('status: ' + response.status);
   if (response.content === true) {
     localStorage.setItem('nickSet', 'true');
   } else {
@@ -76,13 +78,15 @@ export const FirstTimeLoginNickName: React.FC<Props> = ({
   const classes = useStyles();
 
   const handleClose = () => {
-    if (localStorage.getItem('nickSet') === 'true') {
-      setOpen(false);
-    }
+    // if (localStorage.getItem('nickSet') === 'true') {
+    //   setOpen(false);
+    // }
+    setOpen(false);
   };
 
   const onSubmit = async (values: any) => {
     const fetchData = async () => {
+      console.log('patching');
       const patchedBody = [
         {
           op: 'replace',
