@@ -97,3 +97,19 @@ export interface IParticipants {
   id: number;
   users: IUser[];
 }
+
+export interface ISportEvent {
+  id: number;
+  author: string;
+  admins: number[];
+  name: string;
+  description: string;
+  location: string;
+  participants: number[];
+  numParticipants: number;
+  maxParticipants: number;
+  activeStatus: boolean;
+  eventStartTime: string;
+  eventCreatedTime: string;
+  autoInvite: number[];
+}

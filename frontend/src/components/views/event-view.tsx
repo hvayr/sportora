@@ -22,6 +22,7 @@ import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import { getNickName } from '../../api/getNickName';
 import { colors } from '../ui/Theme';
+import useSearch from '../../api/useSearch';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -95,7 +96,7 @@ function Alert(props: AlertProps) {
 }
 
 const EventView = () => {
-  const [eventData, setEventData] = useState([]);
+  // const [eventData, setEventData] = useState([]);
   const [sport, setSport] = useState(['Any']);
   const [location, setLocation] = useState('');
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
@@ -103,98 +104,91 @@ const EventView = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [renderCard, setRenderCard] = React.useState(false);
+  const [pageNumber, setPageNumber] = React.useState(1);
 
-  useEffect(() => {
-    const getData = async () => {
-      const checkActiveState = await doFetch(
-        address,
-        Path.CheckActiveState,
-        Method.POST,
-        FetchMethod.Text,
-        false,
-      );
+  const { eventData, loading } = useSearch({
+    location,
+    sport,
+    selectedDate,
+    pageNumber,
+    hideFullToggle,
+  });
 
-      const result = await doFetch(
-        address,
-        Path.Events,
-        Method.GET,
-        FetchMethod.JSON,
-        false,
-        null,
-      );
-      await checkActiveState;
-      setEventData(await result.content);
-      setRenderCard(false);
-    };
-    getData();
-  }, [openDialog, renderCard, hideFullToggle]);
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const checkActiveState = await doFetch(
+  //       address,
+  //       Path.CheckActiveState,
+  //       Method.POST,
+  //       FetchMethod.Text,
+  //       false,
+  //     );
+  //
+  //     const result = await doFetch(
+  //       address,
+  //       Path.Events,
+  //       Method.GET,
+  //       FetchMethod.JSON,
+  //       false,
+  //       null,
+  //     );
+  //     await checkActiveState;
+  //     setEventData(await result.content);
+  //     setRenderCard(false);
+  //   };
+  //   getData();
+  // }, [openDialog, renderCard, hideFullToggle]);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
   };
 
-  interface ISportEvent {
-    id: number;
-    author: string;
-    admins: number[];
-    name: string;
-    description: string;
-    location: string;
-    participants: number[];
-    numParticipants: number;
-    maxParticipants: number;
-    activeStatus: boolean;
-    eventStartTime: string;
-    eventCreatedTime: string;
-    autoInvite: number[];
-  }
-
-  function filteredEvents() {
-    let filteredData = eventData;
-
-    filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (hideFullToggle.checked) {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) => s.numParticipants < s.maxParticipants,
-      );
-    }
-
-    if (sport.toString() !== 'Any') {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) =>
-          s.name.toLocaleLowerCase() === sport.toString().toLocaleLowerCase(),
-      );
-    }
-
-    if (location.toString() !== '') {
-      filteredData = filteredData.filter((s: ISportEvent) =>
-        s.location
-          .toLocaleLowerCase()
-          .includes(location.toString().toLocaleLowerCase()),
-      );
-    }
-
-    if (selectedDate !== null) {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) =>
-          s.eventStartTime.split('T')[0] ===
-          selectedDate.toJSON().split('T')[0],
-      );
-    }
-
-    filteredData.sort(function (a, b): any {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      return new Date(a.eventStartTime) - new Date(b.eventStartTime);
-    });
-
-    console.log('filteredData ' + filteredData.map((e: any) => e.activeStatus));
-
-    return filteredData;
-  }
+  // function filteredEvents() {
+  //   let filteredData = eventData;
+  //
+  //   filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
+  //
+  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //   // @ts-ignore
+  //   if (hideFullToggle.checked) {
+  //     filteredData = filteredData.filter(
+  //       (s: ISportEvent) => s.numParticipants < s.maxParticipants,
+  //     );
+  //   }
+  //
+  //   if (sport.toString() !== 'Any') {
+  //     filteredData = filteredData.filter(
+  //       (s: ISportEvent) =>
+  //         s.name.toLocaleLowerCase() === sport.toString().toLocaleLowerCase(),
+  //     );
+  //   }
+  //
+  //   if (location.toString() !== '') {
+  //     filteredData = filteredData.filter((s: ISportEvent) =>
+  //       s.location
+  //         .toLocaleLowerCase()
+  //         .includes(location.toString().toLocaleLowerCase()),
+  //     );
+  //   }
+  //
+  //   if (selectedDate !== null) {
+  //     filteredData = filteredData.filter(
+  //       (s: ISportEvent) =>
+  //         s.eventStartTime.split('T')[0] ===
+  //         selectedDate.toJSON().split('T')[0],
+  //     );
+  //   }
+  //
+  //   filteredData.sort(function (a, b): any {
+  //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //     // @ts-ignore
+  //     return new Date(a.eventStartTime) - new Date(b.eventStartTime);
+  //   });
+  //
+  //   console.log('filteredData ' + filteredData.map((e: any) => e.activeStatus));
+  //
+  //   return filteredData;
+  // }
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -290,7 +284,7 @@ const EventView = () => {
       <Grid container className={classes.eventList}>
         <Grid item>
           <GridList cellHeight="auto" className={classes.eventList} cols={1}>
-            {filteredEvents().map(
+            {eventData.map(
               ({
                 id,
                 name,

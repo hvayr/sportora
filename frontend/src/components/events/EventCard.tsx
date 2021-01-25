@@ -276,7 +276,9 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                 >
                   <Grid item xs={2} />
                   <Grid item xs={6}>
-                    <Typography component="h4">{props.description}</Typography>
+                    <Typography component="h4">
+                      Description: {props.description}
+                    </Typography>
                   </Grid>
                 </Grid>
                 <Grid
