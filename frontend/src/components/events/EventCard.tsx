@@ -27,10 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       width: 700,
       margin: '1px',
-      // backgroundColor: theme.palette.secondary.main,
       backgroundColor: '#FFE0B2',
       boxShadow: 'inset 1px 1px 10px',
-      // boxShadow: 'inset 0 5px 10px 0px rgba(0,0,0,.5)',
       color: theme.palette.primary.main,
       borderRadius: '10px',
       transition: 'background-color',
@@ -42,28 +40,18 @@ const useStyles = makeStyles((theme: Theme) =>
         transitionDuration: '500ms',
         transitionTimingFunction: 'ease-out',
       },
-      // '&::after, &::before': {
-      //   position: 'absolute',
-      //   content: '""',
-      //   width: '150px',
-      //   height: '10px',
-      //   background: theme.palette.secondary.main,
-      //   bottom: '17.2em',
-      // },
-      // '&::before': {
-      //   right: '50%',
-      //   transform: 'skew(0, 20deg)',
-      // },
-      // '&::after': {
-      //   left: '50%',
-      //   transform: 'skew(0, -20deg)',
-      // },
     },
     joined: {
       backgroundColor: '#2FFA80',
+      '&:hover': {
+        backgroundColor: '#2E7D32',
+      },
     },
     hosted: {
-      backgroundColor: '#168AFA',
+      backgroundColor: '#42A5F5',
+      '&:hover': {
+        backgroundColor: '#1565C0',
+      },
     },
     bullet: {
       display: 'inline-block',
@@ -76,8 +64,6 @@ const useStyles = makeStyles((theme: Theme) =>
     sportName: {
       fontWeight: 600,
       textTransform: 'uppercase',
-      // backgroundColor: theme.palette.primary.main,
-      // padding: '5px',
     },
     startTime: {
       marginTop: '2px',
@@ -154,11 +140,8 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         {
-          if (participant.user) {
-            if (participant.user.authId != null) {
-              // console.log('id ', participant.user.authId);
-              return participant.user.authId === localStorage.getItem('sub');
-            }
+          if (participant.user && participant.user.authId != null) {
+            return participant.user.authId === localStorage.getItem('sub');
           }
         },
       )
@@ -209,12 +192,13 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     return props.author === localStorage.getItem('sub');
   }
 
-  const disableJoin = () => {
-    if (isEventFull() && !joined) {
-      return true;
+  console.log('is full: ', isEventFull());
+
+  function disableJoin() {
+    if (isEventFull()) {
+      return !joined();
     }
-    return !localStorage.getItem('sub');
-  };
+  }
 
   const currentTime = moment(new Date());
   const eventTime = moment(props.eventStartTime);

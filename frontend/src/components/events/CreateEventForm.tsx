@@ -109,6 +109,7 @@ const validate = (values: IInitialValues) => {
 interface IProps {
   setOpenDialog: Dispatch<SetStateAction<boolean>>;
   setOpenEventViewSnackbar: Dispatch<SetStateAction<boolean>>;
+  setRenderCard: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function Alert(props: AlertProps) {
@@ -118,6 +119,7 @@ function Alert(props: AlertProps) {
 const CreateEventForm: React.FC<IProps> = ({
   setOpenDialog,
   setOpenEventViewSnackbar,
+  setRenderCard,
 }: IProps) => {
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [error, setError] = React.useState('');
@@ -160,6 +162,7 @@ const CreateEventForm: React.FC<IProps> = ({
       console.log('date ', values.date);
 
       const handleSuccess = () => {
+        setRenderCard(true);
         setOpenEventViewSnackbar(true);
         setOpenDialog(false);
       };

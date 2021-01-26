@@ -208,6 +208,7 @@ const EventView = () => {
                   <CreateEventForm
                     setOpenDialog={setOpenDialog}
                     setOpenEventViewSnackbar={setOpenSnackbar}
+                    setRenderCard={setRenderCard}
                   />
                 </Paper>
               </Dialog>

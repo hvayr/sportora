@@ -70,7 +70,7 @@ export const NickName: React.FC = () => {
   return (
     <Card>
       <CardContent>
-        <Typography variant="h4">Set Nickname</Typography>
+        <Typography variant="h4">Change Nickname</Typography>
 
         <Formik
           initialValues={initialValues}

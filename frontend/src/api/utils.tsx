@@ -15,8 +15,6 @@ export const doFetch = async (
     fetchFrom += `/id/${id}`;
   }
 
-  console.log('from ' + fetchFrom);
-
   const response = await fetch(
     fetchFrom,
     Object.assign(
