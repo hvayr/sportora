@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) =>
       height: '160px',
       display: 'block',
       backgroundColor: '#101010',
-      borderBottom: `5px solid ${colors.blue}`,
+      borderBottom: `5px solid ${colors.normal}`,
     },
     appBar: {
       width: '1000px',

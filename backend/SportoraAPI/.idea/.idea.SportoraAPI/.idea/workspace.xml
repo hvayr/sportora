@@ -32,18 +32,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../frontend/src/components/events/filterEvents.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SportEventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SportEventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/ISportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Repositories/SportEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/useSearch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/useSearch.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/utils.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/archived stuff" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/archived stuff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/CreateEventForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/EventCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/ParticipantPopOver.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/ParticipantPopOver.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/views/event-view.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CountdownTimer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/refactoring/CountdownTimer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +196,7 @@
       <workItem from="1611339047733" duration="2191000" />
       <workItem from="1611402021252" duration="54000" />
       <workItem from="1611402353799" duration="24608000" />
-      <workItem from="1611647863428" duration="3305000" />
+      <workItem from="1611647863428" duration="3915000" />
     </task>
     <servers />
   </component>

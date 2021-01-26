@@ -37,6 +37,7 @@ const DateSelect: React.FC<DateProps> = ({ date, setDate }: DateProps) => {
         inputVariant="outlined"
         label="Date"
         value={date}
+        autoOk
         onChange={setDate}
         onError={console.log}
         format="yyyy/MM/dd"

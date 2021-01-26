@@ -1,14 +1,11 @@
 /* eslint-disable */
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
-import { Palette } from '@material-ui/core/styles/createPalette';
 import '@material-ui/core/styles';
-import orange from '@material-ui/core/colors/orange';
-import deepOrange from '@material-ui/core/colors/deepOrange';
 
 export const colors = {
-  lightBlue: '#FFB74D',
-  blue: '#FB8C00',
-  darkBlue: '#E65100',
+  light: '#FFB74D',
+  normal: '#FB8C00',
+  dark: '#E65100',
   white: '#FFFFFF',
   black: '#101010',
 };
@@ -31,13 +28,13 @@ export default createMuiTheme({
       default: `${colors.white}`,
     },
     custom: {
-      color1: `${colors.blue}`,
-      color2: `${colors.lightBlue}`,
-      color3: `${colors.darkBlue}`,
+      color1: `${colors.normal}`,
+      color2: `${colors.light}`,
+      color3: `${colors.dark}`,
     },
   },
   select: {
-    background: colors.lightBlue,
+    background: colors.light,
       '& .MuiFormLabel-root': {
         fontSize: '1.5em',
         marginBottom: '1em',
