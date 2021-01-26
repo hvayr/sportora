@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) =>
       alignSelf: 'flex-end',
     },
     logo: {
-      height: '150px',
+      height: '145px',
     },
     logoText: {
       color: theme.palette.secondary.main,
