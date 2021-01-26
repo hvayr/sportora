@@ -20,13 +20,15 @@ export default function ParticipantPopOver({
   const classes = useStyles();
 
   const nameList = () => {
-    return (
-      <List>
-        {names.map((p: any) => (
-          <ListItem key={p.id}>{p.user.nickName}</ListItem>
-        ))}
-      </List>
-    );
+    if (names) {
+      return (
+        <List>
+          {names.map((p: any) => (
+            <ListItem key={p.id}>{p.user && p.user.nickName}</ListItem>
+          ))}
+        </List>
+      );
+    }
   };
 
   const handleClose = () => {

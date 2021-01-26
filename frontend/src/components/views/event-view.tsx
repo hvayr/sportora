@@ -11,7 +11,6 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventCard from '../events/EventCard';
 import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
-import { address, doFetch, FetchMethod, Method, Path } from '../../api/utils';
 import GridListTile from '@material-ui/core/GridListTile';
 import { createStyles, Theme } from '@material-ui/core/styles';
 import SportSelect from '../events/SportSelect';
@@ -20,9 +19,8 @@ import SwitchComponent from '../events/SwitchComponent';
 import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
-import { getNickName } from '../../api/getNickName';
-import { colors } from '../ui/Theme';
 import useSearch from '../../api/useSearch';
+import filteredEvents from '../events/filterEvents';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -97,14 +95,16 @@ function Alert(props: AlertProps) {
 
 const EventView = () => {
   // const [eventData, setEventData] = useState([]);
-  const [sport, setSport] = useState(['Any']);
+  const [sport, setSport] = useState('');
   const [location, setLocation] = useState('');
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
   const [hideFullToggle, setHideFullToggle] = useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
   const [renderCard, setRenderCard] = React.useState(false);
+  const [perPage, setPerPage] = React.useState(10);
   const [pageNumber, setPageNumber] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(null);
 
   const { eventData, loading } = useSearch({
     location,
@@ -112,83 +112,13 @@ const EventView = () => {
     selectedDate,
     pageNumber,
     hideFullToggle,
+    setRenderCard,
+    renderCard,
   });
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const checkActiveState = await doFetch(
-  //       address,
-  //       Path.CheckActiveState,
-  //       Method.POST,
-  //       FetchMethod.Text,
-  //       false,
-  //     );
-  //
-  //     const result = await doFetch(
-  //       address,
-  //       Path.Events,
-  //       Method.GET,
-  //       FetchMethod.JSON,
-  //       false,
-  //       null,
-  //     );
-  //     await checkActiveState;
-  //     setEventData(await result.content);
-  //     setRenderCard(false);
-  //   };
-  //   getData();
-  // }, [openDialog, renderCard, hideFullToggle]);
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
   };
-
-  // function filteredEvents() {
-  //   let filteredData = eventData;
-  //
-  //   filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
-  //
-  //   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //   // @ts-ignore
-  //   if (hideFullToggle.checked) {
-  //     filteredData = filteredData.filter(
-  //       (s: ISportEvent) => s.numParticipants < s.maxParticipants,
-  //     );
-  //   }
-  //
-  //   if (sport.toString() !== 'Any') {
-  //     filteredData = filteredData.filter(
-  //       (s: ISportEvent) =>
-  //         s.name.toLocaleLowerCase() === sport.toString().toLocaleLowerCase(),
-  //     );
-  //   }
-  //
-  //   if (location.toString() !== '') {
-  //     filteredData = filteredData.filter((s: ISportEvent) =>
-  //       s.location
-  //         .toLocaleLowerCase()
-  //         .includes(location.toString().toLocaleLowerCase()),
-  //     );
-  //   }
-  //
-  //   if (selectedDate !== null) {
-  //     filteredData = filteredData.filter(
-  //       (s: ISportEvent) =>
-  //         s.eventStartTime.split('T')[0] ===
-  //         selectedDate.toJSON().split('T')[0],
-  //     );
-  //   }
-  //
-  //   filteredData.sort(function (a, b): any {
-  //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //     // @ts-ignore
-  //     return new Date(a.eventStartTime) - new Date(b.eventStartTime);
-  //   });
-  //
-  //   console.log('filteredData ' + filteredData.map((e: any) => e.activeStatus));
-  //
-  //   return filteredData;
-  // }
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -214,9 +144,16 @@ const EventView = () => {
       : alert('You need to be logged in to' + ' host an event.');
   };
 
-  const classes = useStyles();
+  // function filteredData() {
+  //   console.log('initial data ', eventData);
+  //   let filteredData = eventData;
+  //   filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
+  //
+  //   console.log('filteredData ', filteredData);
+  //   return filteredData;
+  // }
 
-  console.log('getnick: ' + getNickName(Path.LoggedUserNickName));
+  const classes = useStyles();
 
   return (
     <>
@@ -284,7 +221,13 @@ const EventView = () => {
       <Grid container className={classes.eventList}>
         <Grid item>
           <GridList cellHeight="auto" className={classes.eventList} cols={1}>
-            {eventData.map(
+            {filteredEvents({
+              eventData,
+              sport,
+              location,
+              selectedDate,
+              hideFullToggle,
+            }).map(
               ({
                 id,
                 name,

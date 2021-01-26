@@ -17,8 +17,6 @@ export const getNickName = (path: Path, id?: string | number) => {
     if (response.status === 200) {
       setNick(response.content);
     }
-
-    console.log('getnick status ' + response.status);
   };
   fetch();
 

@@ -47,11 +47,23 @@ namespace SportoraAPI.Controllers
             return Ok(result);
         }
 
-        // TODO: Paging
-        [HttpGet("search&{location}&{type}&{date}&{page}")]
-        public async Task<IActionResult> SearchSportEvents(string location, string type, DateTime dateTime, int page)
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveSportEvents()
         {
-            var result = await _sportEventRepository.SearchSportEventsAsync(location, type, dateTime, page);
+            var result = await _sportEventRepository.GetActiveSportEventsAsync();
+
+            return Ok(result);
+        }
+        
+        // TODO: Paging
+        [HttpGet("search&{location}&{type}&{dateString}&{page}")]
+        public async Task<IActionResult> SearchSportEvents(string location, string type, string dateString, int page)
+        {
+            var isoString = dateString;
+            DateTime dateIso = DateTime.ParseExact(isoString, "yyyyMMddTHH:mm:ss",
+                System.Globalization.CultureInfo.InvariantCulture);
+            
+            var result = await _sportEventRepository.SearchSportEventsAsync(location, type, dateIso, page);
 
             return Ok(result);
         }

@@ -44,22 +44,23 @@ export const doFetch = async (
 };
 
 export enum Path {
-  Users = '/users',
-  UserName = '/users/exactName',
-  Events = '/sportevents',
-  ProtectedEvents = '/sportevents/protected',
-  Email = '/users/email', //not implemented yet
-  ParticipatingEvents = '/sportevents/participatingevents',
-  AdminEvents = '/sportevents/adminevents',
-  CheckNickName = '/users/checkNickName',
-  AddUserToEvent = '/sportevents/addUser',
-  RemoveUserFromEvent = '/sportevents/removeUser',
-  LoggedUserNickName = '/users/loggedUserNickName',
-  NickNameByAuthId = '/users/nickNameByAuthId',
-  CheckActiveState = '/sportevents/checkActiveState',
+  Users = 'users',
+  UserName = 'users/exactName',
+  Events = 'sportevents',
+  ActiveEvents = 'sportevents/active',
+  ProtectedEvents = 'sportevents/protected',
+  Email = 'users/email', //not implemented yet
+  ParticipatingEvents = 'sportevents/participatingevents',
+  AdminEvents = 'sportevents/adminevents',
+  CheckNickName = 'users/checkNickName',
+  AddUserToEvent = 'sportevents/addUser',
+  RemoveUserFromEvent = 'sportevents/removeUser',
+  LoggedUserNickName = 'users/loggedUserNickName',
+  NickNameByAuthId = 'users/nickNameByAuthId',
+  CheckActiveState = 'sportevents/checkActiveState',
 }
 
-export const address = `https://localhost:44348`;
+export const address = `https://localhost:44348/`;
 
 export enum Method {
   GET = 'GET',

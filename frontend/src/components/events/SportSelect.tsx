@@ -62,7 +62,7 @@ const SportSelect: React.FC<SwitchProps> = ({
         getOptionLabel={(option) => option.value}
         style={{ width: 300 }}
         onChange={(e, value) => {
-          setSport(value !== null ? value.value : 'Any');
+          setSport(value !== null ? value.value : '');
         }}
         renderInput={(params) => (
           <TextField

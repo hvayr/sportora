@@ -4,14 +4,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import {
-  Button,
-  Collapse,
-  Grid,
-  IconButton,
-  List,
-  ListItem,
-} from '@material-ui/core';
+import { Button, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
@@ -27,7 +20,7 @@ import { getNickName } from '../../api/getNickName';
 import CountdownTimer from './CountdownTimerJS';
 
 import ParticipantPopOver from '../ui/ParticipantPopOver';
-import { colors } from '../ui/Theme';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,6 +58,12 @@ const useStyles = makeStyles((theme: Theme) =>
       //   left: '50%',
       //   transform: 'skew(0, -20deg)',
       // },
+    },
+    joined: {
+      backgroundColor: '#2FFA80',
+    },
+    hosted: {
+      backgroundColor: '#168AFA',
     },
     bullet: {
       display: 'inline-block',
@@ -138,8 +137,6 @@ interface EventProps {
 }
 
 const EventCard: React.FC<EventProps> = (props: EventProps) => {
-  const [expanded, setExpanded] = React.useState(false);
-  const [openPopOver, setOpenPopOver] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
   );
@@ -151,21 +148,22 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     }
   });
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  const joined = props.participants
-    .map((participant: any) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      {
-        if (participant.user.authId) {
-          return participant.user.authId === localStorage.getItem('sub');
-        }
-      },
-    )
-    .includes(true);
+  function joined() {
+    return props.participants
+      .map((participant: any) =>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        {
+          if (participant.user) {
+            if (participant.user.authId != null) {
+              // console.log('id ', participant.user.authId);
+              return participant.user.authId === localStorage.getItem('sub');
+            }
+          }
+        },
+      )
+      .includes(true);
+  }
 
   const handleJoin = async () => {
     const results = await doFetch(
@@ -207,7 +205,9 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     return getNickName(path, props.author);
   };
 
-  console.log('active: ' + props.activeStatus);
+  function isAuthor() {
+    return props.author === localStorage.getItem('sub');
+  }
 
   const disableJoin = () => {
     if (isEventFull() && !joined) {
@@ -217,18 +217,23 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
   };
 
   const currentTime = moment(new Date());
-
   const eventTime = moment(props.eventStartTime);
-
   const diffTime = eventTime.diff(currentTime, 'second');
-
   const timeRemaining = new Date();
   timeRemaining.setSeconds(timeRemaining.getSeconds() + diffTime);
 
   return (
     <Grid container>
       <Grid item>
-        <Card className={classes.root}>
+        <Card
+          className={
+            isAuthor()
+              ? clsx(classes.root, classes.hosted)
+              : !joined()
+              ? classes.root
+              : clsx(classes.root, classes.joined)
+          }
+        >
           <CardContent>
             <Grid container>
               <Grid item xs={1}>
@@ -370,11 +375,11 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                       size="small"
                       className={classes.joinButton}
                       variant="contained"
-                      onClick={joined ? handleLeave : handleJoin}
+                      onClick={joined() ? handleLeave : handleJoin}
                       disabled={disableJoin()}
                     >
                       <Typography variant="h5">
-                        {joined ? 'LEAVE' : 'JOIN'}
+                        {joined() ? 'LEAVE' : 'JOIN'}
                       </Typography>
                     </Button>
                   </Grid>

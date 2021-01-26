@@ -25,6 +25,15 @@ namespace SportoraAPI.Repositories
         }
 
         public IEnumerable<SportEvent> GetSportEvents() => _context.SportEvents.ToList();
+        public async Task<IEnumerable<SportEvent>> GetActiveSportEventsAsync()
+        {
+            await CheckActiveStateOfAllEvents();
+            return await _context.SportEvents
+                .Include(p => p.Admins).ThenInclude(p => p.User)
+                .Include(p => p.Participants).ThenInclude(p => p.User)
+                .Where(e => e.ActiveStatus == true)
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<SportEvent>> GetSportEventsAsync()
         {
@@ -95,6 +104,8 @@ namespace SportoraAPI.Repositories
 
             if (date != DateTime.MinValue)
                 outEvents = outEvents.Where(d => d.EventStartTime.Date >= date.Date);
+
+            outEvents = outEvents.Where(e => e.ActiveStatus);
 
             return await outEvents
                 .Include(p => p.Admins).ThenInclude(p => p.User)

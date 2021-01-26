@@ -156,15 +156,19 @@ const CreateEventForm: React.FC<IProps> = ({
           activeStatus: true,
         },
       );
+
+      console.log('date ', values.date);
+
       const handleSuccess = () => {
         setOpenEventViewSnackbar(true);
         setOpenDialog(false);
       };
       const handleFailure = () => {
-        console.log('Error');
+        console.log('Error ', response.status);
         setError(response.status.toString());
         setOpenSnackbar(true);
       };
+      console.log('post ', response.status);
 
       response.status === 201 ? handleSuccess() : handleFailure();
     } catch (e) {
@@ -208,7 +212,7 @@ const CreateEventForm: React.FC<IProps> = ({
                   console.log(value);
                   formik.setFieldValue(
                     'sport',
-                    value !== null ? value.value : 'Any',
+                    value !== null ? value.value : '',
                   );
                   formik.handleChange;
                 }}

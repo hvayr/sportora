@@ -656,3 +656,44 @@ const EventTabs: React.FC = () => {
 };
 
 export default EventTabs;
+
+
+
+Usefetch for backend paginations
+
+useEffect(() => {
+    const fetch = async () => {
+      const results = await doFetch(
+        address,
+        `sportevents/search&${location === '' ? null : location}&${
+          sport === '' ? null : sport
+        }&${formattedDate || null}&${pageNumber}`,
+        Method.GET,
+        FetchMethod.JSON,
+        false,
+      );
+      console.log(
+        'date ',
+        selectedDate,
+        'location ',
+        location,
+        'sport ',
+        sport,
+      );
+      if (results.status === 200) {
+        setEventData(results.content);
+        setRenderCard(false);
+      }
+      console.log('useSearch: ', results.content);
+    };
+    fetch();
+  }, [location, sport, selectedDate, pageNumber, hideFullToggle]);
+
+  const momentDate = moment(selectedDate).format().split('+')[0];
+    const formattedDate = moment(selectedDate)
+      .format('YYYYMMDDTHH:mm:00')
+      .split('+')[0];
+
+    console.log('momentDate ', momentDate);
+
+    console.log('formattedDate ', formattedDate);

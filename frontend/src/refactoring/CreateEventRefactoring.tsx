@@ -149,10 +149,7 @@ const TestCreateEventForm: React.FC<IProps> = (props: IProps) => {
                     style={{ width: 300 }}
                     onChange={(e, value) => {
                       console.log(value);
-                      setFieldValue(
-                        'sport',
-                        value !== null ? value.value : 'Any',
-                      );
+                      setFieldValue('sport', value !== null ? value.value : '');
                       handleChange;
                     }}
                     renderInput={(params) => (
