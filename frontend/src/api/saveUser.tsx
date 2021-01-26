@@ -1,4 +1,4 @@
-import { address, doFetch, Method, Path } from './utils';
+import { address, doFetch, FetchMethod, Method, Path } from './utils';
 import { User } from '@auth0/auth0-react/dist/auth-state';
 
 export async function isAvailable(
@@ -10,13 +10,20 @@ export async function isAvailable(
   try {
     let url;
     if (searchFrom === 'name') {
-      url = Path.USERNAME;
+      url = Path.UserName;
     } else {
-      url = searchFrom === 'email' ? Path.EMAIL : Path.USERS;
+      url = searchFrom === 'email' ? Path.Email : Path.Users;
     }
 
-    const response = await doFetch(address, url, Method.GET, false, searchFor);
-    console.log('Status ' + response.status);
+    const response = await doFetch(
+      address,
+      url,
+      Method.GET,
+      FetchMethod.JSON,
+      false,
+      searchFor,
+    );
+    console.log('isAvailable Status ' + response.status);
     if (response.status !== 200) {
       isSearchedPropertyAvailable = true;
     }
@@ -34,8 +41,9 @@ const saveUserIfNotExisting = async (user: User): Promise<void> => {
   if (await isAvailable('id', sub)) {
     const saveUser = await doFetch(
       address,
-      Path.USERS,
+      Path.Users,
       Method.POST,
+      FetchMethod.JSON,
       false,
       null,
       {

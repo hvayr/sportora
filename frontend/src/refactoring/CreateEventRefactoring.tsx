@@ -1,22 +1,19 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/ban-types */
-import React, { useEffect, SetStateAction, Dispatch } from 'react';
-import { createStyles, MenuItem, Typography, Button } from '@material-ui/core';
+import React, { Dispatch, SetStateAction } from 'react';
+import { Button, createStyles, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { sports } from '../api/sports';
 import Grid from '@material-ui/core/Grid';
-import { useAuth0 } from '@auth0/auth0-react';
 import { User } from '@auth0/auth0-react/dist/auth-state';
 import { makeStyles } from '@material-ui/core/styles';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { useFormik } from 'formik';
-import useForm from '../components/forms/useForm';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
-import { address, doFetch, Path, Method } from '../api/utils';
+import { address, doFetch, FetchMethod, Method, Path } from '../api/utils';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) =>
@@ -105,12 +102,13 @@ const TestCreateEventForm: React.FC<IProps> = (props: IProps) => {
 
     const response = await doFetch(
       address,
-      Path.EVENTS,
+      Path.Events,
       Method.POST,
+      FetchMethod.JSON,
       true,
       null,
       {
-        author: sessionStorage.getItem('sub'),
+        author: localStorage.getItem('sub'),
         name: sport,
         email: email,
         userName: name,
@@ -151,10 +149,7 @@ const TestCreateEventForm: React.FC<IProps> = (props: IProps) => {
                     style={{ width: 300 }}
                     onChange={(e, value) => {
                       console.log(value);
-                      setFieldValue(
-                        'sport',
-                        value !== null ? value.value : 'Any',
-                      );
+                      setFieldValue('sport', value !== null ? value.value : '');
                       handleChange;
                     }}
                     renderInput={(params) => (

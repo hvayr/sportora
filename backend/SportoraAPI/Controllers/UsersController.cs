@@ -70,7 +70,7 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-
+           
             return Ok(userGroups);
         }
 
@@ -151,7 +151,7 @@ namespace SportoraAPI.Controllers
 
         [Authorize(Policy = "MustBeLoggedIn")]
         [HttpGet("checkNickName")]
-        public IActionResult CheckIfNickNameIsSet()
+        public async Task<IActionResult> CheckIfNickNameIsSet()
         {
             string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
@@ -167,14 +167,45 @@ namespace SportoraAPI.Controllers
                 return NotFound();
             }
 
-            string nickName = _userRepository.GetUserNickName(authId);
-            
+            string nickName = await _userRepository.GetNickName(authId);
+
             if (nickName is null)
             {
                 return Ok(false);
             }
 
             return Ok(true);
+        }
+
+        [Authorize(Policy = "MustBeLoggedIn")]
+        [HttpGet("loggedUserNickName")]
+        public async Task<IActionResult> GetNickName()
+        {
+            string authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
+
+            if (authId is null)
+            {
+                return Problem(detail: "AuthId not found");
+            }
+
+            string nickName = await _userRepository.GetNickName(authId);
+
+            return Ok(nickName);
+        }
+        
+        [HttpGet("nickNameByAuthId/id/{authId}")]
+        public async Task<IActionResult> GetAuthorNickNameByAuthId(string authId)
+        {
+
+            string nickName = await _userRepository.GetNickName(authId);
+
+            if (nickName is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(nickName);
+            
         }
     }
 }

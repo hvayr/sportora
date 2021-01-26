@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import { address, doFetch, Method, Path, FetchMethod } from '../../api/utils';
 import { DataGrid, ColDef } from '@material-ui/data-grid';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -36,8 +36,9 @@ const JoinedEvents: React.FC = () => {
     const fetchData = async () => {
       const results = await doFetch(
         address,
-        Path.PARTICIPATINGEVENTS,
+        Path.ParticipatingEvents,
         Method.GET,
+        FetchMethod.JSON,
         true,
       );
       console.log(results.status);

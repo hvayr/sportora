@@ -408,14 +408,14 @@ const ProtectedEvent = () => {
 
   const callApi = async () => {
     try {
-      const results = await doFetch(address, Path.EVENTS, Method.GET);
+      const results = await doFetch(address, Path.Events, Method.GET);
       setData(results.content);
     } catch (error) {
       setData(error.message);
     }
     /*
      FOR TESTING DELETE
-     await doFetch(apiUrl, path.EVENTS, method.DELETE, null, 3);
+     await doFetch(apiUrl, path.Events, method.DELETE, null, 3);
     */
   };
 
@@ -423,7 +423,7 @@ const ProtectedEvent = () => {
     try {
       const results = await doFetch(
         address,
-        Path.PROTECTEDEVENTS,
+        Path.PROTECTEDEvents,
         Method.GET,
         true,
       );
@@ -557,7 +557,7 @@ const routes = ['/home', '/browse', '/events', '/profile'];
             useEffect(() => {
               console.log('fetching..');
               const fetchData = async () => {
-                const result = await doFetch(address, Path.EVENTS, Method.GET, false);
+                const result = await doFetch(address, Path.Events, Method.GET, false);
                 console.log('Result' + result);
 
                 setEvents(result.content);
@@ -576,7 +576,7 @@ const routes = ['/home', '/browse', '/events', '/profile'];
                 },
               ];
 
-              await doFetch(address, Path.EVENTS, Method.PATCH, false, 2, patchedBody);
+              await doFetch(address, Path.Events, Method.PATCH, false, 2, patchedBody);
             }
 
             return (
@@ -656,3 +656,44 @@ const EventTabs: React.FC = () => {
 };
 
 export default EventTabs;
+
+
+
+Usefetch for backend paginations
+
+useEffect(() => {
+    const fetch = async () => {
+      const results = await doFetch(
+        address,
+        `sportevents/search&${location === '' ? null : location}&${
+          sport === '' ? null : sport
+        }&${formattedDate || null}&${pageNumber}`,
+        Method.GET,
+        FetchMethod.JSON,
+        false,
+      );
+      console.log(
+        'date ',
+        selectedDate,
+        'location ',
+        location,
+        'sport ',
+        sport,
+      );
+      if (results.status === 200) {
+        setEventData(results.content);
+        setRenderCard(false);
+      }
+      console.log('useSearch: ', results.content);
+    };
+    fetch();
+  }, [location, sport, selectedDate, pageNumber, hideFullToggle]);
+
+  const momentDate = moment(selectedDate).format().split('+')[0];
+    const formattedDate = moment(selectedDate)
+      .format('YYYYMMDDTHH:mm:00')
+      .split('+')[0];
+
+    console.log('momentDate ', momentDate);
+
+    console.log('formattedDate ', formattedDate);

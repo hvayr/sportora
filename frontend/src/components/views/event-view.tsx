@@ -11,7 +11,6 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import EventCard from '../events/EventCard';
 import Button from '@material-ui/core/Button';
 import GridList from '@material-ui/core/GridList';
-import { address, doFetch, Method, Path } from '../../api/utils';
 import GridListTile from '@material-ui/core/GridListTile';
 import { createStyles, Theme } from '@material-ui/core/styles';
 import SportSelect from '../events/SportSelect';
@@ -20,12 +19,14 @@ import SwitchComponent from '../events/SwitchComponent';
 import CreateEventForm from '../events/CreateEventForm';
 import ControlPointIcon from '@material-ui/icons/ControlPoint';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import useSearch from '../../api/useSearch';
+import filteredEvents from '../events/filterEvents';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     eventList: {
       height: 1050,
-      marginTop: '5px',
+      marginTop: '15px',
       display: 'block',
       '&::-webkit-scrollbar': {
         width: '1em',
@@ -42,7 +43,10 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     locationMenu: {
       ...theme.select,
-      marginLeft: '-30.5px',
+      '& .MuiInputBase-input': {
+        backgroundColor: theme.palette.custom.color2,
+      },
+      marginLeft: '-75px',
       marginTop: '-1em',
       height: '1em',
     },
@@ -90,84 +94,31 @@ function Alert(props: AlertProps) {
 }
 
 const EventView = () => {
-  const [eventData, setEventData] = useState([]);
-  const [sport, setSport] = useState(['Any']);
+  // const [eventData, setEventData] = useState([]);
+  const [sport, setSport] = useState('');
   const [location, setLocation] = useState('');
   const [selectedDate, handleDateChange] = React.useState<Date | null>(null);
   const [hideFullToggle, setHideFullToggle] = useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
-  const [newEventOnTop, setNewEventOnTop] = React.useState('');
+  const [renderCard, setRenderCard] = React.useState(false);
+  const [perPage, setPerPage] = React.useState(10);
+  const [pageNumber, setPageNumber] = React.useState(1);
+  const [totalPages, setTotalPages] = React.useState(null);
 
-  useEffect(() => {
-    const getData = async () => {
-      const result = await doFetch(
-        address,
-        Path.EVENTS,
-        Method.GET,
-        false,
-        null,
-      );
-      setEventData(await result.content);
-    };
-    getData();
-  }, [openDialog, setOpenDialog]);
+  const { eventData, loading } = useSearch({
+    location,
+    sport,
+    selectedDate,
+    pageNumber,
+    hideFullToggle,
+    setRenderCard,
+    renderCard,
+  });
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocation(event.target.value);
   };
-
-  interface ISportEvent {
-    id: number;
-    author: string;
-    admins: number[];
-    name: string;
-    description: string;
-    location: string;
-    participants: number[];
-    numParticipants: number;
-    maxParticipants: number;
-    activeStatus: boolean;
-    eventStartTime: string;
-    eventCreatedTime: string;
-    autoInvite: number[];
-  }
-
-  function filteredEvents() {
-    let filteredData = eventData;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (hideFullToggle.checked) {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) => s.numParticipants <= s.maxParticipants,
-      );
-    }
-
-    if (sport.toString() !== 'Any') {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) =>
-          s.name.toLocaleLowerCase() === sport.toString().toLocaleLowerCase(),
-      );
-    }
-
-    if (location.toString() !== '') {
-      filteredData = filteredData.filter((s: ISportEvent) =>
-        s.location
-          .toLocaleLowerCase()
-          .includes(location.toString().toLocaleLowerCase()),
-      );
-    }
-
-    if (selectedDate !== null) {
-      filteredData = filteredData.filter(
-        (s: ISportEvent) =>
-          s.eventStartTime.split('T')[0] ===
-          selectedDate.toJSON().split('T')[0],
-      );
-    }
-
-    return filteredData;
-  }
 
   const handleOpenDialog = () => {
     setOpenDialog(true);
@@ -187,11 +138,21 @@ const EventView = () => {
     setOpenSnackbar(false);
   };
 
-  const handleClick = () => {
-    sessionStorage.getItem('sub')
+  const handleClickOpenDialog = () => {
+    localStorage.getItem('sub')
       ? handleOpenDialog()
       : alert('You need to be logged in to' + ' host an event.');
   };
+
+  // function filteredData() {
+  //   console.log('initial data ', eventData);
+  //   let filteredData = eventData;
+  //   filteredData = filteredData.filter((s: ISportEvent) => s.activeStatus);
+  //
+  //   console.log('filteredData ', filteredData);
+  //   return filteredData;
+  // }
+
   const classes = useStyles();
 
   return (
@@ -216,7 +177,7 @@ const EventView = () => {
             <SportSelect getSport={sport} setSport={setSport} />
           </Grid>
           <Grid item className={classes.dateMenu}>
-            <DateSelect getDate={selectedDate} setDate={handleDateChange} />
+            <DateSelect date={selectedDate} setDate={handleDateChange} />
           </Grid>
           <Grid item>
             <TextField
@@ -234,7 +195,7 @@ const EventView = () => {
               variant="contained"
               className={classes.hostEvent}
               color="primary"
-              onClick={handleClick}
+              onClick={handleClickOpenDialog}
             >
               <ControlPointIcon fontSize="large" />
               <Typography variant="h4">HOST EVENT</Typography>
@@ -260,7 +221,13 @@ const EventView = () => {
       <Grid container className={classes.eventList}>
         <Grid item>
           <GridList cellHeight="auto" className={classes.eventList} cols={1}>
-            {filteredEvents().map(
+            {filteredEvents({
+              eventData,
+              sport,
+              location,
+              selectedDate,
+              hideFullToggle,
+            }).map(
               ({
                 id,
                 name,
@@ -271,6 +238,9 @@ const EventView = () => {
                 eventStartTime,
                 author,
                 location,
+                userName,
+                nickName,
+                activeStatus,
               }) => (
                 <Grid container key={id} justify="center">
                   <Grid item>
@@ -285,6 +255,10 @@ const EventView = () => {
                         eventStartTime={eventStartTime}
                         author={author}
                         location={location}
+                        userName={userName}
+                        nickName={nickName}
+                        activeStatus={activeStatus}
+                        setRenderCard={setRenderCard}
                       />
                       ));
                     </GridListTile>

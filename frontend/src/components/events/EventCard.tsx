@@ -4,19 +4,31 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Button, Collapse, Grid, IconButton } from '@material-ui/core';
+import { Button, Grid, IconButton } from '@material-ui/core';
 import { sports } from '../../api/sports';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import moment from 'moment';
-import { colors } from '../ui/ThemeTypescript';
-import { address, doFetch, Method, Path } from '../../api/utils';
+import {
+  address,
+  doFetch,
+  FetchMethod,
+  IUser,
+  Method,
+  Path,
+} from '../../api/utils';
+import { getNickName } from '../../api/getNickName';
+import CountdownTimer from './CountdownTimerJS';
+
+import ParticipantPopOver from '../ui/ParticipantPopOver';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       width: 700,
       margin: '1px',
-      backgroundColor: theme.palette.secondary.main,
+      // backgroundColor: theme.palette.secondary.main,
+      backgroundColor: '#FFE0B2',
       boxShadow: 'inset 1px 1px 10px',
       // boxShadow: 'inset 0 5px 10px 0px rgba(0,0,0,.5)',
       color: theme.palette.primary.main,
@@ -47,6 +59,12 @@ const useStyles = makeStyles((theme: Theme) =>
       //   transform: 'skew(0, -20deg)',
       // },
     },
+    joined: {
+      backgroundColor: '#2FFA80',
+    },
+    hosted: {
+      backgroundColor: '#168AFA',
+    },
     bullet: {
       display: 'inline-block',
       margin: '0 2px',
@@ -61,18 +79,28 @@ const useStyles = makeStyles((theme: Theme) =>
       // backgroundColor: theme.palette.primary.main,
       // padding: '5px',
     },
+    startTime: {
+      marginTop: '2px',
+    },
+    location: {
+      marginTop: '10px',
+    },
     pos: {
       marginBottom: 12,
+    },
+    hostContainer: {
+      marginTop: '-20px',
     },
     descriptionContainer: {
       height: '100px',
       marginTop: '30px',
     },
-    participantContainer: {
-      height: '130px',
-    },
+    participantContainer: {},
     participantText: {
       marginLeft: '40px',
+    },
+    participantList: {
+      marginTop: '-20px',
     },
     expandIcon: {
       marginTop: '-8px',
@@ -94,17 +122,24 @@ const useStyles = makeStyles((theme: Theme) =>
 interface EventProps {
   id: number;
   sport: string;
-  participants: object[];
+  participants: IUser[];
   numParticipants: number;
   maxParticipants: number;
   description: string;
   eventStartTime: string;
+
   author: string;
   location: string;
+  setRenderCard: React.Dispatch<React.SetStateAction<boolean>>;
+  userName: string;
+  nickName: string;
+  activeStatus: boolean;
 }
 
 const EventCard: React.FC<EventProps> = (props: EventProps) => {
-  const [expanded, setExpanded] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
   const classes = useStyles();
 
   const getIcon = sports.map((s) => {
@@ -113,61 +148,101 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     }
   });
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
-  const joined = props.participants.map(
-    (participant) =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      participant.user.authId === sessionStorage.getItem('sub'),
-  );
-
-  console.log('joined ', joined.includes(true));
+  function joined() {
+    return props.participants
+      .map((participant: any) =>
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        {
+          if (participant.user) {
+            if (participant.user.authId != null) {
+              // console.log('id ', participant.user.authId);
+              return participant.user.authId === localStorage.getItem('sub');
+            }
+          }
+        },
+      )
+      .includes(true);
+  }
 
   const handleJoin = async () => {
     const results = await doFetch(
-      // address,
-      // Path.ADDUSERTOEVENT,
-      // Method.POST,
-      // true,
-      // props.id,
       address,
-      Path.USERS,
-      Method.DELETE,
+      Path.AddUserToEvent,
+      Method.POST,
+      FetchMethod.JSON,
       true,
       props.id,
     );
-    console.log('content: ' + results.content + 'status: ' + results.status);
+    props.setRenderCard(true);
   };
 
-  // const nameList: any = () => {
-  //   let list = [];
-  //   list = dummyParticipants.map((p) => p.nickname);
-  //   console.log('List: ' + list);
-  //   console.log();
-  //   return list.join(', ');
-  // };
+  const handleLeave = async () => {
+    const results = await doFetch(
+      address,
+      Path.RemoveUserFromEvent,
+      Method.DELETE,
+      FetchMethod.JSON,
+      true,
+      props.id,
+    );
+    props.setRenderCard(true);
+  };
+
+  const handleClickOpenPopOver = (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const isEventFull = () => {
+    return props.numParticipants >= props.maxParticipants;
+  };
+
+  const path = Path.NickNameByAuthId;
+
+  const authorNickName = () => {
+    return getNickName(path, props.author);
+  };
+
+  function isAuthor() {
+    return props.author === localStorage.getItem('sub');
+  }
+
+  const disableJoin = () => {
+    if (isEventFull() && !joined) {
+      return true;
+    }
+    return !localStorage.getItem('sub');
+  };
+
+  const currentTime = moment(new Date());
+  const eventTime = moment(props.eventStartTime);
+  const diffTime = eventTime.diff(currentTime, 'second');
+  const timeRemaining = new Date();
+  timeRemaining.setSeconds(timeRemaining.getSeconds() + diffTime);
 
   return (
     <Grid container>
       <Grid item>
         <Card
-          className={classes.root}
-          // style={
-          //   expanded ? { height: 260 + dummyParticipants.length * 10 } : {}
-          // }
+          className={
+            isAuthor()
+              ? clsx(classes.root, classes.hosted)
+              : !joined()
+              ? classes.root
+              : clsx(classes.root, classes.joined)
+          }
         >
           <CardContent>
             <Grid container>
               <Grid item xs={1}>
                 {getIcon}
               </Grid>
-              <Grid item container direction="column" xs={3}>
+              <Grid item container direction="column" xs={5}>
                 <Grid item>
                   <Typography
-                    variant="h4"
+                    variant="h5"
                     component="h1"
                     className={classes.sportName}
                   >
@@ -175,99 +250,118 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography>
-                    {moment(props.eventStartTime).format('MMMM Do, h:mm')}
+                  <Typography className={classes.startTime}>
+                    {moment(props.eventStartTime).format('MMMM Do, h:mm a')}
                   </Typography>
                 </Grid>
                 <Grid item>
-                  <Typography variant="h6">{props.location}</Typography>
+                  <Typography variant="h6" className={classes.location}>
+                    {props.location}
+                  </Typography>
                 </Grid>
               </Grid>
-              <Grid item xs={2} />
               <Grid
                 item
                 container
-                direction="column"
-                xs={6}
-                justify="space-around"
+                justify="flex-end"
                 alignItems="flex-start"
-              >
-                <Grid
-                  item
-                  container
-                  style={{ height: '70px' }}
-                  alignItems="center"
-                  direction="column"
-                >
-                  <Grid item>
-                    <Typography>HOST</Typography>
-                  </Grid>
-                  <Grid item>
-                    <Typography variant="h5" className={classes.nickname}>
-                      Nickname
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={1} />
-              <Grid
-                item
-                container
-                xs={5}
-                className={classes.descriptionContainer}
-              >
-                <Grid item>
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  <Typography component="h4">"{props.description}"</Typography>
-                </Grid>
-              </Grid>
-              <Grid
-                item
-                container
                 xs={6}
-                className={classes.participantContainer}
               >
+                <Grid item xs={12}>
+                  <CountdownTimer expiryTimestamp={timeRemaining} />
+                </Grid>
+              </Grid>
+              <Grid container>
+                <Grid
+                  item
+                  container
+                  xs={6}
+                  className={classes.descriptionContainer}
+                  alignItems="center"
+                >
+                  <Grid item xs={2} />
+                  <Grid item xs={6}>
+                    <Typography component="h4">
+                      Description: {props.description}
+                    </Typography>
+                  </Grid>
+                </Grid>
                 <Grid
                   item
                   container
                   direction="column"
-                  justify="flex-start"
-                  alignItems="center"
+                  xs={6}
+                  justify="space-around"
+                  alignItems="flex-start"
                 >
-                  <Grid item container justify="center">
-                    <Typography
-                      className={classes.participantText}
-                      variant="h6"
-                    >
-                      PARTICIPANTS
-                    </Typography>
+                  <Grid
+                    item
+                    container
+                    alignItems="center"
+                    direction="column"
+                    className={classes.hostContainer}
+                  >
                     <Grid item>
-                      <IconButton
-                        className={classes.expandIcon}
-                        onClick={handleExpandClick}
-                      >
-                        <ExpandMoreIcon />
-                        {/*<Dialog open={open} onClose={handleClose}>
-                          <List>
-                            {dummyParticipants.map((p) => (
-                              <ListItem key={p.nickname}>p.nickname</ListItem>
-                            ))}
-                          </List>
-                        </Dialog>*/}
-                      </IconButton>
+                      <Typography>HOST</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Typography variant="h5" className={classes.nickname}>
+                        {authorNickName()}
+                      </Typography>
                     </Grid>
                   </Grid>
-                  <Grid item>
-                    <Collapse in={expanded} timeout="auto" unmountOnExit>
-                      <CardContent>
-                        {/*<Typography>{nameList()}</Typography>*/}
-                      </CardContent>
-                    </Collapse>
-                  </Grid>
-                  <Grid item container justify="center">
-                    <Typography variant="h6">
-                      {props.numParticipants} / {props.maxParticipants}
-                    </Typography>
+                  <Grid item container className={classes.participantContainer}>
+                    <Grid
+                      item
+                      container
+                      direction="column"
+                      justify="center"
+                      alignItems="center"
+                    >
+                      <Grid item container justify="center">
+                        <Typography
+                          className={classes.participantText}
+                          variant="h6"
+                        >
+                          PARTICIPANTS
+                        </Typography>
+                        <Grid item>
+                          <IconButton
+                            className={classes.expandIcon}
+                            onClick={handleClickOpenPopOver}
+                          >
+                            <ExpandMoreIcon />
+                          </IconButton>
+                        </Grid>
+                      </Grid>
+                      {/*<Grid item>*/}
+                      {/*  <Collapse*/}
+                      {/*    in={expanded}*/}
+                      {/*    timeout="auto"*/}
+
+                      {/*    unmountOnExit*/}
+                      {/*    className={classes.participantList}*/}
+                      {/*  >*/}
+                      {/*    <CardContent>*/}
+                      {/*      <Typography style={{ color: '#E65100' }}>*/}
+                      {/*        {nameList()}*/}
+                      {/*      </Typography>*/}
+                      {/*    </CardContent>*/}
+                      {/*  </Collapse>*/}
+                      {/*</Grid>*/}
+                      <Grid item>
+                        <ParticipantPopOver
+                          anchorEl={anchorEl}
+                          setAnchorEl={setAnchorEl}
+                          names={props.participants}
+                        />
+                      </Grid>
+                      <Grid item container justify="center">
+                        <Typography variant="h6">
+                          {props.numParticipants} / {props.maxParticipants}
+                        </Typography>
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
                 <Grid
@@ -281,9 +375,12 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
                       size="small"
                       className={classes.joinButton}
                       variant="contained"
-                      onClick={handleJoin}
+                      onClick={joined() ? handleLeave : handleJoin}
+                      disabled={disableJoin()}
                     >
-                      <Typography variant="h5">JOIN</Typography>
+                      <Typography variant="h5">
+                        {joined() ? 'LEAVE' : 'JOIN'}
+                      </Typography>
                     </Button>
                   </Grid>
                 </Grid>

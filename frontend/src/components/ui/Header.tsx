@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
   Grid,
+  Button,
 } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import ProfileMenu from '../profile/ProfileMenu';
@@ -14,6 +15,7 @@ import LoginButton from '../../auth/login-button';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import App from '../../App';
+import { colors } from './Theme';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -25,7 +27,6 @@ const useStyles = makeStyles((theme) =>
       borderRadius: '10px',
     },
     toolbar: {
-      minHeight: 128,
       alignItems: 'flex-end',
       paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(2),
@@ -43,19 +44,30 @@ const useStyles = makeStyles((theme) =>
       alignSelf: 'flex-end',
     },
     logo: {
-      height: '100%',
+      height: '145px',
     },
     logoText: {
       color: theme.palette.secondary.main,
     },
     button: {
       marginLeft: 'auto',
+      marginBottom: '10px',
+      backgroundColor: theme.palette.custom.color1,
+    },
+    loginButton: {
+      marginBottom: '10px',
+      backgroundColor: theme.palette.custom.color1,
+    },
+    buttonContainer: {
+      margin: 'auto',
+      height: '155px',
     },
     header: {
       width: '100%',
       height: '160px',
       display: 'block',
       backgroundColor: '#101010',
+      borderBottom: `5px solid ${colors.normal}`,
     },
     appBar: {
       width: '1000px',
@@ -76,15 +88,28 @@ const Header: React.FC = () => {
     <div className={classes.header}>
       <div className={classes.appBar}>
         <Grid container>
-          <Grid item container alignItems="center">
-            <Grid item>
-              <Typography variant="h1" className={classes.logoText}>
-                SPORTORA
-              </Typography>
+          <Grid item container>
+            <Grid item xs={6}>
+              <Button component={Link} to="/">
+                <img src={logo} alt="logo" className={classes.logo} />
+              </Button>
             </Grid>
-            <Grid item container alignItems="flex-end">
-              <div className={classes.button}>
-                {isAuthenticated ? <ProfileMenu /> : <LoginButton />}
+            <Grid
+              item
+              container
+              alignItems="flex-end"
+              justify="flex-end"
+              xs={6}
+              className={classes.buttonContainer}
+            >
+              <div>
+                {isAuthenticated ? (
+                  <ProfileMenu />
+                ) : (
+                  <div className={classes.loginButton}>
+                    <LoginButton />
+                  </div>
+                )}
               </div>
             </Grid>
           </Grid>

@@ -10,6 +10,8 @@ namespace SportoraAPI.Repositories
     {
         void AddSportEvent(SportEvent sportEvent);
         IEnumerable<SportEvent> GetSportEvents();
+        Task<IEnumerable<SportEvent>> GetActiveSportEventsAsync();
+
         Task<IEnumerable<SportEvent>> GetSportEventsAsync();
         Task<IEnumerable<SportEvent>> SearchSportEventsAsync(string location, string type, DateTime date, int page);
 
@@ -24,5 +26,8 @@ namespace SportoraAPI.Repositories
         Task<IEnumerable<SportEvent>> GetUserAdminEvents(string authId);
         void AddUserToEvent(int eventId, string authId);
         void RemoveUserFromEvent(int eventId, string authId);
+        Task CheckActiveStateOfAllEvents();
+        void SetActiveState(SportEvent s);
+
     }
 }

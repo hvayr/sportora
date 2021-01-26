@@ -7,12 +7,14 @@ import Menu from '@material-ui/core/Menu';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
+import { getNickName } from '../../api/getNickName';
+import { Path } from '../../api/utils';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      color: theme.palette.secondary.main,
+      color: theme.palette.custom.color1,
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -48,7 +50,7 @@ export default function ProfileMenu() {
         <div>
           <IconButton onClick={handleMenu} color="inherit">
             <Typography className={classes.userName}>
-              {useAuth0().user.name}
+              {getNickName(Path.LoggedUserNickName)}
             </Typography>
             <AccountCircle />
           </IconButton>
@@ -61,7 +63,7 @@ export default function ProfileMenu() {
                 logout({
                   returnTo: window.location.origin,
                 });
-                sessionStorage.clear();
+                localStorage.clear();
               }}
             >
               Logout

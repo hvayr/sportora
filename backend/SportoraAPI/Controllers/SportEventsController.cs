@@ -47,11 +47,23 @@ namespace SportoraAPI.Controllers
             return Ok(result);
         }
 
-        // TODO: Paging
-        [HttpGet("search&{location}&{type}&{date}&{page}")]
-        public async Task<IActionResult> SearchSportEvents(string location, string type, DateTime dateTime, int page)
+        [HttpGet("active")]
+        public async Task<IActionResult> GetActiveSportEvents()
         {
-            var result = await _sportEventRepository.SearchSportEventsAsync(location, type, dateTime, page);
+            var result = await _sportEventRepository.GetActiveSportEventsAsync();
+
+            return Ok(result);
+        }
+        
+        // TODO: Paging
+        [HttpGet("search&{location}&{type}&{dateString}&{page}")]
+        public async Task<IActionResult> SearchSportEvents(string location, string type, string dateString, int page)
+        {
+            var isoString = dateString;
+            DateTime dateIso = DateTime.ParseExact(isoString, "yyyyMMddTHH:mm:ss",
+                System.Globalization.CultureInfo.InvariantCulture);
+            
+            var result = await _sportEventRepository.SearchSportEventsAsync(location, type, dateIso, page);
 
             return Ok(result);
         }
@@ -75,7 +87,8 @@ namespace SportoraAPI.Controllers
         {
             var authId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value;
 
-            IEnumerable<SportEvent> participatingEvents = await _sportEventRepository.GetUserParticipatingEvents(authId);
+            IEnumerable<SportEvent> participatingEvents =
+                await _sportEventRepository.GetUserParticipatingEvents(authId);
 
             return Ok(participatingEvents);
         }
@@ -105,7 +118,10 @@ namespace SportoraAPI.Controllers
             User loggedInUser = await _sportEventRepository.GetUserFromAuthId(authId);
 
             sportEventToAdd.Admins = new List<SportEventAdmins>();
-            sportEventToAdd.Admins.Add(new SportEventAdmins { User = loggedInUser });
+            sportEventToAdd.Admins.Add(new SportEventAdmins {User = loggedInUser});
+            sportEventToAdd.Participants = new List<SportEventParticipants>();
+            sportEventToAdd.Participants.Add(new SportEventParticipants {User = loggedInUser});
+
 
             _sportEventRepository.AddSportEvent(sportEventToAdd);
 
@@ -113,7 +129,7 @@ namespace SportoraAPI.Controllers
         }
 
         [Authorize(Policy = "MustBeEventAdmin")]
-        [HttpGet("setactive/{id}/{activeState}")]
+        [HttpGet("setactive/{activeState}/{id}")]
         public async Task<IActionResult> SetSportEventActiveState(int id, bool activeState)
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
@@ -132,7 +148,7 @@ namespace SportoraAPI.Controllers
         {
             SportEvent sportEvent = await _sportEventRepository.GetSportEventById(id);
 
-            if (sportEvent.NumParticipants != 0)
+            if (sportEvent.NumParticipants != 1)
             {
                 return Forbid();
             }
@@ -169,12 +185,12 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-            
+
             _sportEventRepository.AddUserToEvent(eventId, authId);
 
             return Ok(sportEvent);
         }
-        
+
         [Authorize(Policy = "MustBeLoggedIn")]
         [HttpDelete("removeUser/id/{eventId}")]
         public async Task<IActionResult> RemoveUserFromEvent(int eventId)
@@ -186,10 +202,18 @@ namespace SportoraAPI.Controllers
             {
                 return NotFound();
             }
-            
+
             _sportEventRepository.RemoveUserFromEvent(eventId, authId);
 
             return Ok(sportEvent);
+        }
+
+        [HttpPost("checkActiveState")]
+        public async Task<IActionResult> CheckActiveStatusOfAllEvents()
+        {
+            await _sportEventRepository.CheckActiveStateOfAllEvents();
+
+            return Ok();
         }
     }
 }

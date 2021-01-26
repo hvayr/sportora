@@ -19,7 +19,7 @@ import {
   KeyboardDateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
-import { address, doFetch, Path, Method } from '../../api/utils';
+import { address, doFetch, Path, Method, FetchMethod } from '../../api/utils';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 const useStyles = makeStyles((theme) =>
@@ -54,6 +54,7 @@ const initialValues = {
   sport: '',
   location: '',
   date: new Date(Date()),
+  numParticipants: '0',
   maxParticipants: '2',
   description: '',
 };
@@ -61,9 +62,19 @@ const initialValues = {
 interface IInitialValues {
   sport: string;
   location: string;
-  date: Date;
-  maxParticipants: string;
   description: string;
+  date: Date;
+  numParticipants: string;
+  maxParticipants: string;
+}
+
+interface Values {
+  sport: string;
+  location: string;
+  description: string;
+  date: Date;
+  numParticipants: string;
+  maxParticipants: string;
 }
 
 const validate = (values: IInitialValues) => {
@@ -113,20 +124,27 @@ const CreateEventForm: React.FC<IProps> = ({
 
   const classes = useStyles();
 
-  const onSubmit = async (values: object, user: User) => {
+  const onSubmit = async (values: Values, user: User) => {
     const { email, name } = user;
-    // @ts-ignore
-    const { sport, description, date, location, maxParticipants } = values;
+    const {
+      sport,
+      description,
+      date,
+      location,
+      numParticipants,
+      maxParticipants,
+    } = values;
 
     try {
       const response = await doFetch(
         address,
-        Path.EVENTS,
+        Path.Events,
         Method.POST,
+        FetchMethod.JSON,
         true,
         null,
         {
-          author: sessionStorage.getItem('sub'),
+          author: localStorage.getItem('sub'),
           name: sport,
           email: email,
           userName: name,
@@ -134,19 +152,23 @@ const CreateEventForm: React.FC<IProps> = ({
           eventStartTime: date,
           location: location,
           maxParticipants: maxParticipants,
-          numParticipants: 2,
+          numParticipants: numParticipants,
           activeStatus: true,
         },
       );
+
+      console.log('date ', values.date);
+
       const handleSuccess = () => {
         setOpenEventViewSnackbar(true);
         setOpenDialog(false);
       };
       const handleFailure = () => {
-        console.log('Error');
+        console.log('Error ', response.status);
         setError(response.status.toString());
         setOpenSnackbar(true);
       };
+      console.log('post ', response.status);
 
       response.status === 201 ? handleSuccess() : handleFailure();
     } catch (e) {
@@ -160,14 +182,6 @@ const CreateEventForm: React.FC<IProps> = ({
     onSubmit,
     validate,
   });
-
-  // interface Values {
-  //   sport: string;
-  //   location: string;
-  //   date: string;
-  //   maxParticipants: string;
-  //   description: string;
-  // }
 
   const handleCloseSnackbar = (
     event?: React.SyntheticEvent,
@@ -198,7 +212,7 @@ const CreateEventForm: React.FC<IProps> = ({
                   console.log(value);
                   formik.setFieldValue(
                     'sport',
-                    value !== null ? value.value : 'Any',
+                    value !== null ? value.value : '',
                   );
                   formik.handleChange;
                 }}

@@ -4,41 +4,38 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { sports } from '../../api/sports';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { colors } from '../ui/Theme';
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     sport: {
       ...theme.select,
-      width: '70%',
+      width: '75%',
       '& .MuiFormControl-marginNormal': {
-        marginRight: '8px',
+        marginRight: '20px',
       },
       '& .MuiAutocomplete-inputRoot': {
         borderWidth: '10px',
       },
     },
     root: {
-      marginRight: '1px',
+      marginRight: '17.5px',
     },
-    //   cssLabel: {
-    //     color: 'red',
-    //   },
-    //
-    //   cssOutlinedInput: {
-    //     '&$cssFocused $notchedOutline': {
-    //       borderWidth: '3px',
-    //       boxShadow: '3px 3px 3px',
-    //       borderColor: `${theme.palette.custom.color3} !important`,
-    //     },
-    //   },
-    //
-    //   cssFocused: {},
-    //   notchedOutline: {
+
+    // cssOutlinedInput: {
+    //   '&$cssFocused $notchedOutline': {
     //     borderWidth: '3px',
-    //     boxShadow: '2px 2px 2px',
-    //     borderColor: `${theme.palette.primary.main} !important`,
+    //     boxShadow: '3px 3px 3px',
+    //     borderColor: `${theme.palette.custom.color3} !important`,
     //   },
-    // }),
+    // },
+
+    cssFocused: {},
+    notchedOutline: {
+      borderWidth: '3px',
+      boxShadow: '2px 2px 2px',
+      borderColor: `${theme.palette.primary.main} !important`,
+    },
   }),
 );
 
@@ -65,7 +62,7 @@ const SportSelect: React.FC<SwitchProps> = ({
         getOptionLabel={(option) => option.value}
         style={{ width: 300 }}
         onChange={(e, value) => {
-          setSport(value !== null ? value.value : 'Any');
+          setSport(value !== null ? value.value : '');
         }}
         renderInput={(params) => (
           <TextField
@@ -73,8 +70,22 @@ const SportSelect: React.FC<SwitchProps> = ({
             name="sport"
             label="Sport"
             variant="outlined"
-            {...params}
             className={classes.sport}
+            {...params}
+            // InputLabelProps={{
+            //   classes: {
+            //     root: classes.cssLabel,
+            //     focused: classes.cssFocused,
+            //   },
+            // }}
+            // InputProps={{
+            //   classes: {
+            //     root: classes.cssOutlinedInput,
+            //     focused: classes.cssFocused,
+            //     notchedOutline: classes.notchedOutline,
+            //   },
+            // }}
+
             /*InputProps={{
               classes: {
                 root: classes.cssOutlinedInput,

@@ -22,5 +22,20 @@
     <None Update="dbstring.conf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Remove="IISExpress\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="IISExpress\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="IISExpress\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="IISExpress\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="IISExpress\config\applicationhost.config" />
+    <_ContentIncludedByDefault Remove="IISExpress\config\aspnet.config" />
+    <_ContentIncludedByDefault Remove="IISExpress\config\redirection.config" />
   </ItemGroup>
 </Project>
