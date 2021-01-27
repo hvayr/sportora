@@ -192,12 +192,18 @@ const EventCard: React.FC<EventProps> = (props: EventProps) => {
     return props.author === localStorage.getItem('sub');
   }
 
-  console.log('is full: ', isEventFull());
+  function isLoggedIn() {
+    return localStorage.getItem('sub');
+  }
 
   function disableJoin() {
+    if (!isLoggedIn()) {
+      return true;
+    }
     if (isEventFull()) {
       return !joined();
     }
+    return !isLoggedIn();
   }
 
   const currentTime = moment(new Date());
