@@ -32,11 +32,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f207eefa-da9d-430e-9022-f6e60d86b8d0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/api/sports.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/CountdownTimer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/refactoring/CountdownTimer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/events/DateSelect.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/components/ui/Theme.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SportoraAPI/.idea/contentModel.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,15 +51,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F47558AC-9E80-42DE-A6FC-4617611749BC/5/ConfigureNamedOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/25F/AsyncMethodBuilder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/F47558AC-9E80-42DE-A6FC-4617611749BC/A/OptionsFactory.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F47558AC-9E80-42DE-A6FC-4617611749BC/56/5b184a4a/OptionsManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IISExpress/config/redirection.config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F47558AC-9E80-42DE-A6FC-4617611749BC/56/5b184a4a/OptionsManager`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IISExpress/config/applicationhost.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/41/ba6b0e5f/SZGenericArrayEnumerator`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IISExpress/config/aspnet.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAdminRequirement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/41/ba6b0e5f/SZGenericArrayEnumerator`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2BC5ED24-0D5C-402C-8B6A-BD14FFCEE267/01/2a7eb13e/List`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/AF8A5A31-B5B9-4E76-A380-0B82CF56BD45/5/AuthorizationOptions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/26B8D1E2-4F44-4EA5-B82B-160B88995F25/F3/ActionMethodExecutor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Authorization/MustBeEventAdminRequirement.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
@@ -197,6 +193,7 @@
       <workItem from="1611402021252" duration="54000" />
       <workItem from="1611402353799" duration="24608000" />
       <workItem from="1611647863428" duration="3915000" />
+      <workItem from="1611748394639" duration="346000" />
     </task>
     <servers />
   </component>

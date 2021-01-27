@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Git\Sportora\backend\SportoraAPI" t="IncludeRecursive">
+    <e p="C:\Git2\Sportora\backend\SportoraAPI" t="IncludeRecursive">
       <e p=".gitignore" t="Include" />
       <e p="appsettings.Development.json" t="Include" />
       <e p="appsettings.json" t="Include" />
@@ -80,6 +80,6 @@
       </e>
     </e>
     <e p="C:\Users\hvayr\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\hvayr\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_SportoraAPI.2079263981.00" t="ExcludeRecursive" />
+    <e p="C:\Users\hvayr\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_SportoraAPI.1009174267.00" t="ExcludeRecursive" />
   </component>
 </project>

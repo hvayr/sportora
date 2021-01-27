@@ -36,7 +36,7 @@ export default createMuiTheme({
   select: {
     background: colors.light,
       '& .MuiFormLabel-root': {
-        fontSize: '1.5em',
+        fontSize: '1.51em',
         marginBottom: '1em',
         textTransform: 'uppercase',
         fontWeight: '700',
